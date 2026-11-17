@@ -9,6 +9,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 <!-- META_PIXEL -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=114304334", "ym");
+   ym(114304334, "init", {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+   window.goal=function(n){try{ym(114304334,"reachGoal",n)}catch(e){}};
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114304334" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <style>
 :root{--bg:#f6f4ef;--card:#fff;--ink:#1b1a1f;--muted:#6b6873;--line:#e7e3da;--accent:#4b3fd6;--soft:#ecebfd}
 *{box-sizing:border-box}
@@ -70,5 +82,11 @@ h1{font-family:Fraunces,Georgia,serif;font-size:clamp(32px,7vw,44px);line-height
 
   <p class="note">Savolingiz bo'lsa: <a href="https://t.me/MR_Qabul" target="_blank" rel="noopener">@MR_Qabul</a><br><a href="konspekt.html">← Konspektga qaytish</a></p>
 </div>
+<script>
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;
+    if(t.closest('a[href$=".pdf"]'))goal('rahmat_pdf');
+    if(t.closest('#channelBtn'))goal('rahmat_kanal');
+},true);
+</script>
 </body>
 </html>

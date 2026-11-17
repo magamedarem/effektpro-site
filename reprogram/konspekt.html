@@ -3,6 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=114304334", "ym");
+   ym(114304334, "init", {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+   window.goal=function(n){try{ym(114304334,"reachGoal",n)}catch(e){}};
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114304334" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <title>Reprogram — Ongni qayta dasturlash konspekti</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -664,7 +676,7 @@ document.getElementById('calcBtn').onclick = ()=>{
   if(s<=6){cls='g';t='Vaziyatli qarz';x="Qarz siz uchun odat emas, shunchaki vaziyat majbur qilgan. Chiqib ketish uchun aniq reja va ozgina intizom yetadi.";}
   else if(s<=14){cls='y';t='Xavfli odat shakllanmoqda';x="Rejaning o'zi yetmaydi. Qarzga kirishingizning ichki sababini, ya'ni qaysi ong osti dasturi sizni boshqarayotganini topish kerak. Buning uchun bitta individual konsultatsiya yetarli bo'lishi mumkin.";}
   else {cls='r';t='Qarzdorlik sindromi bor';x="Masala jiddiy. Hozirgi qarzlarni yopsangiz ham, dastur o'zgarmaguncha yana qayta-qayta qarzga kirasiz. Bu holatda individual chuqur ish tavsiya etiladi.";}
-  r.className='result show '+cls;
+  r.className='result show '+cls;goal('konspekt_test');
   const link = s>14 ? ` <a href="#koaching"><b>Individual koaching haqida →</b></a>` : (s>6 ? ` <a href="#konsultatsiya"><b>Reprogram o'quvchilari uchun konsultatsiya: 997 000 so'm →</b></a>` : '');
   document.getElementById('rTitle').textContent=t;
   document.getElementById('rText').innerHTML=x+link;
@@ -695,7 +707,7 @@ sendBtn.addEventListener('click',e=>{
   e.preventDefault();
   if(sending) return;
   if(!ready()){hint.textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";hint.style.color='#ffb4ae';return;}
-  sending=true; hint.style.color=''; hint.textContent=''; sendBtn.textContent='Yuborilmoqda…';
+  goal('konspekt_ariza');sending=true; hint.style.color=''; hint.textContent=''; sendBtn.textContent='Yuborilmoqda…';
   updateLink(); const url=sendBtn.href;
   fetch(url,{mode:'no-cors'})
     .then(()=>{ location.href='rahmat.html'; })
@@ -703,7 +715,7 @@ sendBtn.addEventListener('click',e=>{
 });
 document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();if(ready())sendBtn.click();});
 document.getElementById('pickConsult').addEventListener('click',()=>{
-  const sel=document.getElementById('fFormat');sel.selectedIndex=2;updateLink();
+  goal('konspekt_konsult');const sel=document.getElementById('fFormat');sel.selectedIndex=2;updateLink();
   document.getElementById('apply').scrollIntoView({behavior:'smooth',block:'start'});
   setTimeout(()=>document.getElementById('fName').focus({preventScroll:true}),600);
 });

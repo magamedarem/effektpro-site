@@ -9,6 +9,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <!-- META_PIXEL -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=114304334", "ym");
+   ym(114304334, "init", {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+   window.goal=function(n){try{ym(114304334,"reachGoal",n)}catch(e){}};
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114304334" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <style>
 :root{
   --bg:#0A2A21; --bg2:#0D3328; --card:#103A2E; --line:#1D5242; --ink:#EEF6F2; --ink2:#B9D3C8; --muted:#8DB0A3;
@@ -573,7 +585,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);
     if(s<=2)verdict=["Siz o'z yo'lingizga yaqinsiz","Ko'p narsa joyida. Lekin “Ha” degan joylaringiz sizni sekinlashtiryapti. Diagnostikada ularni aniq ko'rib, yo'lingizni tezlashtiramiz."];
     else if(s<=5)verdict=["Siz yo'lingizni qidiryapsiz","Ichingizda kuch bor, lekin u to'liq ochilmagan. Diagnostikada kuchli tomonlaringiz va qalb kasbingiz yo'nalishini topamiz."];
     else verdict=["Siz hali o'z yo'lingizda emassiz","Charchoq, pul yetmasligi, baraka yo'qligi: bular tasodif emas. Bu o'zgasining yo'lida yurganingiz belgisi. Diagnostika aynan siz uchun."];
-    var g=$('#tGate');g.classList.add('show');g.scrollIntoView({behavior:'smooth',block:'center'});
+    goal('diag_test');var g=$('#tGate');g.classList.add('show');g.scrollIntoView({behavior:'smooth',block:'center'});
   });
   function showResult(){
     $('#tGate').classList.remove('show');
@@ -583,7 +595,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);
   $('#gBtn').addEventListener('click',function(){
     var nm=$('#gName').value.trim(),ph=$('#gPhone').value.trim();
     if(nm.length<2||ph.replace(/\D/g,'').length<9){$('#gHint').textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";$('#gHint').style.color='#6EE7B0';return}
-    var b=this;b.textContent='Bir soniya…';b.disabled=true;
+    goal('diag_lead');var b=this;b.textContent='Bir soniya…';b.disabled=true;
     var q=new URLSearchParams({name:nm,phone:ph,format:'Diagnostika testi (lead)',area:verdict[0],note:'[Diagnostika sayt · test] '+score+'/8'});
     var done=false;function go(){if(done)return;done=true;showResult()}
     fetch(SHEET_URL+'?'+q.toString(),{mode:'no-cors'}).then(go,go);setTimeout(go,2500);
@@ -598,17 +610,18 @@ footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);
     e.preventDefault();
     var nm=$('#bName').value.trim(),ph=$('#bPhone').value.trim();
     if(nm.length<2||ph.replace(/\D/g,'').length<9){$('#bHint').textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";$('#bHint').style.color='#6EE7B0';return}
-    var b=$('#bBtn');b.disabled=true;b.textContent='Band qilinmoqda…';
+    goal('diag_bron');var b=$('#bBtn');b.disabled=true;b.textContent='Band qilinmoqda…';
     bk={name:nm,phone:ph,time:$('#bTime').value,note:$('#bNote').value.trim()};
     var done=false;function go(){if(done)return;done=true;step(2)}
     ping('[Band qildi]').then(go);setTimeout(go,2500);
   });
   $('#copy').addEventListener('click',function(){
-    var b=this,card='8600140411333272';function ok(){b.textContent='✓ Nusxa olindi'}
+    goal('diag_karta');var b=this,card='8600140411333272';function ok(){b.textContent='✓ Nusxa olindi'}
     function fb(){var t=document.createElement('textarea');t.value=card;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(t);ok()}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(card).then(ok,fb)}else fb();
   });
   $('#paid').addEventListener('click',function(){
+    goal('diag_tolov_qildim');
     ping('[To\'lov qildim deb bosdi]');
     $('#tg').href='https://t.me/MR_Qabul?text='+encodeURIComponent("Assalomu alaykum! DIAGNOSTIKA uchun 290 000 so'm to'lov qildim.\nIsm: "+bk.name+"\nTelefon: "+bk.phone+"\nQulay vaqt: "+bk.time+"\nChekni yuboryapman.");
     step(3);
@@ -631,6 +644,11 @@ footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);
   function vis(el){var r=el.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0}
   addEventListener('scroll',function(){st.classList.toggle('show',nat.getBoundingClientRect().top<0&&!vis(of)&&!vis(bf))},{passive:true});
 })();
+</script>
+<script>
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;
+    if(t.closest('a[href="#taklif"],a[href="#bron"]'))goal('diag_cta');
+},true);
 </script>
 </body>
 </html>
