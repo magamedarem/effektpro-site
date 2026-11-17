@@ -467,11 +467,11 @@ footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);
 <section class="sec" id="bron">
   <div class="w" style="max-width:640px">
     <div class="offer" style="gap:18px">
-      <div class="progress"><span class="on" id="p1">1. Joy band qilish</span><span id="p2">2. To'lov</span><span id="p3">3. Chek</span></div>
+      <div class="progress"><span class="on" id="p1">1. Joy band qilish</span><span id="p2">2. Adminga yozish</span><span id="p3" hidden></span></div>
 
       <!-- STEP 1 -->
       <div class="stack g16" id="s1">
-        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Joyingizni band qiling</h2><p class="muted">Ma'lumotlaringiz faqat siz bilan bog'lanish uchun ishlatiladi.</p></div>
+        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Joyingizni band qiling</h2><p class="muted">Tugmani bossangiz, Telegram'da admin bilan chat ochiladi. Admin sizga karta raqamini yuboradi va vaqtni kelishadi.</p></div>
         <form class="form" id="bform" novalidate>
           <label>Ismingiz<input id="bName" autocomplete="name"></label>
           <label>Telefon raqamingiz<input id="bPhone" inputmode="tel" autocomplete="tel" placeholder="+998 __ ___ __ __"></label>
@@ -479,36 +479,23 @@ footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);
             <select id="bTime"><option>Ertalab (9:00–12:00)</option><option>Kunduzi (12:00–17:00)</option><option>Kechqurun (17:00–21:00)</option><option>Farqi yo'q</option></select>
           </label>
           <label>Diagnostikadan nimani kutasiz? (ixtiyoriy)<textarea id="bNote" placeholder="Masalan: qalb kasbimni topmoqchiman…"></textarea></label>
-          <button class="btn full" type="submit" id="bBtn">Joyni band qilish va to'lovga o'tish</button>
+          <button class="btn full" type="submit" id="bBtn">Joyimni band qilish ➜ Telegram</button>
           <div class="muted" id="bHint" style="font-size:14px"></div>
         </form>
       </div>
 
       <!-- STEP 2 -->
       <div class="stack g16" id="s2" hidden>
-        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Joyingiz band qilindi ✅</h2><p class="muted">Endi kartaga <b style="color:var(--ink)">290 000 so'm</b> o'tkazing. Bonuslar bugungi to'lov uchun.</p></div>
-        <div class="paybox">
-          <div class="kick" style="color:var(--muted)">Karta raqami</div>
-          <div class="cardnum">8600 1404 1133 3272</div>
-          <div class="muted" style="font-size:14px">Muhammad Rahmatullayev</div>
-          <button type="button" class="btn ghost full" id="copy" style="min-height:52px;margin-top:6px">Karta raqamidan nusxa olish</button>
-          <div class="amount"><span>To'lov summasi</span><b>290 000 so'm</b></div>
-        </div>
-        <button type="button" class="btn full" id="paid">To'lov qildim</button>
-        <p class="muted" style="font-size:14px">Chet eldan to'laysizmi? <a href="https://t.me/MR_Qabul" target="_blank" rel="noopener">@MR_Qabul</a> ga yozing.</p>
+        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Joyingiz band qilindi ✅</h2><p class="muted">Oxirgi qadam: Telegram'da adminga xabar yuboring. Admin karta raqamini beradi va diagnostika vaqtini kelishadi. <b style="color:var(--ink)">Xabar yubormasangiz, joy boshqa odamga o'tib ketadi.</b></p></div>
+        <a class="btn full" id="tg" href="https://t.me/MR_Qabul">Adminga yozish (Telegram)</a>
+        <p class="muted" style="font-size:14px">Telegram ochilmadimi? <b style="color:var(--ink)">@MR_Qabul</b> ni qidiring va "Diagnostikaga yozilmoqchiman" deb yozing. Xabaringiz nusxalandi, joylashtirishingiz kifoya.</p>
+        <div class="guar" style="margin-top:4px"><div class="ic">🎁</div><div><b>Sovg'alaringiz</b><p>Bugun to'lov qilsangiz: "Yangi hayot strategiyasi" darsi, shaxsiy texnikalar, o'sish xaritasi va suhbat konspekti.</p></div></div>
       </div>
-
-      <!-- STEP 3 -->
-      <div class="stack g16" id="s3" hidden>
-        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Oxirgi qadam: chekni yuboring</h2><p class="muted">Telegram'da @MR_Qabul ochiladi, xabaringiz tayyor turadi. Chek skrinshotini qo'shib yuboring. Admin to'lovni tasdiqlaydi va diagnostika vaqtini aniq kelishadi.</p></div>
-        <a class="btn full" id="tg" href="https://t.me/MR_Qabul" target="_blank" rel="noopener">Telegram'da chekni yuborish</a>
-        <div class="guar" style="margin-top:4px"><div class="ic">🎁</div><div><b>Sovg'alaringiz</b><p>"Yangi hayot strategiyasi" darsi to'lov tasdiqlangach yuboriladi. Texnikalar, o'sish xaritasi va konspekt diagnostikadan keyin beriladi.</p></div></div>
-      </div>
-    </div>
+</div>
 
     <div class="steps" style="margin-top:22px">
       <div><b>Joy band qilasiz</b><span>Ism, telefon va qulay vaqt. 30 soniya.</span></div>
-      <div><b>Kartaga to'laysiz</b><span>290 000 so'm. Chekni Telegram'da yuborasiz.</span></div>
+      <div><b>Adminga yozasiz</b><span>Telegram'da admin karta raqamini beradi, 290 000 so'm to'laysiz.</span></div>
       <div><b>Diagnostika va sovg'alar</b><span>30–40 daqiqa, yakkama-yakka.</span></div>
     </div>
   </div>
@@ -604,28 +591,23 @@ footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);
 
   /* Joy band qilish -> to'lov -> chek */
   var bk={};
-  function step(n){[1,2,3].forEach(function(i){$('#s'+i).hidden=i!==n;var p=$('#p'+i);p.className=i<n?'done':(i===n?'on':'')});$('#bron').scrollIntoView({behavior:'smooth',block:'start'})}
-  function ping(extra){var q=new URLSearchParams({name:bk.name,phone:bk.phone,format:'Diagnostika 290 000',area:bk.time,note:extra+(bk.note?' '+bk.note:'')});return fetch(SHEET_URL+'?'+q.toString(),{mode:'no-cors'}).catch(function(){})}
+  function step(n){[1,2].forEach(function(i){$('#s'+i).hidden=i!==n;var p=$('#p'+i);p.className=i<n?'done':(i===n?'on':'')});$('#bron').scrollIntoView({behavior:'smooth',block:'start'})}
+  function ping(extra){var q=new URLSearchParams({name:bk.name,phone:bk.phone,format:'Diagnostika 290 000',area:bk.time,note:extra+(bk.note?' '+bk.note:'')});return fetch(SHEET_URL+'?'+q.toString(),{mode:'no-cors',keepalive:true}).catch(function(){})}
+  function tgMsg(){return "Assalomu alaykum! DIAGNOSTIKAga yozilmoqchiman. Karta raqamini yuboring, to'lov qilaman.\nIsm: "+bk.name+"\nTelefon: "+bk.phone+"\nQulay vaqt: "+bk.time+(bk.note?"\nKutganim: "+bk.note:"")}
+  function copyTxt(t){try{var x=document.createElement('textarea');x.value=t;x.style.position='fixed';x.style.opacity='0';document.body.appendChild(x);x.select();document.execCommand('copy');document.body.removeChild(x)}catch(e){}}
   $('#bform').addEventListener('submit',function(e){
     e.preventDefault();
     var nm=$('#bName').value.trim(),ph=$('#bPhone').value.trim();
     if(nm.length<2||ph.replace(/\D/g,'').length<9){$('#bHint').textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";$('#bHint').style.color='#6EE7B0';return}
-    goal('diag_bron');var b=$('#bBtn');b.disabled=true;b.textContent='Band qilinmoqda…';
+    goal('diag_bron');var b=$('#bBtn');b.disabled=true;b.textContent='Telegram ochilmoqda…';
     bk={name:nm,phone:ph,time:$('#bTime').value,note:$('#bNote').value.trim()};
-    var done=false;function go(){if(done)return;done=true;step(2)}
-    ping('[Band qildi]').then(go);setTimeout(go,2500);
+    var msg=tgMsg(),url='https://t.me/MR_Qabul?text='+encodeURIComponent(msg);
+    $('#tg').href=url;copyTxt(msg);
+    ping('[Band qildi]');
+    step(2);
+    setTimeout(function(){window.location.href=url},700);
   });
-  $('#copy').addEventListener('click',function(){
-    goal('diag_karta');var b=this,card='8600140411333272';function ok(){b.textContent='✓ Nusxa olindi'}
-    function fb(){var t=document.createElement('textarea');t.value=card;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(t);ok()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(card).then(ok,fb)}else fb();
-  });
-  $('#paid').addEventListener('click',function(){
-    goal('diag_tolov_qildim');
-    ping('[To\'lov qildim deb bosdi]');
-    $('#tg').href='https://t.me/MR_Qabul?text='+encodeURIComponent("Assalomu alaykum! DIAGNOSTIKA uchun 290 000 so'm to'lov qildim.\nIsm: "+bk.name+"\nTelefon: "+bk.phone+"\nQulay vaqt: "+bk.time+"\nChekni yuboryapman.");
-    step(3);
-  });
+  $('#tg').addEventListener('click',function(){goal('diag_tg');copyTxt(tgMsg())});
 
 
   /* Otziv karuseli: bosilsa to'liq ochiladi */
