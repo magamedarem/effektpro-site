@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaxsiy diagnostika · Muhammadjon Rahmatullayev</title>
+<meta name="description" content="30–40 daqiqalik shaxsiy diagnostika: pul kodingiz, qalb kasbingiz va o'sish xaritangiz. Yoqmasa, pul 100% qaytariladi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- META_PIXEL -->
+<style>
+:root{
+  --bg:#0A2A21; --bg2:#0D3328; --card:#103A2E; --line:#1D5242; --ink:#EEF6F2; --ink2:#B9D3C8; --muted:#8DB0A3;
+  --mint:#6EE7B0; --mintink:#062018; --paper:#EEF6F2; --paperink:#0A2A21; --papermuted:#4E6B60; --paperline:#D3E3DB;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--mint)}
+.w{max-width:1100px;margin:0 auto;padding:0 22px}
+.narrow{max-width:760px}
+h1,h2,h3{font-family:Montserrat,system-ui,sans-serif;margin:0;letter-spacing:-.015em;text-wrap:balance}
+h1{font-weight:900;font-size:clamp(34px,6vw,62px);line-height:1.06}
+h2{font-weight:900;font-size:clamp(27px,4vw,44px);line-height:1.12}
+h3{font-weight:800;font-size:clamp(19px,2.2vw,23px);line-height:1.25}
+p{margin:0}
+.kick{font:800 12px/1.4 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.lead{font-size:clamp(17px,1.7vw,20px);color:var(--ink2)}
+.big{font:800 clamp(21px,2.6vw,30px)/1.3 Montserrat,sans-serif}
+em{font-style:normal;color:var(--mint)}
+.stack{display:flex;flex-direction:column}
+.g8{gap:8px}.g12{gap:12px}.g16{gap:16px}.g24{gap:24px}.g32{gap:32px}.g40{gap:40px}
+.sec{padding:84px 0}
+.alt{background:var(--bg2)}
+.paper{background:var(--paper);color:var(--paperink)}
+.paper .lead{color:var(--papermuted)}
+.paper em{color:#0F7A52}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:48px;align-items:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px}
+.paper .card{background:#fff;border-color:var(--paperline)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:60px;padding:0 30px;background:var(--mint);color:var(--mintink);font:800 17px Montserrat,sans-serif;text-decoration:none;border-radius:18px;border:none;cursor:pointer;text-align:center;line-height:1.25;box-shadow:0 14px 30px -14px rgba(110,231,176,.7);transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.btn.full{width:100%}
+.guar-line{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink2);font-weight:700}
+/* header */
+header .w{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:20px;padding-bottom:20px}
+.logo{font:900 17px Montserrat,sans-serif;letter-spacing:.01em}
+.logo span{color:var(--mint)}
+.pill{font:800 12px Montserrat,sans-serif;color:var(--mintink);background:var(--mint);padding:7px 12px;border-radius:999px;white-space:nowrap}
+/* hero */
+.hero{display:block;padding:24px 22px 84px}
+.hero-img{position:relative;justify-self:center;width:100%;max-width:440px}
+.hero-img img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:28px;display:block}
+.hero-img .tag{position:absolute;left:-10px;bottom:24px;background:var(--paper);color:var(--paperink);border-radius:18px;padding:12px 16px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6);font-weight:700;font-size:14px;line-height:1.35;max-width:230px}
+.hero-img .tag b{display:block;font:900 22px Montserrat,sans-serif;color:#0F7A52}
+.price-mini{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price-mini s{color:var(--muted);font:800 20px Montserrat,sans-serif}
+.price-mini b{font:900 34px Montserrat,sans-serif;color:var(--ink)}
+.price-mini span{font-size:14px;color:var(--ink2);font-weight:700}
+.qs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.qs li{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--mint);border-radius:14px;padding:14px 16px;font-size:clamp(17px,1.8vw,19px);color:var(--ink2)}
+.qs li b{color:var(--ink)}
+/* pains */
+.pain{display:flex;gap:16px;align-items:flex-start}
+.pain .ic{flex:none;width:48px;height:48px;border-radius:16px;background:rgba(110,231,176,.12);display:grid;place-items:center;font-size:24px}
+.pain b{display:block;font:800 18px/1.3 Montserrat,sans-serif;margin-bottom:6px}
+.pain p{color:var(--ink2);font-size:16px}
+/* mission */
+.cells{display:grid;grid-template-columns:repeat(20,1fr);gap:6px}
+.cells i{aspect-ratio:1;border-radius:50%;background:#1D5242}
+.cells i.on{background:var(--mint);box-shadow:0 0 0 4px rgba(110,231,176,.25),0 0 22px rgba(110,231,176,.8);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(110,231,176,.12),0 0 30px rgba(110,231,176,.9)}}
+.bignum{font:900 clamp(64px,12vw,110px)/1 Montserrat,sans-serif;color:var(--mint);white-space:nowrap}
+/* chart */
+.chart{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,28px)}
+.chart svg{width:100%;height:auto;display:block}
+.cap{font-size:13px;color:var(--muted);margin-top:10px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:14px;font-weight:700}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:14px;height:4px;border-radius:2px;display:inline-block}
+/* results */
+.res{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--paperline);border-radius:20px;padding:20px}
+.res .n{flex:none;width:40px;height:40px;border-radius:14px;background:var(--paperink);color:var(--mint);display:grid;place-items:center;font:900 16px Montserrat,sans-serif}
+.res b{display:block;font:800 17px/1.3 Montserrat,sans-serif;margin-bottom:4px}
+.res p{color:var(--papermuted);font-size:15px}
+/* before/after */
+.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px}
+.ba .col{border-radius:22px;padding:24px}
+.ba .before{background:#fff;border:1px solid var(--paperline)}
+.ba .after{background:var(--paperink);color:var(--ink)}
+.ba h3{margin-bottom:14px}
+.ba ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.ba li{display:flex;gap:10px;font-weight:600;font-size:16px}
+.ba .before li{color:var(--papermuted)}
+.ba .before li::before{content:"✕";color:#C2564A;font-weight:900}
+.ba .after li::before{content:"✓";color:var(--mint);font-weight:900}
+/* test */
+.q{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line)}
+.q span{flex:1 1 260px;font-weight:700}
+.yn{display:flex;gap:8px}
+.yn label{position:relative}
+.yn input{position:absolute;opacity:0;pointer-events:none}
+.yn b{display:inline-flex;min-width:70px;min-height:46px;align-items:center;justify-content:center;border:1.5px solid var(--line);border-radius:14px;font:800 15px Montserrat,sans-serif;cursor:pointer;padding:0 16px}
+.yn input:checked + b{background:var(--mint);border-color:var(--mint);color:var(--mintink)}
+.yn input:focus-visible + b{outline:2px solid var(--mint);outline-offset:2px}
+.gate,.result{display:none;border-radius:22px;padding:24px;margin-top:20px}
+.gate{background:var(--card);border:1px solid var(--mint)}
+.result{background:var(--paper);color:var(--paperink)}
+.gate.show,.result.show{display:block}
+.result .score{font:900 42px Montserrat,sans-serif;color:#0F7A52}
+.form{display:flex;flex-direction:column;gap:12px}
+.form label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:700;color:var(--ink2)}
+.form input{min-height:54px;padding:12px 16px;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;color:var(--ink);font:600 16px Manrope,sans-serif}
+.form input:focus{outline:none;border-color:var(--mint)}
+/* author */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.stat{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--card)}
+.stat b{display:block;font:900 clamp(26px,3vw,34px) Montserrat,sans-serif;color:var(--mint);white-space:nowrap}
+.stat span{font-size:15px;color:var(--ink2)}
+/* proof */
+.quote{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.quote p{font-size:17px;font-weight:600}
+.quote span{font-size:14px;color:var(--muted)}
+.shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.shot{position:relative;flex:0 0 min(78%,300px);height:360px;scroll-snap-align:start;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff;padding:0;cursor:pointer}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.shot.wide{background:#0D3328}
+.shot.wide img{object-fit:contain;object-position:center 40%;padding:14px}
+.shot::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(to top,rgba(10,42,33,.95),rgba(10,42,33,0))}
+.shot .more{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:1;background:var(--mint);color:var(--mintink);font:800 14px Montserrat,sans-serif;padding:10px 16px;border-radius:999px;white-space:nowrap}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(5,20,16,.94);display:none;overflow:auto;padding:64px 16px 32px}
+.lb.show{display:block}
+.lb img{display:block;max-width:560px;width:100%;margin:0 auto;border-radius:16px}
+.lb button{position:fixed;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:none;background:var(--mint);color:var(--mintink);font:900 22px Montserrat,sans-serif;cursor:pointer}
+/* offer */
+.offer{max-width:760px;margin:0 auto;background:var(--card);border:2px solid var(--mint);border-radius:30px;padding:clamp(22px,4vw,40px);display:flex;flex-direction:column;gap:22px;box-shadow:0 40px 80px -40px rgba(110,231,176,.35)}
+.stackrow{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px dashed var(--line)}
+.stackrow:last-child{border-bottom:none}
+.stackrow .ic{flex:none;width:44px;height:44px;border-radius:14px;background:rgba(110,231,176,.12);display:grid;place-items:center;font-size:22px}
+.stackrow .t{flex:1}
+.stackrow .t b{display:block;font:800 17px/1.3 Montserrat,sans-serif}
+.stackrow .t span{font-size:15px;color:var(--ink2)}
+.stackrow .v{flex:none;font:900 14px Montserrat,sans-serif;text-align:right;white-space:nowrap}
+.stackrow .v.free{color:var(--mint)}
+.stackrow .v s{color:var(--muted);display:block;font-size:13px}
+.bonus-h{display:flex;align-items:center;gap:10px;font:900 13px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mintink);background:var(--mint);border-radius:12px;padding:10px 14px}
+.total{background:var(--bg);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.total .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.total .now{font:900 clamp(40px,7vw,58px)/1 Montserrat,sans-serif;color:var(--mint)}
+.total .now small{font-size:.35em;font-weight:800}
+.total s{color:var(--muted);font:800 22px Montserrat,sans-serif}
+.seats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-weight:800;font-size:15px;margin-top:8px}
+.seats .d{display:flex;gap:4px}
+.seats .d i{width:14px;height:14px;border-radius:50%;background:var(--mint)}
+.guar{display:flex;gap:16px;align-items:flex-start;background:var(--paper);color:var(--paperink);border-radius:22px;padding:22px}
+.guar .ic{flex:none;width:52px;height:52px;border-radius:16px;background:var(--paperink);display:grid;place-items:center;font-size:26px}
+.guar b{display:block;font:900 19px/1.25 Montserrat,sans-serif;margin-bottom:4px}
+.guar p{color:var(--papermuted);font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px;counter-reset:s}
+.steps div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.steps div::before{counter-increment:s;content:counter(s);width:34px;height:34px;border-radius:12px;background:var(--mint);color:var(--mintink);font:900 16px Montserrat,sans-serif;display:grid;place-items:center;margin-bottom:12px}
+.steps b{display:block;font:800 17px Montserrat,sans-serif;margin-bottom:4px}
+.steps span{color:var(--ink2);font-size:15px}
+.progress{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.progress span{font:800 12px Montserrat,sans-serif;text-align:center;padding:10px 4px;border-radius:12px;background:var(--bg);color:var(--muted)}
+.progress span.on{background:var(--mint);color:var(--mintink)}
+.progress span.done{background:rgba(110,231,176,.18);color:var(--mint)}
+.form select,.form textarea{min-height:54px;padding:12px 16px;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;color:var(--ink);font:600 16px Manrope,sans-serif}
+.form textarea{min-height:90px;resize:vertical}
+.form select:focus,.form textarea:focus{outline:none;border-color:var(--mint)}
+.paybox{background:var(--bg);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.cardnum{font:900 clamp(19px,5.6vw,30px) Montserrat,sans-serif;letter-spacing:.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.amount{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:1px solid var(--line);padding-top:14px;margin-top:10px;font-weight:700;color:var(--ink2)}
+.amount b{font:900 24px Montserrat,sans-serif;color:var(--mint);white-space:nowrap}
+[hidden]{display:none!important}
+.choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:14px}
+.ch{border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.ch p{font-size:17px}
+.ch .lab{font:900 12px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.ch.bad{background:var(--bg);border:1px solid var(--line);color:var(--muted)}
+.ch.bad .lab{color:#C2564A}
+.ch.bad b{color:var(--ink2)}
+.ch.good{background:var(--card);border:2px solid var(--mint);color:var(--ink2);box-shadow:0 20px 50px -24px rgba(110,231,176,.5)}
+.ch.good .lab{color:var(--mint)}
+.ch.good b{color:var(--ink)}
+.arrow{font:900 40px/1 Montserrat,sans-serif;color:var(--mint);animation:bounce 1.4s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(10px)}}
+.btn.fx{position:relative;overflow:hidden;font-size:clamp(18px,2.4vw,21px);min-height:68px;padding:0 44px;animation:glow 2s ease-in-out infinite}
+.btn.fx::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-20deg);animation:shine 2.6s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(110,231,176,.55),0 14px 30px -14px rgba(110,231,176,.7)}50%{box-shadow:0 0 0 14px rgba(110,231,176,0),0 14px 30px -14px rgba(110,231,176,.7)}}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.arrow,.btn.fx,.btn.fx::after{animation:none}}
+/* faq */
+details{border-bottom:1px solid var(--line);padding:4px 0}
+summary{cursor:pointer;list-style:none;font:800 17px/1.4 Montserrat,sans-serif;padding:18px 40px 18px 0;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:14px;font-size:26px;color:var(--mint)}
+details[open] summary::after{content:"–"}
+details p{color:var(--ink2);padding:0 0 20px}
+/* sticky */
+.sticky{position:fixed;left:10px;right:10px;bottom:10px;z-index:20;background:rgba(16,58,46,.97);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);padding:10px 10px 10px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;transform:translateY(140%);transition:transform .3s}
+.sticky.show{transform:none}
+.sticky .s1{font-size:12px;color:var(--ink2);line-height:1.3;font-weight:700}
+.sticky .s1 b{display:block;color:var(--ink);font:900 17px Montserrat,sans-serif}
+.sticky .s1 s{color:var(--muted);font-weight:700}
+.sticky .btn{min-height:48px;font-size:15px;padding:0 18px;border-radius:14px}
+footer{border-top:1px solid var(--line);padding:28px 0 120px;color:var(--muted);font-size:14px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.cells i.on{animation:none}}
+</style>
+</head>
+<body>
+
+<header><div class="w">
+  <div class="logo">Muhammadjon <span>Rahmatullayev</span></div>
+  <div class="pill">Psixolog · kouch</div>
+</div></header>
+
+<!-- HERO -->
+<section class="w hero narrow">
+  <div class="stack g24">
+    <div class="kick">Bir daqiqa to'xtang va halol javob bering</div>
+    <h1>5–10 yildan buyon <em>yoqmagan ishda</em> ishlash joningizga tegmadimi?</h1>
+    <ul class="qs">
+      <li>Pul topyapsiz… lekin <b>barakasini ko'rmayapsizmi?</b></li>
+      <li>Buning ustiga yana <b>qarzlar ichiga kiryapsizmi?</b></li>
+      <li>Yoki haligacha <b>pulsizlikdan qiynalib</b> kelyapsizmi?</li>
+    </ul>
+    <p class="big">Bittasiga bo'lsa ham "ha" desangiz… demak, siz hali hayotdagi <em>missiyangizni topmagansiz.</em></p>
+    <div class="stack g12" style="align-items:flex-start">
+      <a class="btn" href="#nega">Nega bunday bo'layotganini bilish ↓</a>
+      <div class="guar-line" style="color:var(--muted)">3 daqiqalik o'qish · psixolog Muhammadjon Rahmatullayev</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAINS -->
+<section class="alt sec" id="nega">
+  <div class="w stack g40">
+    <div class="stack g12 narrow">
+      <div class="kick">Missiya topilmasa nima bo'ladi</div>
+      <h2>Inson o'z yo'lida bo'lmasa, hayot uni <em>qiyinchiliklar bilan</em> to'xtatadi</h2>
+      <p class="lead">Bu tasodif emas va omadsizlik ham emas. Bular bitta narsaning belgilari: siz o'z joyingizda emassiz.</p>
+    </div>
+    <div class="grid">
+      <div class="card pain reveal"><div class="ic">😔</div><div><b>Yoqmagan ishda yillar o'tib ketyapti</b><p>Pul uchun ishlaysiz, yurak uchun emas. Har dushanba yana o'sha og'irlik.</p></div></div>
+      <div class="card pain reveal"><div class="ic">💸</div><div><b>Pul keladi-yu, qolmaydi</b><p>Oylik tushgan kuni tarqalib ketadi. Qarz uzilmaydi, aksincha ko'payadi.</p></div></div>
+      <div class="card pain reveal"><div class="ic">🌀</div><div><b>Nima boshlasangiz, baraka yo'q</b><p>Biznes, savdo, kurslar… Hammasi yarim yo'lda qoladi. "Menga omad yo'q" degan fikr kelyapti.</p></div></div>
+      <div class="card pain reveal"><div class="ic">🤍</div><div><b>Hammaga yashaysiz, o'zingizga emas</b><p>Eringiz, bolalaringiz, ota-onangiz… O'zingiz uchun vaqt ham, kuch ham qolmaydi.</p></div></div>
+      <div class="card pain reveal"><div class="ic">❓</div><div><b>"Men nimaga qodirman?" Javob yo'q</b><p>Boshqalar o'z yo'lini topib ketyapti. Siz esa nimani yaxshi ko'rishingizni ham aniq bilmaysiz.</p></div></div>
+      <div class="card pain reveal"><div class="ic">⏳</div><div><b>Yillar ketyapti degan qo'rquv</b><p>"Yana 5 yil shunday o'tsa-chi?" Bu fikr kechasi uyquni qochiradi.</p></div></div>
+    </div>
+    <p class="big narrow">Bu jazo emas. Bu <em>signal:</em> "Sen boshqa narsa uchun yaratilgansan."<br><span class="muted" style="font-weight:700;font-size:.75em">Va bu signalni eshitgan odamning hayoti o'zgara boshlaydi.</span></p>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="sec">
+  <div class="w split">
+    <div class="stack g24">
+      <div class="kick">Missiya nima?</div>
+      <div class="bignum">8 mlrd</div>
+      <h2>Yer shari bitta tana bo'lsa, siz uning bitta <em>hujayrasisiz</em></h2>
+      <p class="lead">Tanadagi har bir hujayraning o'z vazifasi bor: biri yurakni uradi, biri ko'zni ko'rsatadi. Bittasi ham ortiqcha emas.</p>
+      <p class="lead">Dunyodagi 8 milliard inson ham shunday. <b style="color:var(--ink)">Har birining o'z vazifasi, o'z missiyasi bor.</b> Sizniki ham.</p>
+      <p class="lead">Hujayra o'z ishini qilmasa, qiynaladi. Inson ham o'z yo'lidan boshqa yo'lda yursa: pul to'xtaydi, munosabat buziladi, kuch tugaydi. O'z missiyasini topgan odamda esa hammasi joyiga tusha boshlaydi.</p>
+    </div>
+    <div class="card reveal stack g16">
+      <div class="cells" aria-hidden="true" id="cells"></div>
+      <p style="font-weight:800;font-family:Montserrat,sans-serif">Shulardan biri: siz. Va sizning joyingizni hech kim egallay olmaydi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TWO PATHS CHART -->
+<section class="alt sec">
+  <div class="w split">
+    <div class="stack g16">
+      <div class="kick">Ikki yo'l</div>
+      <h2>O'z ishida odam <em>charchamaydi</em>, kuch oladi</h2>
+      <p class="lead">500 dan ortiq odam bilan ishlab ko'rganim shu: yoqmagan ishda odam butun kuchini "chidash"ga sarflaydi. Natija esa yo'q.</p>
+      <p class="lead">O'zi sevgan ish bilan shug'ullangan odam tezroq o'sadi, yaxshiroq daromad qiladi va baxtliroq yashaydi. Chunki u oqimga qarshi emas, oqim bilan suzadi.</p>
+    </div>
+    <div class="chart reveal">
+      <svg viewBox="0 0 520 320" role="img" aria-label="Tasavvur: yoqmagan ishda yillar o'tib ham daromad bir joyda turadi, qalb kasbida esa o'sib boradi">
+        <g stroke="#1D5242" stroke-width="1"><line x1="40" y1="40" x2="500" y2="40"/><line x1="40" y1="120" x2="500" y2="120"/><line x1="40" y1="200" x2="500" y2="200"/><line x1="40" y1="270" x2="500" y2="270"/></g>
+        <path d="M50,240 C150,236 250,246 350,238 S470,244 500,240" fill="none" stroke="#8DB0A3" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+        <path d="M50,240 C140,232 200,210 270,170 S420,70 500,46" fill="none" stroke="#6EE7B0" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="500" cy="46" r="8" fill="#6EE7B0"/>
+        <circle cx="270" cy="170" r="6" fill="#6EE7B0"/>
+        <g font-family="Montserrat, sans-serif" font-weight="800" font-size="16">
+          <text x="490" y="30" text-anchor="end" fill="#6EE7B0">O'z yo'lida</text>
+          <text x="490" y="226" text-anchor="end" fill="#8DB0A3">Yoqmagan ishda</text>
+          <text x="282" y="190" fill="#EEF6F2" font-size="14">Missiya topildi</text>
+        </g>
+        <g font-family="Manrope, sans-serif" font-weight="700" font-size="13" fill="#8DB0A3">
+          <text x="50" y="300">Bugun</text><text x="500" y="300" text-anchor="end">5 yildan keyin</text>
+        </g>
+      </svg>
+      <div class="legend"><span><i style="background:#6EE7B0"></i>Daromad, kuch, baxt</span><span><i style="background:#8DB0A3"></i>"Chidab" yashash</span></div>
+      <div class="cap">Tasavvur uchun chizma, aniq statistika emas.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="paper sec" id="natija">
+  <div class="w stack g40">
+    <div class="stack g12 narrow">
+      <div class="kick" style="color:#0F7A52">Missiyangizni qanday topasiz</div>
+      <h2>Shaxsiy diagnostikada <em>o'z yo'lingizni</em> topamiz</h2>
+      <p class="lead">30–40 daqiqalik yakkama-yakka suhbat. Undan chiqqaningizda aniq bilasiz:</p>
+    </div>
+    <div class="grid">
+      <div class="res reveal"><div class="n">01</div><div><b>Pul kodingizni</b><p>Pul sizga qaysi yo'l bilan keladi va nima uchun qo'lingizda turmayapti.</p></div></div>
+      <div class="res reveal"><div class="n">02</div><div><b>Qayerdan, qanday daromad qila olishingizni</b><p>Umumiy gap emas: aynan sizga mos konkret yo'nalishlar.</p></div></div>
+      <div class="res reveal"><div class="n">03</div><div><b>Qalb kasbingiz va missiyangizni</b><p>Qiziqish, qadriyat va tabiiy moyilliklaringiz asosida.</p></div></div>
+      <div class="res reveal"><div class="n">04</div><div><b>Kuchli tomonlaringizni</b><p>Sizda bor, lekin hali ishlatilmayotgan qobiliyat va resurslar.</p></div></div>
+      <div class="res reveal"><div class="n">05</div><div><b>Sizni ushlab turgan ichki to'siqlarni</b><p>Daromad va maqsadlaringizga nima xalaqit berayotgani.</p></div></div>
+      <div class="res reveal"><div class="n">06</div><div><b>Savollaringizga javobni</b><p>Suhbat faqat siz bilan, yakkama-yakka. Hech kim eshitmaydi.</p></div></div>
+    </div>
+    <div class="ba">
+      <div class="col before"><h3>Diagnostikadan oldin</h3><ul><li>"Men nimaga qodirman?"</li><li>Yoqmagan ish, baraka yo'q</li><li>Pul keladi, ketadi</li><li>Har kuni bir xil aylana</li></ul></div>
+      <div class="col after"><h3>Diagnostikadan keyin</h3><ul><li>O'z kuchli tomonlaringizni bilasiz</li><li>Qalb kasbingiz yo'nalishi aniq</li><li>Pul kodingiz va daromad yo'lingiz ravshan</li><li>Qo'lingizda o'sish xaritasi</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEST -->
+<section class="sec" id="test">
+  <div class="w narrow stack g24">
+    <div class="stack g12">
+      <div class="kick">1 daqiqalik test</div>
+      <h2>Siz o'z yo'lingizdamisiz?</h2>
+      <p class="muted">8 ta gap. O'zingizga halol "Ha" yoki "Yo'q" deng.</p>
+    </div>
+    <form id="t"></form>
+    <button class="btn full" type="button" id="tBtn">Natijani ko'rish</button>
+    <div class="muted" id="tHint" style="font-size:14px"></div>
+    <div class="gate" id="tGate">
+      <h3 style="margin-bottom:8px">Natijangiz tayyor ✨</h3>
+      <p style="color:var(--ink2);margin-bottom:16px">Ismingiz va raqamingizni qoldiring. Natijani hozir shu yerda ko'rasiz.</p>
+      <div class="form">
+        <label>Ismingiz<input id="gName" autocomplete="name"></label>
+        <label>Telefon raqamingiz<input id="gPhone" inputmode="tel" autocomplete="tel" placeholder="+998 __ ___ __ __"></label>
+        <button class="btn full" type="button" id="gBtn">Natijani ko'rish</button>
+        <div class="muted" id="gHint" style="font-size:14px">Raqamingiz faqat siz bilan bog'lanish uchun ishlatiladi.</div>
+      </div>
+    </div>
+    <div class="result" id="tRes">
+      <div class="score" id="tScore"></div>
+      <h3 id="tTitle" style="margin:8px 0 10px"></h3>
+      <p id="tText" style="color:var(--papermuted);margin-bottom:18px"></p>
+      <a class="btn" href="#taklif">Diagnostikaga yozilish</a>
+      <p style="font-size:13px;color:var(--papermuted);margin-top:14px">Bu tibbiy tashxis emas, o'zingizni tekshirib ko'rish uchun qisqa savolnoma.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="alt sec">
+  <div class="w split">
+    <img src="img/author.jpg" loading="lazy" alt="Muhammadjon Rahmatullayev" style="width:100%;max-width:430px;aspect-ratio:4/5;object-fit:cover;border-radius:28px;justify-self:center">
+    <div class="stack g24">
+      <div class="stack g12"><div class="kick">Diagnostikani kim o'tkazadi</div><h2>Muhammadjon Rahmatullayev</h2></div>
+      <p class="lead">Man psixolog va kouchman.<br>17 yoshimda Toshkentga kelganman… To'yxonada ofitsiant bo'lib ishlaganman.<br><br>Bir vaqtlar <b style="color:var(--ink)">1 milliard so'm qarzga</b> botganman. Undan 2,5 oyda chiqdim. O'shanda birinchi marta o'zimdagi ssenariyni ko'rdim… va o'zimni tashqaridan ko'ra boshladim.<br><br>Diagnostikada aynan shuni siz uchun qilaman: o'zingizni boshqa nuqtai nazardan ko'rsataman.</p>
+      <div class="stats">
+        <div class="stat"><b>30 000+</b><span>odam dasturlarimda o'qigan</span></div>
+        <div class="stat"><b>500+</b><span>odam bilan shaxsan ishlaganman</span></div>
+        <div class="stat"><b>152 / 185</b><span>Effekt 3.0 da natija aytganlar</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="sec">
+  <div class="w stack g32">
+    <div class="stack g12"><div class="kick">Natijalar</div><h2>Ular ham bir paytlar <em>sizdek</em> edi</h2></div>
+    <div class="grid">
+      <div class="quote reveal"><p>“Qirq millionlik kreditim yigirma milliongacha kamaydi. Mayda xarajatlardan kechib, birinchi o'rinda o'zimga investitsiya qildim.”</p><span>K., sportchi</span></div>
+      <div class="quote reveal"><p>“Darsingizni olganimdan beri daromad bir baravarga oshdi. Konsultatsiyadan keyin yana oshib ketyapti.”</p><span>A., ustalar brigadasi rahbari</span></div>
+      <div class="quote reveal"><p>“Katta depressiyaga, yo'qchilikka tushib qolgan edim. Darslarda qatnashdim, texnikalarni bajardim. Juda minnatdorman.”</p><span>F., Farg'ona</span></div>
+    </div>
+    <div class="shots" aria-label="O'quvchilar yozgan fikrlar">
+      <button type="button" class="shot" data-full="img/o2.jpg"><img src="img/o2.jpg" loading="lazy" alt="O'quvchi fikri: boshida va oxirida nima o'zgargani"><span class="more">To'liq o'qish</span></button>
+      <button type="button" class="shot" data-full="img/o1.jpg"><img src="img/o1.jpg" loading="lazy" alt="O'quvchi fikri: pul bloklarini yechgani va daromadi oshgani"><span class="more">To'liq o'qish</span></button>
+      <button type="button" class="shot" data-full="img/o3.jpg"><img src="img/o3.jpg" loading="lazy" alt="O'quvchi fikri: insaytlari hayotini o'zgartirgani"><span class="more">To'liq o'qish</span></button>
+    </div>
+    <p class="muted" style="font-size:14px;margin-top:-16px">← Suring · Bosing va to'liq o'qing</p>
+  </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="alt sec" id="taklif">
+  <div class="w stack g32">
+    <div class="stack g12 narrow" style="margin:0 auto;text-align:center;align-items:center">
+      <div class="kick">Taklif</div>
+      <h2>Bitta suhbat. Lekin hayotingizga <em>butunlay boshqacha</em> qaraysiz.</h2>
+    </div>
+
+    <div class="offer">
+      <div class="stackrow">
+        <div class="ic">🎯</div>
+        <div class="t"><b>Shaxsiy diagnostika</b><span>30–40 daqiqa, yakkama-yakka. Pul kodingiz, qalb kasbingiz, kuchli tomonlar va to'siqlar.</span></div>
+        <div class="v"><s>990 000</s>290 000</div>
+      </div>
+
+      <div class="bonus-h">🎁 Bugun to'lov qilsangiz: sovg'a</div>
+
+      <div class="stackrow">
+        <div class="ic">🧭</div>
+        <div class="t"><b>"Yangi hayot strategiyasi" darsi</b><span>Hayotingizni qanday rejalashtirish: yangi yo'lni bosqichma-bosqich qurish.</span></div>
+        <div class="v free">BEPUL</div>
+      </div>
+      <div class="stackrow">
+        <div class="ic">🧩</div>
+        <div class="t"><b>Shaxsiy texnikalar</b><span>Aynan sizning kamchiliklaringizga mos tanlab beriladi.</span></div>
+        <div class="v free">BEPUL</div>
+      </div>
+      <div class="stackrow">
+        <div class="ic">🗺️</div>
+        <div class="t"><b>O'sish xaritangiz</b><span>Keyingi bosqichda nima qilishingiz kerak: ko'z bilan ko'rib turadigan aniq reja.</span></div>
+        <div class="v free">BEPUL</div>
+      </div>
+      <div class="stackrow">
+        <div class="ic">📄</div>
+        <div class="t"><b>Suhbatimizning to'liq konspekti</b><span>Hamma aytilganlar fayl ko'rinishida qo'lingizda qoladi. Unutib qo'ymaysiz.</span></div>
+        <div class="v free">BEPUL</div>
+      </div>
+
+      <div class="total">
+        <div class="row"><span style="font-weight:800">Diagnostikaning asl narxi</span><s>990 000 so'm</s></div>
+        <div class="row"><span style="font-weight:800;color:var(--ink)">Bugun siz to'laysiz</span><span class="now">290 000 <small>so'm</small></span></div>
+        <div class="seats"><span class="d"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Bu narx faqat 10 kishi uchun</div>
+      </div>
+
+      <div class="guar">
+        <div class="ic">🛡️</div>
+        <div><b>100% kafolat</b><p>Diagnostika sizga ma'qul kelmasa, pulingiz o'sha diagnostikaning o'zida to'liq qaytariladi. Hech qanday savolsiz. Siz hech narsa yo'qotmaysiz.</p></div>
+      </div>
+
+      <a class="btn full" href="#bron">Joyimni band qilaman</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="sec" id="bron">
+  <div class="w" style="max-width:640px">
+    <div class="offer" style="gap:18px">
+      <div class="progress"><span class="on" id="p1">1. Joy band qilish</span><span id="p2">2. To'lov</span><span id="p3">3. Chek</span></div>
+
+      <!-- STEP 1 -->
+      <div class="stack g16" id="s1">
+        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Joyingizni band qiling</h2><p class="muted">Ma'lumotlaringiz faqat siz bilan bog'lanish uchun ishlatiladi.</p></div>
+        <form class="form" id="bform" novalidate>
+          <label>Ismingiz<input id="bName" autocomplete="name"></label>
+          <label>Telefon raqamingiz<input id="bPhone" inputmode="tel" autocomplete="tel" placeholder="+998 __ ___ __ __"></label>
+          <label>Sizga qaysi vaqt qulay?
+            <select id="bTime"><option>Ertalab (9:00–12:00)</option><option>Kunduzi (12:00–17:00)</option><option>Kechqurun (17:00–21:00)</option><option>Farqi yo'q</option></select>
+          </label>
+          <label>Diagnostikadan nimani kutasiz? (ixtiyoriy)<textarea id="bNote" placeholder="Masalan: qalb kasbimni topmoqchiman…"></textarea></label>
+          <button class="btn full" type="submit" id="bBtn">Joyni band qilish va to'lovga o'tish</button>
+          <div class="muted" id="bHint" style="font-size:14px"></div>
+        </form>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="stack g16" id="s2" hidden>
+        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Joyingiz band qilindi ✅</h2><p class="muted">Endi kartaga <b style="color:var(--ink)">290 000 so'm</b> o'tkazing. Bonuslar bugungi to'lov uchun.</p></div>
+        <div class="paybox">
+          <div class="kick" style="color:var(--muted)">Karta raqami</div>
+          <div class="cardnum">8600 1404 1133 3272</div>
+          <div class="muted" style="font-size:14px">Muhammad Rahmatullayev</div>
+          <button type="button" class="btn ghost full" id="copy" style="min-height:52px;margin-top:6px">Karta raqamidan nusxa olish</button>
+          <div class="amount"><span>To'lov summasi</span><b>290 000 so'm</b></div>
+        </div>
+        <button type="button" class="btn full" id="paid">To'lov qildim</button>
+        <p class="muted" style="font-size:14px">Chet eldan to'laysizmi? <a href="https://t.me/MR_Qabul" target="_blank" rel="noopener">@MR_Qabul</a> ga yozing.</p>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="stack g16" id="s3" hidden>
+        <div class="stack g8"><h2 style="font-size:clamp(24px,4vw,32px)">Oxirgi qadam: chekni yuboring</h2><p class="muted">Telegram'da @MR_Qabul ochiladi, xabaringiz tayyor turadi. Chek skrinshotini qo'shib yuboring. Admin to'lovni tasdiqlaydi va diagnostika vaqtini aniq kelishadi.</p></div>
+        <a class="btn full" id="tg" href="https://t.me/MR_Qabul" target="_blank" rel="noopener">Telegram'da chekni yuborish</a>
+        <div class="guar" style="margin-top:4px"><div class="ic">🎁</div><div><b>Sovg'alaringiz</b><p>"Yangi hayot strategiyasi" darsi to'lov tasdiqlangach yuboriladi. Texnikalar, o'sish xaritasi va konspekt diagnostikadan keyin beriladi.</p></div></div>
+      </div>
+    </div>
+
+    <div class="steps" style="margin-top:22px">
+      <div><b>Joy band qilasiz</b><span>Ism, telefon va qulay vaqt. 30 soniya.</span></div>
+      <div><b>Kartaga to'laysiz</b><span>290 000 so'm. Chekni Telegram'da yuborasiz.</span></div>
+      <div><b>Diagnostika va sovg'alar</b><span>30–40 daqiqa, yakkama-yakka.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="w narrow stack g16">
+    <h2 style="margin-bottom:12px">Savollar</h2>
+    <details><summary>30–40 daqiqada nima ham o'zgarardi?</summary><p>Diagnostika hayotingizni bir kunda o'zgartirmaydi. Lekin unda siz birinchi marta o'zingizni tashqaridan ko'rasiz: kuchli tomonlaringiz, sizni ushlab turgan narsa va boradigan yo'lingiz. O'zgarish aynan shu ko'rishdan boshlanadi.</p></details>
+    <details><summary>Menga yoqmasa-chi?</summary><p>Pulingiz o'sha diagnostikaning o'zida 100% qaytariladi. Hech qanday savolsiz.</p></details>
+    <details><summary>Sirlarimni aytishga uyalaman…</summary><p>Suhbat faqat ikkimiz o'rtasida, yakkama-yakka. Aytgan gaplaringiz hech kimga chiqmaydi.</p></details>
+    <details><summary>Online o'tadimi?</summary><p>Ha. Sizga faqat tinch joy, quloqchin va internet kerak. Qaysi shaharda bo'lsangiz ham bo'ladi.</p></details>
+    <details><summary>Nega narx 290 000, 990 000 emas?</summary><p>Bu narx faqat birinchi 10 kishi uchun. Joylar tugagach, diagnostika asl narxida bo'ladi.</p></details>
+    <details><summary>Bonuslarni qachon olaman?</summary><p>Bugun to'lov qilsangiz, "Yangi hayot strategiyasi" darsi to'lov tasdiqlangach yuboriladi. Shaxsiy texnikalar, o'sish xaritasi va suhbat konspekti diagnostikadan keyin yuboriladi.</p></details>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="alt sec">
+  <div class="w stack g32" style="max-width:860px">
+    <div class="stack g12" style="text-align:center;align-items:center">
+      <div class="kick">Qaror sizda</div>
+      <h2>Keyingi 1 yilingiz qanday o'tadi?</h2>
+    </div>
+    <div class="choice">
+      <div class="ch bad">
+        <div class="lab">1-yo'l</div>
+        <p>Yana 1 yil <b>oqimga qarshi suzib</b>, hayotingizni o'zingiz murakkablashtirasizmi?</p>
+        <p>Yana 1 yil <b>qarzdorlik, pulsizlik, barakasizlik</b> bilan yashashni tanlaysizmi?</p>
+      </div>
+      <div class="ch good">
+        <div class="lab">2-yo'l</div>
+        <p>Yoki diagnostikada <b>kuchli tomonlaringizni va missiyangizni</b> topib…</p>
+        <p>shu 1 yilni <b>o'z yo'lingizda</b> o'tkazasizmi: sevgan ishingiz, barakali daromad va qarzsiz hayot sari?</p>
+      </div>
+    </div>
+    <div class="stack g16" style="text-align:center;align-items:center">
+      <p class="big">Agar <em>ikkinchi yo'lni</em> tanlasangiz, hoziroq diagnostikaga yoziling</p>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <a class="btn fx" href="#bron">Diagnostikaga yozilish</a>
+      <div class="guar-line">290 000 so'm · 🛡️ Yoqmasa, pul 100% qaytariladi</div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="w">Muhammadjon Rahmatullayev · Effekt Akademiyasi · Savollar: <a href="https://t.me/MR_Qabul" target="_blank" rel="noopener">@MR_Qabul</a></div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Fikr to'liq"><button type="button" id="lbX" aria-label="Yopish">✕</button><img id="lbImg" alt=""></div>
+
+<div class="sticky" id="sticky">
+  <div class="s1">Shaxsiy diagnostika · <s>990 000</s><b>290 000 so'm</b></div>
+  <a class="btn" href="#taklif">Yozilish</a>
+</div>
+
+<script>
+(function(){
+  var SHEET_URL="https://script.google.com/macros/s/AKfycbxWYhWYfIVXbeqKaED_2pDuh2OA0ADrRHljP-twXHi1yaDhTYhp4MWxENuShDT0EAi2/exec";
+  function $(s){return document.querySelector(s)}
+  function all(s){return Array.prototype.slice.call(document.querySelectorAll(s))}
+
+  /* 8 mlrd hujayra: bittasi yonadi */
+  var c=$('#cells'),n=120,on=73,html='';for(var i=0;i<n;i++)html+='<i'+(i===on?' class="on"':'')+'></i>';c.innerHTML=html;
+
+  /* Test */
+  var Q=["Ishimni sevib emas, pul uchun qilaman","Oylik yetmaydi, qarzdan chiqa olmayapman","Nima boshlasam, oxiriga yetmaydi yoki baraka bo'lmaydi","Kuchli tomonlarim nima ekanini aniq ayta olmayman","Boshqalarga yashab, o'zimni unutib qo'yganman","Ertalab yangi kunga quvonch bilan turmayman","Ichimda “men boshqa narsaga yaratilganman” degan his bor","5 yildan keyingi hayotimni aniq tasavvur qila olmayman"];
+  var t=$('#t');
+  t.innerHTML=Q.map(function(q,i){return '<div class="q"><span>'+(i+1)+'. '+q+'</span><div class="yn"><label><input type="radio" name="q'+i+'" value="1"><b>Ha</b></label><label><input type="radio" name="q'+i+'" value="0"><b>Yo\'q</b></label></div></div>'}).join('');
+  var score=0,verdict=null;
+  $('#tBtn').addEventListener('click',function(){
+    var s=0,k=0;Q.forEach(function(_,i){var x=t.querySelector('input[name=q'+i+']:checked');if(x){k++;s+=+x.value}});
+    if(k<Q.length){$('#tHint').textContent='Yana '+(Q.length-k)+' ta savolga javob bering.';return}
+    $('#tHint').textContent='';score=s;
+    if(s<=2)verdict=["Siz o'z yo'lingizga yaqinsiz","Ko'p narsa joyida. Lekin “Ha” degan joylaringiz sizni sekinlashtiryapti. Diagnostikada ularni aniq ko'rib, yo'lingizni tezlashtiramiz."];
+    else if(s<=5)verdict=["Siz yo'lingizni qidiryapsiz","Ichingizda kuch bor, lekin u to'liq ochilmagan. Diagnostikada kuchli tomonlaringiz va qalb kasbingiz yo'nalishini topamiz."];
+    else verdict=["Siz hali o'z yo'lingizda emassiz","Charchoq, pul yetmasligi, baraka yo'qligi: bular tasodif emas. Bu o'zgasining yo'lida yurganingiz belgisi. Diagnostika aynan siz uchun."];
+    var g=$('#tGate');g.classList.add('show');g.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+  function showResult(){
+    $('#tGate').classList.remove('show');
+    $('#tScore').textContent=score+' / 8';$('#tTitle').textContent=verdict[0];$('#tText').textContent=verdict[1];
+    var r=$('#tRes');r.classList.add('show');r.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  $('#gBtn').addEventListener('click',function(){
+    var nm=$('#gName').value.trim(),ph=$('#gPhone').value.trim();
+    if(nm.length<2||ph.replace(/\D/g,'').length<9){$('#gHint').textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";$('#gHint').style.color='#6EE7B0';return}
+    var b=this;b.textContent='Bir soniya…';b.disabled=true;
+    var q=new URLSearchParams({name:nm,phone:ph,format:'Diagnostika testi (lead)',area:verdict[0],note:'[Diagnostika sayt · test] '+score+'/8'});
+    var done=false;function go(){if(done)return;done=true;showResult()}
+    fetch(SHEET_URL+'?'+q.toString(),{mode:'no-cors'}).then(go,go);setTimeout(go,2500);
+  });
+
+
+  /* Joy band qilish -> to'lov -> chek */
+  var bk={};
+  function step(n){[1,2,3].forEach(function(i){$('#s'+i).hidden=i!==n;var p=$('#p'+i);p.className=i<n?'done':(i===n?'on':'')});$('#bron').scrollIntoView({behavior:'smooth',block:'start'})}
+  function ping(extra){var q=new URLSearchParams({name:bk.name,phone:bk.phone,format:'Diagnostika 290 000',area:bk.time,note:extra+(bk.note?' '+bk.note:'')});return fetch(SHEET_URL+'?'+q.toString(),{mode:'no-cors'}).catch(function(){})}
+  $('#bform').addEventListener('submit',function(e){
+    e.preventDefault();
+    var nm=$('#bName').value.trim(),ph=$('#bPhone').value.trim();
+    if(nm.length<2||ph.replace(/\D/g,'').length<9){$('#bHint').textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";$('#bHint').style.color='#6EE7B0';return}
+    var b=$('#bBtn');b.disabled=true;b.textContent='Band qilinmoqda…';
+    bk={name:nm,phone:ph,time:$('#bTime').value,note:$('#bNote').value.trim()};
+    var done=false;function go(){if(done)return;done=true;step(2)}
+    ping('[Band qildi]').then(go);setTimeout(go,2500);
+  });
+  $('#copy').addEventListener('click',function(){
+    var b=this,card='8600140411333272';function ok(){b.textContent='✓ Nusxa olindi'}
+    function fb(){var t=document.createElement('textarea');t.value=card;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(t);ok()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(card).then(ok,fb)}else fb();
+  });
+  $('#paid').addEventListener('click',function(){
+    ping('[To\'lov qildim deb bosdi]');
+    $('#tg').href='https://t.me/MR_Qabul?text='+encodeURIComponent("Assalomu alaykum! DIAGNOSTIKA uchun 290 000 so'm to'lov qildim.\nIsm: "+bk.name+"\nTelefon: "+bk.phone+"\nQulay vaqt: "+bk.time+"\nChekni yuboryapman.");
+    step(3);
+  });
+
+
+  /* Otziv karuseli: bosilsa to'liq ochiladi */
+  var lb=$('#lb'),lbImg=$('#lbImg');
+  all('.shot img').forEach(function(im){function chk(){if(im.naturalWidth>im.naturalHeight)im.parentNode.classList.add('wide')}if(im.complete)chk();else im.addEventListener('load',chk)});
+  all('.shot').forEach(function(s){s.addEventListener('click',function(){lbImg.src=s.getAttribute('data-full');lbImg.alt=s.querySelector('img').alt;lb.classList.add('show');lb.scrollTop=0;document.body.style.overflow='hidden'})});
+  function closeLb(){lb.classList.remove('show');document.body.style.overflow=''}
+  $('#lbX').addEventListener('click',closeLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+  addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+
+  /* Animatsiya va sticky */
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12}):null;
+  all('.reveal').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+  var st=$('#sticky'),of=$('#taklif'),bf=$('#bron'),nat=$('#natija');
+  function vis(el){var r=el.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0}
+  addEventListener('scroll',function(){st.classList.toggle('show',nat.getBoundingClientRect().top<0&&!vis(of)&&!vis(bf))},{passive:true});
+})();
+</script>
+</body>
+</html>
