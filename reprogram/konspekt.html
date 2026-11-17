@@ -145,6 +145,18 @@ details > div{padding-bottom:16px}
 .steps-row div{background:#222129;border:1px solid #2f2e37;border-radius:16px;padding:14px}
 .steps-row b{display:block;color:#c9c5ff;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
 @media (max-width:640px){.steps-row{grid-template-columns:1fr}}
+.price{font-size:30px;font-weight:800;color:#fff;margin:6px 0 4px;letter-spacing:-.01em}
+.price small{font-size:16px;font-weight:600;color:#a7a3b0}
+.price-row{display:flex;align-items:baseline;gap:12px;margin:6px 0 14px}
+.price-row .old{text-decoration:line-through;color:#a7a3b0;font-weight:700}
+.offer .card.guarantee{background:#14352a;border-color:#1f5a43}
+.offer .card.gift{background:#2a2350;border-color:#463c8a}
+.offer .card.downsell{background:#1b1a22;border:1.5px dashed #6b62d8}
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.proof .card{margin:0;display:flex;flex-direction:column;justify-content:space-between}
+.proof p{font-size:15px;line-height:1.55}
+.proof .who{font-size:13px;font-weight:700;color:#c9c5ff}
+@media (max-width:760px){.proof{grid-template-columns:1fr}}
 footer{padding:28px 0 40px;text-align:center;font-size:14px;color:var(--muted)}
 .sticky-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none}
 .sticky-cta.show{display:block}
@@ -511,26 +523,58 @@ footer{padding:28px 0 40px;text-align:center;font-size:14px;color:var(--muted)}
 
     <div class="card">
       <h3 style="margin-top:0;color:#fff">1 oylik individual trans-koaching</h3>
+      <p class="muted" style="margin-bottom:6px">1 oy oxirida qo'lingizda bo'ladi:</p>
       <ul class="clean">
-        <li>Muhammadjon bilan <b>yakkama-yakka 3 ta chuqur sessiya</b></li>
-        <li><b>Missiyangizni aniqlaymiz</b> va shundan kelib chiqib daromadni oshirish uchun <b>reja va strategiya</b> tuzamiz</li>
-        <li><b>Pul bloklari</b>, munosabatdagi travmalar va ota-ona bilan bog'liq xafagarchiliklarni to'liq yechamiz</li>
-        <li>Oy davomida <b>savollaringizga javob</b> berib turiladi</li>
-        <li>Bir martalik konsultatsiya emas, <b>natijaga qaratilgan dastur</b></li>
+        <li><b>Dasturlaringiz xaritasi:</b> qaysi bolalik ssenariysi pulingiz va munosabatingizni boshqarayotgani aniq ko'rinadi</li>
+        <li><b>Qadamba-qadam reja:</b> qarzdan chiqish, xarajatni nazorat qilish va daromadni oshirish bo'yicha, sizning vaziyatingizga moslab</li>
+        <li><b>Missiya va qalb kasbingiz</b> aniqlangan bo'ladi, shunga qarab o'sish strategiyasi tuziladi</li>
+        <li><b>Yechilgan bloklar:</b> pul bloklari, munosabatdagi travmalar, ota-ona bilan bog'liq xafagarchiliklar</li>
+        <li>Eski ssenariy qayta boshlanganda uni <b>o'zingiz sezib, to'xtata olasiz</b></li>
       </ul>
-      <div class="grid2" style="margin:14px 0">
-        <div class="mini" style="background:#15141a;border-color:#3a3943"><h4 style="color:#fff">📍 Offline</h4><p style="color:#c9c5d3">Toshkentda 3 ta jonli uchrashuv, har biri ~3–4 soat</p></div>
-        <div class="mini" style="background:#15141a;border-color:#3a3943"><h4 style="color:#fff">💻 Online</h4><p style="color:#c9c5d3">Qayerda bo'lsangiz ham: 3 ta sessiya, har biri ~1,5–2 soat</p></div>
+      <p class="muted" style="font-size:15px;margin:12px 0 0">Format: Muhammadjon bilan <b style="color:#fff">yakkama-yakka 3 ta chuqur sessiya</b> va oy davomida savollaringizga javob.</p>
+    </div>
+
+    <div class="grid2" style="margin:16px 0">
+      <div class="card" style="margin:0">
+        <h4 style="margin:0;color:#c9c5ff">💻 Online</h4>
+        <div class="price">7 990 000 <small>so'm</small></div>
+        <p class="muted" style="font-size:15px;margin:0">Qayerda bo'lsangiz ham. 3 ta sessiya, har biri ~1,5–2 soat</p>
       </div>
-      <div class="seats" aria-label="10 ta joydan 5 tasi band"><i></i><i></i><i></i><i></i><i></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i></div>
-      <p class="muted" style="font-size:14px;margin:0">Oqimga faqat 10 kishi olinadi. Reprogram tugashi bilan boshlanadi.</p>
+      <div class="card" style="margin:0">
+        <h4 style="margin:0;color:#c9c5ff">📍 Offline</h4>
+        <div class="price">9 990 000 <small>so'm</small></div>
+        <p class="muted" style="font-size:15px;margin:0">Toshkentda 3 ta jonli uchrashuv, har biri ~3–4 soat</p>
+      </div>
+    </div>
+    <div class="seats" aria-label="10 ta joydan 5 tasi band"><i></i><i></i><i></i><i></i><i></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i></div>
+    <p class="muted" style="font-size:14px;margin:0 0 16px">Oqimga faqat 10 kishi olinadi. Reprogram tugashi bilan boshlanadi.</p>
+
+    <div class="card guarantee">
+      <div class="big-idea"><div class="ic">🛡️</div><div>
+        <h4 style="margin:0 0 6px;color:#fff;font-size:18px">Kafolat</h4>
+        <p style="margin:0">1-sessiyadan keyin foyda ko'rmasangiz, to'lovingiz <b>to'liq qaytariladi</b>. Hech qanday savolsiz.</p>
+      </div></div>
+    </div>
+
+    <div class="card gift">
+      <div class="big-idea"><div class="ic">🎁</div><div>
+        <h4 style="margin:0 0 6px;color:#fff;font-size:18px">Ariza qoldirganlarga sovg'a: bepul diagnostika</h4>
+        <p style="margin:0">Muhammadjon o'zi qo'ng'iroq qiladi va vaziyatingizni tahlil qilib, sizni aynan nima to'xtatib turganini aytib beradi. Koachingga yozilmasangiz ham, bu tahlil sizda qoladi.</p>
+      </div></div>
+    </div>
+
+    <h3 style="color:#fff">O'quvchilar natijalari</h3>
+    <div class="proof">
+      <div class="card"><p>“Qarzdorlik bo'yicha qilgan harakatlarim unumli bo'ldi. Qirq millionlik kreditim yigirma milliongacha kamaydi. Mayda xarajatlardan kechib, birinchi o'rinda sog'lig'imga investitsiya qildim.”</p><span class="who">K., sportchi</span></div>
+      <div class="card"><p>“Darsingizni olganimdan beri daromad bir baravarga oshdi. Konsultatsiyadan keyin yana oshib ketyapti.”</p><span class="who">A., ustalar brigadasi rahbari</span></div>
+      <div class="card"><p>“Katta depressiyaga, yo'qchilikka tushib qolgan edim. Darslaringizda qatnashdim, vazifa va texnikalarni bajardim. Sizdan juda minnatdorman.”</p><span class="who">F., Farg'ona, 2024-yildan o'quvchi</span></div>
     </div>
 
     <div class="fit">
       <div class="card" style="margin:0">
         <h4 style="margin:0 0 8px;color:#c9c5ff">Sizga mos, agar:</h4>
         <ul class="clean" style="font-size:15px">
-          <li>testda 7 balldan yuqori chiqqan bo'lsa</li>
+          <li>testda 15 balldan yuqori chiqqan bo'lsa</li>
           <li>bir xil muammo yillar davomida takrorlanayotgan bo'lsa</li>
           <li>texnikalarni qilyapsiz-u, natija oxirigacha yetmayotgan bo'lsa</li>
           <li>katta maqsadingiz bor va o'zingizni ichdan nimadir ushlab turgan bo'lsa</li>
@@ -540,26 +584,39 @@ footer{padding:28px 0 40px;text-align:center;font-size:14px;color:var(--muted)}
         <h4 style="margin:0 0 8px;color:#c9c5ff">Qanday boshlanadi?</h4>
         <div class="steps-row" style="grid-template-columns:1fr">
           <div><b>1-qadam</b>Ariza qoldirasiz</div>
-          <div><b>2-qadam</b>Muhammadjon o'zi qo'ng'iroq qiladi va vaziyatingizni o'rganadi</div>
-          <div><b>3-qadam</b>Ma'qul kelsa, formatni kelishib, ishni boshlaymiz</div>
+          <div><b>2-qadam</b>Muhammadjon qo'ng'iroq qiladi va <b style="display:inline;color:#fff;letter-spacing:0;text-transform:none;font-size:inherit">bepul diagnostika</b> o'tkazadi</div>
+          <div><b>3-qadam</b>Ma'qul kelsa, tarifni tanlab, ishni boshlaymiz</div>
         </div>
       </div>
     </div>
-    <p class="muted" style="margin-top:14px">Taqqoslash uchun: bitta individual konsultatsiya online $300, offline $500 turadi. Koaching narxi ancha qulay, ustiga ishtirokchilar uchun sovg'a ham bor. Batafsil ma'lumot qo'ng'iroqda aytiladi.</p>
+
+    <div class="card downsell" id="konsultatsiya">
+      <span class="tag" style="margin-bottom:10px">Faqat Reprogram o'quvchilari uchun</span>
+      <h3 style="margin:0 0 8px;color:#fff">Hozircha 1 oylik koaching ko'p tuyulyaptimi?</h3>
+      <p>Unda bitta aniq masala bilan boshlang: <b>1 martalik individual konsultatsiya</b>. Vaziyatingizni chuqur ko'rib chiqamiz va nimani, qaysi tartibda qilishingiz kerakligini aniq aytib beraman.</p>
+      <div class="price-row"><span class="old">$300</span><span class="price" style="margin:0">997 000 <small>so'm</small></span></div>
+      <button class="btn light full" type="button" id="pickConsult">Konsultatsiyaga yozilish</button>
+    </div>
 
     <div class="card" id="apply">
       <h3 style="margin-top:0;color:#fff">Ariza qoldirish</h3>
+      <p class="muted" style="font-size:15px">🎁 Ariza qoldirgan har bir kishiga bepul diagnostika</p>
       <form class="form" id="form">
         <label>Ismingiz<input id="fName" required autocomplete="name"></label>
         <label>Telefon raqamingiz<input id="fPhone" required inputmode="tel" placeholder="+998 __ ___ __ __" autocomplete="tel"></label>
-        <label>Format
-          <select id="fFormat"><option>Online</option><option>Offline</option><option>Hali bilmayman</option></select>
+        <label>Tarif
+          <select id="fFormat">
+            <option>Koaching, online (7 990 000 so'm)</option>
+            <option>Koaching, offline (9 990 000 so'm)</option>
+            <option>1 martalik konsultatsiya (997 000 so'm)</option>
+            <option>Hali bilmayman, diagnostikada hal qilamiz</option>
+          </select>
         </label>
         <label>Qaysi soha bo'yicha ishlamoqchisiz?
           <select id="fArea"><option>Pul va qarz</option><option>Munosabatlar</option><option>Maqsad va o'sish</option><option>Hammasi</option></select>
         </label>
         <label>Nima uchun qatnashmoqchisiz?<textarea id="fNote" placeholder="1–2 jumlada vaziyatingizni yozing"></textarea></label>
-        <a class="btn light full" id="sendBtn" href="#" target="_blank" rel="noopener">Arizani yuborish →</a>
+        <a class="btn light full" id="sendBtn" href="#" target="_blank" rel="noopener">Arizani yuborish va diagnostikani olish →</a>
         <p class="muted" id="formHint" style="font-size:14px;margin:0">Ism va telefon raqamini to'ldiring.</p>
       </form>
       <p class="muted" style="font-size:14px;margin:14px 0 0">Yoki to'g'ridan-to'g'ri Telegramda yozing: <a id="tgBtn" href="#" style="color:#c9c5ff;font-weight:700"></a></p>
@@ -605,11 +662,12 @@ document.getElementById('calcBtn').onclick = ()=>{
   document.getElementById('pin').style.left = `calc(${s/24*100}% - 2px)`;
   let cls,t,x;
   if(s<=6){cls='g';t='Vaziyatli qarz';x="Qarz siz uchun odat emas, shunchaki vaziyat majbur qilgan. Chiqib ketish uchun aniq reja va ozgina intizom yetadi.";}
-  else if(s<=14){cls='y';t='Xavfli odat shakllanmoqda';x="Rejaning o'zi yetmaydi. Qarzga kirishingizning ichki sababini, ya'ni qaysi ong osti dasturi sizni boshqarayotganini topish kerak.";}
+  else if(s<=14){cls='y';t='Xavfli odat shakllanmoqda';x="Rejaning o'zi yetmaydi. Qarzga kirishingizning ichki sababini, ya'ni qaysi ong osti dasturi sizni boshqarayotganini topish kerak. Buning uchun bitta individual konsultatsiya yetarli bo'lishi mumkin.";}
   else {cls='r';t='Qarzdorlik sindromi bor';x="Masala jiddiy. Hozirgi qarzlarni yopsangiz ham, dastur o'zgarmaguncha yana qayta-qayta qarzga kirasiz. Bu holatda individual chuqur ish tavsiya etiladi.";}
   r.className='result show '+cls;
+  const link = s>14 ? ` <a href="#koaching"><b>Individual koaching haqida →</b></a>` : (s>6 ? ` <a href="#konsultatsiya"><b>Reprogram o'quvchilari uchun konsultatsiya: 997 000 so'm →</b></a>` : '');
   document.getElementById('rTitle').textContent=t;
-  document.getElementById('rText').innerHTML=x+(s>6?` <a href="#koaching"><b>Individual koaching haqida →</b></a>`:'');
+  document.getElementById('rText').innerHTML=x+link;
   r.scrollIntoView({behavior:'smooth',block:'center'});
 };
 
@@ -638,6 +696,11 @@ sendBtn.addEventListener('click',e=>{
   sendBtn.textContent='✓ Yuborildi';
 });
 document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();if(ready())sendBtn.click();});
+document.getElementById('pickConsult').addEventListener('click',()=>{
+  const sel=document.getElementById('fFormat');sel.selectedIndex=2;updateLink();
+  document.getElementById('apply').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>document.getElementById('fName').focus({preventScroll:true}),600);
+});
 
 // progress + sticky
 const pr=document.getElementById('progress'),st=document.getElementById('sticky'),off=document.getElementById('koaching');
