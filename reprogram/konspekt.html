@@ -678,7 +678,7 @@ function calc(){const v=+(document.getElementById('cSum').value.replace(/\D/g,''
 document.getElementById('cSum').addEventListener('input',calc);calc();
 
 // form
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzuqLYYV-yLJ1EJzNcsX_t-IfH__H1B64pZ6QP_0DjCuMe5WIM8F23yxDRW-7WtOTSh/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxWYhWYfIVXbeqKaED_2pDuh2OA0ADrRHljP-twXHi1yaDhTYhp4MWxENuShDT0EAi2/exec";
 const tg=document.getElementById('tgBtn');tg.textContent='@'+TG_USERNAME;tg.href='https://t.me/'+TG_USERNAME;
 const fv=id=>document.getElementById(id).value.trim();
 const sendBtn=document.getElementById('sendBtn'), hint=document.getElementById('formHint');
@@ -690,10 +690,16 @@ function updateLink(){
 }
 ['fName','fPhone','fFormat','fArea','fNote'].forEach(id=>{const el=document.getElementById(id);el.addEventListener('input',updateLink);el.addEventListener('change',updateLink);});
 updateLink();
+let sending=false;
 sendBtn.addEventListener('click',e=>{
-  if(!ready()){e.preventDefault();hint.textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";hint.style.color='#ffb4ae';return;}
-  hint.style.color='';hint.textContent="✓ Ariza yuborildi! Ochilgan sahifada tasdiqni ko'rasiz. Muhammadjon ustoz siz bilan bog'lanadi.";
-  sendBtn.textContent='✓ Yuborildi';
+  e.preventDefault();
+  if(sending) return;
+  if(!ready()){hint.textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";hint.style.color='#ffb4ae';return;}
+  sending=true; hint.style.color=''; hint.textContent=''; sendBtn.textContent='Yuborilmoqda…';
+  updateLink(); const url=sendBtn.href;
+  fetch(url,{mode:'no-cors'})
+    .then(()=>{ location.href='rahmat.html'; })
+    .catch(()=>{ location.href=url; });
 });
 document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();if(ready())sendBtn.click();});
 document.getElementById('pickConsult').addEventListener('click',()=>{

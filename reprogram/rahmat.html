@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arizangiz qabul qilindi — Reprogram</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<!-- META_PIXEL -->
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--ink:#1b1a1f;--muted:#6b6873;--line:#e7e3da;--accent:#4b3fd6;--soft:#ecebfd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:620px;margin:0 auto;padding:40px 20px 56px}
+.brand{font-weight:800;letter-spacing:.02em;margin-bottom:36px}.brand b{color:var(--accent)}
+.check{width:72px;height:72px;border-radius:22px;background:#e6f4ec;display:grid;place-items:center;font-size:38px;margin-bottom:20px;animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(32px,7vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px}
+.lead{font-size:19px;color:#3a3842;margin:0 0 28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:14px 0}
+.steps{list-style:none;padding:0;margin:0}
+.steps li{display:flex;gap:14px;align-items:flex-start;padding:10px 0}
+.steps .n{flex:none;width:30px;height:30px;border-radius:9px;background:var(--soft);color:var(--accent);font-weight:800;display:grid;place-items:center;font-size:14px}
+.steps .done .n{background:#1f8a5b;color:#fff}
+.steps b{display:block}
+.steps span.s{color:var(--muted);font-size:15px}
+.bonus{background:var(--ink);color:#f3f1ec;border:none}
+.bonus .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#c9c5ff;background:rgba(169,163,255,.15);padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.bonus h2{font-family:Fraunces,Georgia,serif;font-size:26px;line-height:1.2;margin:0 0 10px;color:#fff}
+.bonus p{color:#cfcbd8;margin:0 0 16px}
+.bonus ul{margin:0 0 18px;padding-left:20px;color:#e6e3ee}
+.bonus li{margin:6px 0}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:15px 20px;font:700 16px Manrope,sans-serif;text-decoration:none;margin-top:10px}
+.btn.tg{background:#2aabee;color:#fff}
+.btn.pdf{background:#fff;color:var(--accent)}
+.note{font-size:14px;color:var(--muted);text-align:center;margin-top:22px}
+.note a{color:var(--accent);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">RE<b>PROGRAM</b></div>
+  <div class="check">✅</div>
+  <h1>Arizangiz qabul qilindi!</h1>
+  <p class="lead">Rahmat. Siz o'zingiz uchun eng muhim qadamni qo'ydingiz: o'zgarishni xohlashni emas, uni boshlashni tanladingiz.</p>
+
+  <div class="card">
+    <ul class="steps">
+      <li class="done"><span class="n">✓</span><div><b>Ariza yuborildi</b><span class="s">Ma'lumotlaringiz bizda</span></div></li>
+      <li><span class="n">2</span><div><b>Muhammadjon ustoz qo'ng'iroq qiladi</b><span class="s">24 soat ichida. Telefoningizni yaqin tuting, notanish raqamdan bo'lishi mumkin.</span></div></li>
+      <li><span class="n">3</span><div><b>Bepul diagnostika</b><span class="s">Vaziyatingizni tahlil qilamiz va sizni aynan nima to'xtatib turganini aniqlaymiz</span></div></li>
+    </ul>
+  </div>
+
+  <div class="card bonus">
+    <span class="tag">🎁 Sizga bonus</span>
+    <h2>“Diagnostikaga tayyorgarlik” ish varag'i</h2>
+    <p>10 ta savol. Qo'ng'iroqdan oldin to'ldirsangiz, diagnostika ancha chuqurroq o'tadi va vaqt tanishishga emas, yechimga ketadi.</p>
+    <ul>
+      <li>Qaysi ssenariy hayotingizda takrorlanyapti</li>
+      <li>Ota-onangizdan qaysi “dastur” o'tgan</li>
+      <li>Qaysi his sizni boshqaradi: uyat, qarzdorlik yoki aybdorlik</li>
+    </ul>
+    <a class="btn pdf" href="diagnostika-varaq.pdf" target="_blank" rel="noopener">📄 Ish varag'ini yuklab olish (PDF)</a>
+    <a class="btn tg" id="channelBtn" href="https://t.me/+a4ZfIHMOY1RlMDcy" target="_blank" rel="noopener">✈️ Yopiq kanalga qo'shilish</a>
+    <p style="font-size:14px;margin:12px 0 0;color:#a7a3b0">Kanalda diagnostikagacha foydali materiallar va o'quvchilar natijalarini ulashib boramiz.</p>
+  </div>
+
+  <p class="note">Savolingiz bo'lsa: <a href="https://t.me/MR_Qabul" target="_blank" rel="noopener">@MR_Qabul</a><br><a href="konspekt.html">← Konspektga qaytish</a></p>
+</div>
+</body>
+</html>
