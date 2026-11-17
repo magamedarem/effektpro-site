@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reprogram — Ongni qayta dasturlash konspekti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1b1a1f; --muted:#6b6873; --line:#e7e3da;
+  --accent:#4b3fd6; --accent-soft:#ecebfd; --warm:#f3e9d7; --ok:#1f8a5b; --warn:#c98200; --bad:#c2413a;
+  --r:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+h1,h2,h3{line-height:1.2;margin:0}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(36px,7vw,56px);letter-spacing:-.02em}
+h2{font-family:Fraunces,Georgia,serif;font-size:clamp(28px,5vw,38px);letter-spacing:-.01em;margin-bottom:14px}
+h3{font-size:20px;font-weight:800;margin:28px 0 10px}
+p{margin:0 0 14px}
+.muted{color:var(--muted)}
+
+/* top nav */
+.nav{position:sticky;top:0;z-index:10;background:rgba(246,244,239,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-weight:800;letter-spacing:.02em}
+.brand b{color:var(--accent)}
+.nav .links{margin-left:auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.nav .links::-webkit-scrollbar{display:none}
+.nav .links a{font-size:14px;font-weight:600;text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.nav .links a:hover{background:var(--accent-soft)}
+.nav .links a.cta{background:var(--ink);color:#fff}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--accent);width:0}
+
+/* hero */
+.hero{padding:64px 0 36px}
+.tag{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.hero p.lead{font-size:20px;color:#3a3842;margin-top:18px}
+.toc{display:grid;gap:10px;margin-top:28px}
+.toc a{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;text-decoration:none;color:var(--ink);transition:transform .15s}
+.toc a:hover{transform:translateY(-2px)}
+.toc .n{flex:none;width:36px;height:36px;border-radius:10px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800}
+.toc .t{font-weight:700}
+.toc .s{display:block;font-size:14px;color:var(--muted);font-weight:500}
+.toc a.soon{opacity:.6}
+
+/* sections */
+section.lesson{padding:56px 0 8px;scroll-margin-top:56px}
+.lesson-head{margin-bottom:22px}
+.lesson-head .kicker{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin:16px 0}
+.card.accent{background:var(--accent);color:#fff;border:none}
+.card.accent .muted{color:rgba(255,255,255,.75)}
+.card.warm{background:var(--warm);border-color:#ead9bb}
+.quote{font-family:Fraunces,Georgia,serif;font-size:22px;line-height:1.4;margin:0}
+.big-idea{display:flex;gap:14px;align-items:flex-start}
+.big-idea .ic{flex:none;font-size:26px;line-height:1}
+ul.clean,ol.clean{margin:0;padding-left:0;list-style:none}
+ul.clean li,ol.clean li{position:relative;padding-left:30px;margin:10px 0}
+ul.clean li::before{content:"";position:absolute;left:6px;top:11px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+ol.clean{counter-reset:c}
+ol.clean li{counter-increment:c}
+ol.clean li::before{content:counter(c);position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:7px;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:800;display:grid;place-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.mini h4{margin:6px 0 6px;font-size:17px}
+.mini p{font-size:15px;margin:0;color:#3a3842}
+.mini .em{font-size:24px}
+@media (max-width:640px){.grid3,.grid2{grid-template-columns:1fr}}
+.task{border-left:4px solid var(--accent);background:var(--card);border-radius:0 16px 16px 0;padding:18px 20px;margin:18px 0}
+.task .lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.script{background:#15141a;color:#f1efe9;border-radius:var(--r);padding:24px;margin:16px 0}
+.script p{margin:0 0 10px}
+.script .step{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a9a3ff;margin:16px 0 6px}
+.script em{color:#ffd68a;font-style:normal}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0 18px;margin:10px 0}
+details summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--accent);font-weight:800}
+details[open] summary::after{content:"–"}
+details > div{padding-bottom:16px}
+
+/* test */
+.q{padding:14px 0;border-bottom:1px solid var(--line)}
+.q:last-of-type{border-bottom:none}
+.q .qt{font-weight:600;margin-bottom:10px}
+.q .qt span{color:var(--muted);font-weight:700;margin-right:6px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{flex:1;min-width:80px}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:block;text-align:center;padding:9px 10px;border:1.5px solid var(--line);border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;transition:.15s}
+.opts input:checked + span{background:var(--accent);border-color:var(--accent);color:#fff}
+.opts input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.result{display:none;margin-top:16px;border-radius:16px;padding:18px}
+.result.show{display:block}
+.result .score{font-size:40px;font-weight:800;line-height:1}
+.result.g{background:#e6f4ec}.result.y{background:#fdf1dc}.result.r{background:#fbe5e3}
+.meter{height:10px;border-radius:999px;background:linear-gradient(90deg,#1f8a5b 0 29%,#c98200 29% 62%,#c2413a 62%);position:relative;margin:14px 0 4px}
+.meter i{position:absolute;top:-5px;width:4px;height:20px;background:var(--ink);border-radius:2px;transition:left .3s}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:14px;padding:14px 22px;font:700 16px Manrope,sans-serif;cursor:pointer;text-decoration:none;background:var(--ink);color:#fff}
+.btn.full{width:100%}
+.btn.light{background:#fff;color:var(--accent)}
+.hint{font-size:14px;color:var(--muted);margin-top:8px}
+
+/* calc */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+.calc label{font-size:14px;font-weight:700;display:block;margin-bottom:6px}
+.calc input{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:600 17px Manrope,sans-serif;background:#fff}
+.calc-out{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.calc-out div{background:var(--bg);border-radius:14px;padding:12px}
+.calc-out b{display:block;font-size:18px}
+.calc-out small{color:var(--muted);font-weight:600}
+@media (max-width:520px){.calc{grid-template-columns:1fr}.calc-out{grid-template-columns:1fr}}
+
+.formula{text-align:center;padding:26px 18px}
+.formula .f{font-size:clamp(18px,4.2vw,24px);font-weight:800;line-height:1.5}
+.formula .f span{color:var(--accent)}
+.soon-box{text-align:center;border:2px dashed var(--line);border-radius:var(--r);padding:36px 20px;color:var(--muted)}
+
+/* offer */
+.offer{background:var(--ink);color:#f3f1ec;padding:64px 0 72px;margin-top:64px}
+.offer h2{color:#fff}
+.offer .tag{background:rgba(169,163,255,.15);color:#c9c5ff}
+.offer .card{background:#222129;border-color:#2f2e37;color:#f3f1ec}
+.offer .muted{color:#a7a3b0}
+.offer ul.clean li::before{background:#a9a3ff}
+.seats{display:flex;gap:6px;margin:12px 0 4px}
+.seats i{flex:1;height:8px;border-radius:4px;background:#a9a3ff}
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.fit{grid-template-columns:1fr}}
+.form{display:grid;gap:12px;margin-top:6px}
+.form label{font-size:14px;font-weight:700}
+.form input,.form textarea,.form select{width:100%;margin-top:6px;padding:13px 14px;border-radius:12px;border:1.5px solid #3a3943;background:#15141a;color:#fff;font:500 16px Manrope,sans-serif}
+.form textarea{min-height:90px;resize:vertical}
+.msg-preview{display:none;background:#15141a;border-radius:14px;padding:14px;font-size:15px;white-space:pre-wrap;border:1px solid #3a3943}
+.msg-preview.show{display:block}
+.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.steps-row div{background:#222129;border:1px solid #2f2e37;border-radius:16px;padding:14px}
+.steps-row b{display:block;color:#c9c5ff;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:640px){.steps-row{grid-template-columns:1fr}}
+footer{padding:28px 0 40px;text-align:center;font-size:14px;color:var(--muted)}
+.sticky-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none}
+.sticky-cta.show{display:block}
+@media (min-width:900px){.sticky-cta{left:auto;right:24px;bottom:24px;width:320px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">RE<b>PROGRAM</b></div>
+    <div class="links">
+      <a href="#dars-1">1-dars</a>
+      <a href="#dars-2">2-dars</a>
+      <a href="#dars-3">3-dars</a>
+      <a href="#koaching" class="cta">Koaching</a>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Kurs konspekti · Muhammadjon Rahmatullayev</span>
+    <h1>Ongni qayta dasturlash</h1>
+    <p class="lead">Hayotingizda bir xil muammo qayta-qayta takrorlanyaptimi? Demak, sizni eski “dastur” boshqaryapti. Bu konspektda uch darsning asosiy g'oyalari, testlar va texnikalar jamlangan. O'qing, bajaring va o'zingizdagi o'zgarishni kuzating.</p>
+    <div class="toc">
+      <a href="#dars-1"><span class="n">1</span><span><span class="t">Munosabatlar dasturi</span><span class="s">Onadan o'tgan ssenariylar va “qora kitob” texnikasi</span></span></a>
+      <a href="#dars-2"><span class="n">2</span><span><span class="t">Pul va qarz dasturi</span><span class="s">Qarzdorlik sindromi testi, xarajat nazorati, 3 manipulyatsiya</span></span></a>
+      <a href="#dars-3"><span class="n">3</span><span><span class="t">Amaliyot</span><span class="s">Qarzdan chiqish rejasi, chegaralar, biznesni boshlash, missiya</span></span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ DARS 1 ============ -->
+<section class="lesson" id="dars-1">
+  <div class="lesson-head">
+    <div class="kicker">1-dars</div>
+    <h2>Ongni dasturlash nima va munosabatlar dasturi</h2>
+  </div>
+
+  <div class="card warm">
+    <div class="big-idea"><div class="ic">📱</div><div>
+      <h3 style="margin-top:0">Nokia va Telegram misoli</h3>
+      <p>Eski Nokia telefoniga qancha urinsangiz ham Telegramning yangi versiyasini o'rnata olmaysiz. Telefonning dasturi buni qabul qilmaydi.</p>
+      <p style="margin:0">Ongimiz ham shunday. U bobo-buvi va ota-onadan olingan tarbiya asosida, eski davrning “sozlamalari” bilan ishlayapti: <b>“pul topish qiyin”, “qarz bilan yashash normal”, “hayot og'ir”</b>. Shu sozlamalar bilan yangi natija, ya'ni pul, baxtli munosabat yoki o'sish hayotga kira olmaydi.</p>
+    </div></div>
+  </div>
+
+  <div class="card accent">
+    <p class="quote">Ongni qayta dasturlash bu eski fikrlardan butunlay xalos bo'lib, fikrlarni qaytadan yangilash.</p>
+  </div>
+
+  <h3>Munosabat dasturi qayerdan keladi?</h3>
+  <p>Munosabatlarimizni asosan <b>onamizdan olgan dasturlar</b> bilan quramiz. Onamizdan nimani ko'rgan, o'rgangan va eshitgan bo'lsak, o'sha ong ostimizga joylashadi.</p>
+  <p>Ota-ona yomon niyatda tarbiya bermagan. Ular o'z hayotidagi qiyinchiliklardan chiqargan <b>xulosalarini</b> bizga o'tkazgan. Lekin ularning tajribasi ularning hayotiga moslashgan edi, bizning bugungi hayotimizga emas.</p>
+
+  <div class="grid2">
+    <div class="mini"><div class="em">🤐</div><h4>“Erkak gapirsa, jim tur”</h4><p>Natijada ayol fikri so'ralganda ham jim turadi va erkakni qo'llab-quvvatlamaydigan ayol bo'lib ko'rinadi.</p></div>
+    <div class="mini"><div class="em">🏋️</div><h4>“Hamma mas'uliyatni o'zing ol”</h4><p>Erkakning ishini ham, ro'zg'orni ham ayol o'z zimmasiga oladi va charchab qoladi.</p></div>
+    <div class="mini"><div class="em">🫥</div><h4>“His-tuyg'uni yashir”</h4><p>Doimiy jimlik munosabatni ichidan sovutadi.</p></div>
+    <div class="mini"><div class="em">⛓️</div><h4>“Bolang uchun majburan yasha”</h4><p>Yillab sabr qilinadi, yig'ilgan alam esa oxiri farzanddan olinadi.</p></div>
+  </div>
+
+  <div class="task">
+    <div class="lbl">✍️ Mashq 1</div>
+    <p style="margin:0">Daftaringizga yozing: <b>“Men onamdan munosabatga doir qanday 3 ta fikr olganman?”</b> Keyin har birining yoniga yozing: bu fikr bugungi munosabatimda <b>qanday muammo</b> keltiryapti?</p>
+  </div>
+
+  <div class="card">
+    <div class="big-idea"><div class="ic">🔁</div><div>
+      <h3 style="margin-top:0">Takrorlanayotgan muammo bu belgi</h3>
+      <p style="margin:0">Bir marta oila qurdingiz, ajrashdingiz. Yana qurdingiz, yana ajrashdingiz. Bir xil vaziyat qayta-qayta takrorlanyaptimi? Demak, ongda jiddiy dastur ishlayapti. <b>Ko'ra olgan narsangizni o'zgartira olasiz, ko'rmagan narsangizni hech qachon tuzata olmaysiz.</b></p>
+    </div></div>
+  </div>
+
+  <h3>Texnika: “Qora kitob”ni qaytarish</h3>
+  <p class="muted">Tinch joyda, 10 daqiqa vaqt ajratib bajaring. Ovozingiz chiqib yoki ichingizda ayting.</p>
+  <div class="script">
+    <div class="step">1 · Kirish</div>
+    <p>Ko'zingizni yuming. Chuqur nafas oling. Sekin-asta <em>7 yoshli</em> o'zingizga qayting.</p>
+    <div class="step">2 · Ona va qora kitob</div>
+    <p>Ro'parangizda onangiz o'tiribdi. Uning qo'lida qora kitob bor. Unda onangizning butun hayot tajribasi, tanlovlari va xatolari yozilgan. U kitobni sizga uzatyapti.</p>
+    <div class="step">3 · Kitobni yirtish</div>
+    <p>Kitobni oling va onangizning ko'ziga qarab uni mayda-mayda qilib yirting. Ayting:</p>
+    <p><em>“Onajon, men sizni yaxshi ko'raman. Siz men uchun eng qadrli insonsiz. Lekin sizning tajribalaringiz va tanlovlaringizni o'z hayotimga olib kira olmayman. Ular bilan yashashga majbur emasman. Bugundan boshlab ular meni boshqarishiga yo'l qo'ymayman. O'z munosabatlarimda o'z tanlovlarim bilan yashayman. Buning uchun sizni ayblamayman, sizdan xafa ham emasman.”</em></p>
+    <div class="step">4 · Baxt kitobi</div>
+    <p>Onangizni mahkam quchoqlang. Endi o'z <em>baxt kitobingizni</em> yozing: “Ideal munosabat men uchun nima?” Xayolingizga kelgan birinchi go'zal tasavvurni yozing, keyin kitobni ko'ksingizga bosing.</p>
+  </div>
+
+  <h3>Xohishni aniq yozing</h3>
+  <p>“Hurmat qilsin”, “tushunsin”, “chiroyli muomala qilsin” degan umumiy so'zlarni o'lchab bo'lmaydi. O'lchay olmagan narsangiz hayotingizda bo'lmayotgandek tuyulaveradi.</p>
+  <div class="grid2">
+    <div class="mini"><h4 style="color:var(--bad)">✕ Umumiy</h4><p>Hurmat qilsin. Meni tushunsin. Mehribon bo'lsin. Yaxshi muomala qilsin.</p></div>
+    <div class="mini"><h4 style="color:var(--ok)">✓ Aniq</h4><p>Men bilan har kuni 15 daqiqa suhbatlashsin. Haftada bir sayrga chiqaylik. Orzularimizni birga rejalashtiraylik. Odamlar oldida baqirmasdan, sekin ovozda gapirsin.</p></div>
+  </div>
+
+  <h3>Avval bering, keyin oling</h3>
+  <p>O'zingizga savol bering: <b>xohishlarim amalga oshganda men qanday kayfiyatda yuraman, qanday kiyinaman, turmush o'rtog'imga qanday munosabatda bo'laman?</b> Aynan o'sha munosabatni <b>bugundan</b> ko'rsatishni boshlang, xohish hali amalga oshmagan bo'lsa ham.</p>
+  <div class="grid2">
+    <div class="mini"><h4 style="color:var(--bad)">✕ Shartli pozitsiya</h4><p>“U menga e'tibor bersin, keyin men ham beraman.”</p></div>
+    <div class="mini"><h4 style="color:var(--ok)">✓ Yangi pozitsiya</h4><p>“Avval men beraman, keyin olaman. Olmasam ham roziman.”</p></div>
+  </div>
+
+  <h3>Xohishni ochiq ayting va qayta-qayta so'rang</h3>
+  <p>Ko'pincha ayol “ko'nglimdagini o'zi topsin” deb kutadi: gul, shirinlik, e'tibor... Aytilmagan narsa kelmasa, muammo erkakda emas. Erkak ishi, tashvishi va do'stlari bilan bo'lib esdan chiqarishi mumkin, lekin <b>so'ralsa, olib keladi</b>.</p>
+  <ul class="clean">
+    <li>Aniq ayting: <i>“Kechqurun kelishda bitta shokolad olib keling.”</i></li>
+    <li>Olib kelmasa, yana so'rang: bugun xursand bo'lib, ertaga yozib, indinga Telegramda. Toki olib kelguncha.</li>
+    <li>Og'ir botgan gapni ichga yutmang: <i>“Hammaning oldida shunday gapirsangiz, qalbimga og'ir botadi. Iltimos, bunday qilmang.”</i></li>
+    <li>Erkakka rahm qilib xohishni yashirish kerak emas. Ayolning xohishi erkakka kuch va motivatsiya beradi.</li>
+  </ul>
+
+  <div class="card">
+    <h3 style="margin-top:0">Erkak va ayol: oddiy formula</h3>
+    <div class="grid2" style="margin:8px 0 0">
+      <div class="mini"><h4>👨 Erkak xohlaydi</h4><p><b>Tushunilishni</b>, <b>hurmatni</b> va <b>tinchlikni</b>: past ovozda gapirish, u bilan faxrlanish, rahmat aytish, minnatdorlik.</p></div>
+      <div class="mini"><h4>👩 Ayol xohlaydi</h4><p><b>Eshitilishni</b>, <b>sevilishni</b> va <b>sifatli vaqtni</b>: telefon o'chiq, shoshilmasdan, to'liq oila bilan birga.</p></div>
+    </div>
+    <p style="margin:14px 0 0"><b>Eshitish</b> bu shunchaki gaplashish emas. Gapni bo'lmasdan, telefonga chalg'imasdan, ko'zga qarab, qo'lini ushlab tinglash.</p>
+  </div>
+
+  <div class="task">
+    <div class="lbl">🫖 Charchab kelgan erkak bilan gaplashish tartibi</div>
+    <ol class="clean">
+      <li>Darrov savol bermang. Charchagan odam o'zini nazorat qila olmaydi.</li>
+      <li>Avval tinchlantiring. Erkakni uch narsa tinchlantiradi: <b>ovqat, uyqu, yaqinlik</b>.</li>
+      <li>Qovog'i ochilgach, sekin so'rang: “Nima bo'ldi? Kim xafa qildi?” Keyin oxirigacha eshiting.</li>
+      <li>Uni yaxshi ko'rishingizni, u bilan faxrlanishingizni ayting va rahmat bildiring.</li>
+      <li>Shundan keyin xohishingizni ayting.</li>
+    </ol>
+  </div>
+
+  <div class="card warm">
+    <p><b>Erkaklar uchun:</b> ayol xizmatkor emas. Sizga qancha e'tibor kerak bo'lsa, unga ham shuncha mehr, e'tibor va shirin so'z kerak. Ko'chadagi alamni ayoldan olmang. “O'ziga qaramaydi” deyishdan oldin so'rang: kosmetikasini olib berdingizmi? Birga borib kiyim tanladingizmi?</p>
+    <p style="margin:0"><b>Ayollar uchun:</b> ayol energiyasi raqs, qo'shiq va ko'ngil to'qligi orqali to'ladi. Energiyasi to'la ayolning munosabati ham yaxshilanib boradi.</p>
+  </div>
+
+  <h3>Sevgi tugamaydi, bosqich o'zgaradi</h3>
+  <p>Birinchi yillardagi “uchib yurish” bu sevgi emas, <b>eyforiya</b>. Haqiqiy sevgi 10–15 yil davomida shakllanadi. To'ydan keyin gul olib kelish kamaygan bo'lishi mumkin, chunki erkakda “ovchilik” bosqichi tugab, <b>oilaparvarlik</b> bosqichi boshlangan. Endi u “oilam uchun bo'lsin” deb harakat qiladi.</p>
+  <div class="grid2">
+    <div class="mini"><div class="em">🧺</div><h4>1. Uyga tashish</h4><p>Non, kartoshka, tarvuz, shashlik. Nima bo'lsa uyga olib keladi.</p></div>
+    <div class="mini"><div class="em">🧭</div><h4>2. Maslahat berish</h4><p>“Buni bunday qil” deyishi ham g'amxo'rlik.</p></div>
+    <div class="mini"><div class="em">💬</div><h4>3. Yaxshi so'z</h4><p>Erkalash, stiker yuborish, quchoqlash, peshonadan o'pish.</p></div>
+    <div class="mini"><div class="em">❤️</div><h4>4. Yaqinlik</h4><p>Ikkovingiz yolg'iz qolgandagi sevgi.</p></div>
+  </div>
+  <p class="muted">Erkak sevgisini shu to'rt usulning kamida bittasi orqali ko'rsatadi. Bittasi bor ekan, demak u sizni sevadi.</p>
+</section>
+
+<!-- ============ DARS 2 ============ -->
+<section class="lesson" id="dars-2">
+  <div class="lesson-head">
+    <div class="kicker">2-dars</div>
+    <h2>Pul dasturi: qarzdorlik botqog'idan chiqish</h2>
+  </div>
+
+  <p>Qarzdorlik eng katta <b>“pul teshigi”</b>. Agar qarzdorlik sindromi bo'lsa, 10 million topasizmi, 100 millionmi, baribir qarz ichida yuraverasiz, chunki sarflaganingiz topganingizdan ko'p bo'lib chiqaveradi. Shuning uchun avval tashxis qo'yamiz.</p>
+
+  <div class="card" id="test">
+    <h3 style="margin-top:0">🧪 Qarzdorlik sindromi testi</h3>
+    <p class="muted">12 ta savol. Har biriga halol javob bering. Natijani faqat siz ko'rasiz.</p>
+    <form id="debtTest"></form>
+    <button class="btn full" id="calcBtn" type="button" style="margin-top:16px">Natijani ko'rish</button>
+    <p class="hint" id="testHint"></p>
+    <div class="result" id="result">
+      <div class="score" id="score">0</div>
+      <div class="meter"><i id="pin"></i></div>
+      <div class="scale"><span>0</span><span>6</span><span>14</span><span>24</span></div>
+      <h4 id="rTitle" style="font-size:19px;margin:14px 0 6px"></h4>
+      <p id="rText" style="margin:0"></p>
+    </div>
+  </div>
+
+  <h3>Nega inson qayta-qayta qarzga kiradi?</h3>
+  <div class="card warm">
+    <p><b>Oddiy misol.</b> Oylik 3 million. Do'konda telefon ko'rindi: “oyiga 270 mingdan, 24 oy”. Birinchi, ikkinchi oy to'landi. Uchinchi oyda kimdir kasal bo'lib qoldi va to'lab bo'lmadi. To'rtinchi oyga qarz 540 mingga yetdi. Endi uni yopish uchun boshqa joydan qarz olinadi va shu tariqa odam sekin-asta qarz chuquriga tushadi.</p>
+    <p style="margin:0"><b>Asosiy sabab:</b> xarajatlarni to'g'ri boshqarmaslik. Kichik narsalarga ahamiyat bermaymiz, aynan ular esa 1–5 yilda bizni katta qarzga olib kiradi.</p>
+  </div>
+
+  <div class="card formula">
+    <div class="muted" style="font-weight:700;margin-bottom:8px">Boylikning bitta formulasi</div>
+    <div class="f">Xarajatni <span>hisoblay olish</span> → <span>nazorat qila olish</span> → boy bo'lish</div>
+    <p class="muted" style="margin:10px 0 0">Xarajatini boshqarmagan inson hech qachon boy bo'la olmaydi.</p>
+  </div>
+
+  <h3>🧮 Kichik xarajat kalkulyatori</h3>
+  <div class="card">
+    <p class="muted">Kunlik “arzimas” xarajatingizni kiriting: kola, kofe, taksi, ko'chadagi nonushta.</p>
+    <div class="calc">
+      <div><label for="cName">Nima uchun?</label><input id="cName" value="Kola"></div>
+      <div><label for="cSum">Kuniga, so'm</label><input id="cSum" inputmode="numeric" value="15000"></div>
+    </div>
+    <div class="calc-out">
+      <div><small>1 oyda</small><b id="o1">450 000</b></div>
+      <div><small>1 yilda</small><b id="o2">5 400 000</b></div>
+      <div><small>10 yilda</small><b id="o3">54 000 000</b></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="lbl">✍️ Vazifa: 30 kun xarajat yozish</div>
+    <ol class="clean">
+      <li>Har kuni bir xil vaqtga, masalan 23:00 ga “Xarajatlarni yozish” degan budilnik qo'ying.</li>
+      <li>Budilnik chalindimi, hamma ishni qo'yib, telefon yoki daftarga yozing. Avtobus puli, 1000 so'mlik choy, hammasi kirsin.</li>
+      <li>30 kundan keyin qarang: pul qayerga eng ko'p ketgan? Xarajat oylikdan oshganmi?</li>
+      <li>Bu odat 1 oyda emas, 6–12 oyda natija beradi. Aynan shu odat sizni boy qiladi.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="big-idea"><div class="ic">⚖️</div><div>
+      <h3 style="margin-top:0">Ikki xil yo'l, ikki xil holat</h3>
+      <p><b>Daromad xarajatdan ko'p bo'lsa,</b> lekin o'sish to'xtab qolgan bo'lsa, unda loyiqlikni oshirish va hayot sifatini ko'tarish orqali pul oqimini ochamiz.</p>
+      <p style="margin:0"><b>Xarajat daromaddan ko'p bo'lsa,</b> “men eng yaxshisiga loyiqman” degan psixologik usul ishlamaydi va sizni battar chuqurga tushiradi. Bu holatda avval <b>moliyaviy savodxonlik</b> kerak.</p>
+    </div></div>
+  </div>
+
+  <h3>Xarajatni nima buzadi? Emotsiyalar</h3>
+  <p>Xafa bo'lamiz va tort, shirinlik, kola olamiz. To'yga taklif qilishadi, “nima deyishadi” deb qarzga qimmat ko'ylak va sovg'a olamiz. Holbuki xushmuomalalik bilan rad etib, bormaslik ham mumkin edi.</p>
+  <div class="card accent formula">
+    <div class="f" style="color:#fff">Emotsiyani boshqarsak → xarajatni boshqaramiz → boy bo'lamiz</div>
+    <p class="muted" style="margin:10px 0 0">Emotsiyani esa pulga nisbatan ong osti dasturlari boshqaradi.</p>
+  </div>
+
+  <h3>Pulga oid ong osti dasturlari</h3>
+  <p>Qo'lingizga pul tushganda xayolingizdan nima o'tadi? Qaysi biri sizniki?</p>
+  <div class="grid2">
+    <div class="mini"><h4>💎 “Boy ko'rinsam, hurmat qilishadi”</h4><p>Pul ko'rinish uchun sarflanadi.</p></div>
+    <div class="mini"><h4>🤝 “Qarz bersam, yaxshi ko'rishadi”</h4><p>O'zingiz qarzda bo'lsangiz ham boshqalarga yo'q deya olmaysiz.</p></div>
+    <div class="mini"><h4>🪶 “Pul men uchun muhim emas”</h4><p>Bunday inson tekinga yoki suv tekin narxga ishlaydi.</p></div>
+    <div class="mini"><h4>🔥 “Pulni yo'qotishdan qo'rqaman”</h4><p>Shuning uchun uni tezda sarflab yuboradi.</p></div>
+    <div class="mini"><h4>😇 “Yaxshi bola / yaxshi qiz”</h4><p>Avval onamga, qarindoshlarga, so'ragan har kimga beriladi, o'zi esa oxirgi o'rinda qoladi.</p></div>
+    <div class="mini"><h4>🛒 “Aksiya bo'lsa, olib qo'yay”</h4><p>Bu kambag'allik sindromi: kerak bo'lmasa ham xarid qilinadi, ichidagi bo'shliq to'ldiriladi.</p></div>
+  </div>
+
+  <h3>Bizni boshqaradigan 3 ta manipulyatsiya</h3>
+  <p>Yaqinlar, rahbar va umuman jamiyat bizni uch xil his orqali boshqaradi. Bu hislardan qutulish uchun esa biz pul to'laymiz.</p>
+  <div class="grid3">
+    <div class="mini"><div class="em">😳</div><h4>Uyaltirish</h4><p>“Shuncha pul topib, bitta shu narsani qilolmadingmi?”</p></div>
+    <div class="mini"><div class="em">⚖️</div><h4>Qarzdorlik</h4><p>“Seni men boqqanman, katta qilganman”.</p></div>
+    <div class="mini"><div class="em">👉</div><h4>Aybdorlik</h4><p>“Sening vazifang edi, sen aybdorsan”.</p></div>
+  </div>
+  <div class="card warm">
+    <p style="margin:0"><b>Muhim:</b> ota-onaga yordam berish kerak. Lekin yordam <b>uyat, qarzdorlik yoki aybdorlikdan emas</b>, hurmat va sevgidan bo'lishi kerak. Uyalganingiz uchun qilingan yaxshilik havoga ketadi va biroz vaqtdan keyin o'sha vaziyat yana takrorlanadi.</p>
+  </div>
+
+  <h3>Dasturni qanday o'chiramiz?</h3>
+  <ol class="clean">
+    <li><b>Ko'ring.</b> Qaysi dastur boshqaryapti? Qaysi his bilan: uyatmi, qarzdorlikmi, aybdorlikmi? Shu hislardan biri bosayotgan bo'lsa, bilingki, qarorni dastur qabul qilyapti.</li>
+    <li><b>Tan oling va rozilik bering.</b> Masalan: <i>“Ha, men hammaga yoqishga harakat qilaman, buni tan olaman. Lekin bu safar meni yoqtirmasalar ham roziman.”</i></li>
+    <li><b>Teskarisini qiling.</b> Dastur “ber” deyaptimi, bu safar bermang: <i>“Mayli, men sen uchun yomon odam bo'lay. Lekin mening yaxshi-yomonligim bitta ish bilan o'lchanmaydi.”</i></li>
+    <li><b>Diskomfortga chidang.</b> Ichingizda qarshilik va aybdorlik hissi paydo bo'ladi, bu normal holat. Bu siz allaqachon boshqacha qadam tashlayotganingiz belgisi.</li>
+  </ol>
+  <div class="card">
+    <div class="big-idea"><div class="ic">🦷</div><div>
+      <p style="margin:0"><b>O'zgarish og'riq bilan bo'ladi.</b> Zalga birinchi borgan kuningizdan keyin hamma mushaklaringiz og'riydi. Bolalikda tish chiqqanda ham og'riydi. Og'riq o'zgarishning bir qismi. Eng ko'p o'stiradigani esa eng yaqin insonlarga ham “yo'q” deya olish.</p>
+    </div></div>
+  </div>
+
+  <details>
+    <summary>Savol-javobdan: pulsizlik va “men noloyiqman” cheklovi</summary>
+    <div>
+      <p>Pulsizlik ko'pincha bolalikda juda ko'p mas'uliyat olgan insonlarda uchraydi. Eplay olmagan ishlar ichki aybdorlikni beradi, aybdorlik esa “sen noloyiqsan” degan cheklovni o'rnatadi. Natijada pul, sovg'a, kompliment va hurmatga to'siq qo'yiladi.</p>
+      <p style="margin:0"><b>Yangi dastur:</b> <i>“Bolalikda eplay olmagan ishim mening qadrimni o'lchamaydi. Men Alloh yaratgani uchun qimmatliman va pulga loyiqman.”</i></p>
+    </div>
+  </details>
+  <details>
+    <summary>Savol-javobdan: turmush o'rtog'im kam pul topsa-chi?</summary>
+    <div>
+      <p>Tasavvur qiling, eringiz rulda, siz esa rulga yopishib olgansiz: “ana chuqur, ana kamera!” Oxiri u qo'lini boshiga qo'yib o'tiradi, rulni esa siz boshqarasiz.</p>
+      <p style="margin:0">Erkakning ishi, muammosi va qarori o'zinikidir. Uni qutqarishga urinish “men erkagimga ishonmayman” degan dasturdan keladi. Bor narsangizga rozi bo'ling va unga rulni qaytaring.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Savol-javobdan: kurs olaman-u, oxirigacha eshitmayman</summary>
+    <div>
+      <p style="margin:0">Ikki sabab bor. Birinchisi, miya “bu menga tanish” deb eshitishni to'xtatadi. Ikkinchisi, ichda kuchli qarshilik bor: o'zgarishni xohlaymiz, lekin undan qo'rqamiz. Ba'zan kurs bilim uchun emas, “men to'g'ri o'ylayapman” degan tasdiq uchun olinadi.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ============ DARS 3 ============ -->
+<section class="lesson" id="dars-3">
+  <div class="lesson-head">
+    <div class="kicker">3-dars</div>
+    <h2>Amaliyot: savol-javoblardan saboqlar</h2>
+  </div>
+  <p>Uchinchi dars to'liq jonli savol-javob tarzida o'tdi. O'quvchilarning real vaziyatlaridan eng muhim xulosalar shu yerda jamlangan.</p>
+
+  <h3>💸 Qarzdan chiqish rejasi</h3>
+  <ol class="clean">
+    <li><b>Yangi qarz olishni to'xtating.</b> Butunlay.</li>
+    <li><b>Pul bloklarini yeching</b> va o'z qadringizni oshiring. Oilada qadr past bo'lsa, tashqarida ham shunday bo'ladi.</li>
+    <li><b>Asosiy daromad yarating.</b> Kompaniyadagi (tarmoq marketingi) daromad har doim qo'shimcha bo'ladi, chunki u sizga bog'liq emas. Daromadni o'zingiz belgilaydigan ish kerak: tikuvchilik, savdo va shunga o'xshash.</li>
+    <li><b>50/50 qoidasi:</b> daromadning 50 foizi qarzga, 50 foizi o'zingizga va rivojlanishga.</li>
+  </ol>
+
+  <h3>🎁 “Topgan pulimni o'zimga ishlata olmayman”</h3>
+  <p>Bu dastur ko'pincha bolalikdagi “pulni faqat o'zingga emas, qarindoshlarga ishlat”, “sovg'ani olma, ularni og'ir ahvolga solasan” degan gaplardan keladi. Pulni o'z mehnatingiz va energiyangiz evaziga topasiz, uni o'z ehtiyojingizga ishlatishga <b>100 foiz haqqingiz bor</b>.</p>
+  <div class="script">
+    <div class="step">Kelishuv · ko'zni yumib, tinch holatda ayting</div>
+    <p><em>“Pulni o'zingga ishlatma” degani ota-onamning fikri edi. Men ma'lum muddat shu fikr bilan yashadim. Shu kungacha kimga sarflagan bo'lsam, roziman. Lekin bundan buyog'iga faqat o'z xohishim bilan sarflayman. Kimgadir bermasam, o'zimni aybdor his qilmayman. Men boshqalar uchun pul sarflashga majbur emasman.</em></p>
+    <div class="step">Sovg'a uchun</div>
+    <p style="margin:0"><em>Menga sovg'a berishyapti, chunki men bunga loyiqman.</em> Uni shart qo'ymasdan qabul qiling.</p>
+  </div>
+  <div class="card">
+    <p style="margin:0"><b>“O'zimga sarflasam, pul kelmay qoladi” degan fikrni almashtiring:</b> “O'zimga qancha ko'p sarflasam, kayfiyatim shuncha ko'tariladi. Kayfiyatim ko'tarilsa, ko'proq pul topaman. Ko'proq topsam, yaqinlarimga ham ko'proq yordam bera olaman.”</p>
+  </div>
+
+  <h3>🧱 Yaqinlarga berish: chegara va me'yor</h3>
+  <p>Chegarasiz berilsa, odamlar o'rganib qoladi. To'xtagan kuningiz esa “o'zgarib ketding” deb ichingizga aybdorlik solishadi.</p>
+  <ul class="clean">
+    <li><b>Oylik limit belgilang.</b> Masalan: bir oyda qarzga jami 2 milliondan ortiq bermayman.</li>
+    <li>O'n million so'rashdimi, bir million bering, <b>qarz deb emas, yordam deb</b>. “Qaytarmasang ham roziman” degan niyat bilan.</li>
+  </ul>
+
+  <h3>🪙 Pul kelyapti-yu, qo'lda qolmayapti</h3>
+  <p>Pul aylanishda yashaydi: keladi, ketadi, yana qaytadi. Lekin kelgan kunning o'zida 80 foizi sarflanib ketsa, ichida odatda <b>“men pulga noloyiqman”</b> bloki bo'ladi va pul tezda ishlatib yuboriladi.</p>
+  <div class="card warm">
+    <p><b>Kenja farzandlarda ko'p uchraydi:</b> bolalikdan “sen hali kichkinasan, sen qila olmaysan” degan gapni ko'p eshitgan odam katta bo'lgach o'zini pul bilan isbotlashga urinadi: “Men beraman, men hal qilaman”, qimmat kiyim, do'stlarga qarz.</p>
+    <p style="margin:0"><b>Yechim:</b> qadringiz pul bilan o'lchanmaydi. Oilaga pul bermadingiz deb yomon farzand bo'lib qolmaysiz. Kiyim eskiradi, sizning qadringiz esa eskirmaydi.</p>
+  </div>
+
+  <h3>🌍 Onaning hayotini takrorlamaslik</h3>
+  <p>Hayotingiz onangiznikiga o'xshab ketayotganini sezdingizmi? Har bir vaziyatda o'zingizga savol bering:</p>
+  <div class="card accent">
+    <p class="quote" style="font-size:20px">“Onam bu vaziyatda nima qilgan bo'lardi? Men esa, ya'ni o'zim, qanday yashashni xohlayman?”</p>
+  </div>
+  <p><b>Misol:</b> onangiz uyda pul qolmasa o'zi ko'chaga chiqib pul topib kelgan. Siz ham shunday qilyapsiz. Yangi yo'l: <i>“Uyda ro'zg'or qolmadi. Siz erkaksiz, borib topib keling.”</i> Onangizdek emas, o'zingizcha yashash qarori shu.</p>
+
+  <h3>🚀 Biznesni qo'rqmasdan boshlash</h3>
+  <p>Qo'rquv kelishi normal holat. Alloh bir vaqtda ko'p odamning ko'ngliga bir g'oyani soladi, qo'rqmasdan birinchi boshlagan odam esa omadga erishadi. Eng muhimi, <b>eng kichik summadan boshlang</b>:</p>
+  <ol class="clean">
+    <li>Telegram kontaktlaringizdagi 20 kishiga yozing: “Mana shunday narsa qilishni boshladim, sizga kerakmi?”</li>
+    <li>Rozi bo'lgan 2–3 kishiga birinchi marta foydasiz qilib bering va fikrini so'rang: nimasi yoqdi, nimasini tuzatish kerak?</li>
+    <li>Tuzatgach, 5–10 dona bilan do'konlarga boring. O'ntadan bir-ikkitasi rozi bo'ladi.</li>
+    <li>Kiyim kabi tovarlarda avval Telegram guruh oching, mijozlar bazasini yig'ing va zakazga ishlang (ustiga 20–30 foiz qo'shib). Do'kon ijarasi undan keyin.</li>
+  </ol>
+
+  <h3>🗣️ “Odamlar nima deydi?”</h3>
+  <ul class="clean">
+    <li><b>Inson unutuvchan.</b> Bir soat oldin efirda birinchi bo'lib kim savol berganini hech kim eslay olmaydi.</li>
+    <li><b>Inson har doim gapiradi.</b> Yaxshilik qilsangiz “ko'z-ko'z qilyapti” deydi, qilmasangiz “baxil” deydi. It hurar, karvon o'tar.</li>
+    <li><b>Fikrni saralang.</b> Sizni o'stiradigan tanqidni oling, qolganiga “Rahmat, fikringiz uchun” deb yo'lingizda davom eting.</li>
+  </ul>
+
+  <h3>🔋 Energiya va charchoq</h3>
+  <p>Gapirganda, sotganda, odamlar bilan ishlaganda kuch sarflanadi, bu normal holat. Muhimi, sarflangan kuchni <b>o'sha kunning o'zida to'ldirish</b>: dam olish, yaxshi ovqat, bir soat sayr. Aks holda charchoq sizni ichingizdan yemiradi.</p>
+
+  <h3>🧭 Qalb kasbi va missiya</h3>
+  <p>Har bir insonning yakuniy bosqichi ustozlik bilan bog'liq. Avval bir ishni eng yaxshi darajada qilasiz, tajriba to'playsiz, keyin uni boshqalarga ulashasiz. Ozish tajribangiz, baxtli oilangiz yoki ingliz tilingiz bo'lishi mumkin. Missiyani aniqlash individual ishda qilinadi.</p>
+</section>
+
+</main>
+
+<!-- ============ OFFER ============ -->
+<section class="offer" id="koaching">
+  <div class="wrap">
+    <span class="tag">10 ta joydan 5 tasi band</span>
+    <h2>Konspekt bu boshlanish. Chuqur o'zgarish esa individual ishda bo'ladi</h2>
+    <p>Darsda biz dasturlarni topdik va ozgina yechdik. Lekin 60 kishilik efirda har birining hayotini to'liq tahlil qilib bo'lmaydi. Katta qarz, takrorlanayotgan munosabat ssenariysi, biznes yoki katta maqsad bo'lsa, buning uchun alohida, chuqur ish kerak.</p>
+
+    <div class="card">
+      <h3 style="margin-top:0;color:#fff">1 oylik individual trans-koaching</h3>
+      <ul class="clean">
+        <li>Muhammadjon bilan <b>yakkama-yakka 3 ta chuqur sessiya</b></li>
+        <li><b>Missiyangizni aniqlaymiz</b> va shundan kelib chiqib daromadni oshirish uchun <b>reja va strategiya</b> tuzamiz</li>
+        <li><b>Pul bloklari</b>, munosabatdagi travmalar va ota-ona bilan bog'liq xafagarchiliklarni to'liq yechamiz</li>
+        <li>Oy davomida <b>savollaringizga javob</b> berib turiladi</li>
+        <li>Bir martalik konsultatsiya emas, <b>natijaga qaratilgan dastur</b></li>
+      </ul>
+      <div class="grid2" style="margin:14px 0">
+        <div class="mini" style="background:#15141a;border-color:#3a3943"><h4 style="color:#fff">📍 Offline</h4><p style="color:#c9c5d3">Toshkentda 3 ta jonli uchrashuv, har biri ~3–4 soat</p></div>
+        <div class="mini" style="background:#15141a;border-color:#3a3943"><h4 style="color:#fff">💻 Online</h4><p style="color:#c9c5d3">Qayerda bo'lsangiz ham: 3 ta sessiya, har biri ~1,5–2 soat</p></div>
+      </div>
+      <div class="seats" aria-label="10 ta joydan 5 tasi band"><i></i><i></i><i></i><i></i><i></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i><i style="background:#3a3943"></i></div>
+      <p class="muted" style="font-size:14px;margin:0">Oqimga faqat 10 kishi olinadi. Reprogram tugashi bilan boshlanadi.</p>
+    </div>
+
+    <div class="fit">
+      <div class="card" style="margin:0">
+        <h4 style="margin:0 0 8px;color:#c9c5ff">Sizga mos, agar:</h4>
+        <ul class="clean" style="font-size:15px">
+          <li>testda 7 balldan yuqori chiqqan bo'lsa</li>
+          <li>bir xil muammo yillar davomida takrorlanayotgan bo'lsa</li>
+          <li>texnikalarni qilyapsiz-u, natija oxirigacha yetmayotgan bo'lsa</li>
+          <li>katta maqsadingiz bor va o'zingizni ichdan nimadir ushlab turgan bo'lsa</li>
+        </ul>
+      </div>
+      <div class="card" style="margin:0">
+        <h4 style="margin:0 0 8px;color:#c9c5ff">Qanday boshlanadi?</h4>
+        <div class="steps-row" style="grid-template-columns:1fr">
+          <div><b>1-qadam</b>Ariza qoldirasiz</div>
+          <div><b>2-qadam</b>Muhammadjon o'zi qo'ng'iroq qiladi va vaziyatingizni o'rganadi</div>
+          <div><b>3-qadam</b>Ma'qul kelsa, formatni kelishib, ishni boshlaymiz</div>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px">Taqqoslash uchun: bitta individual konsultatsiya online $300, offline $500 turadi. Koaching narxi ancha qulay, ustiga ishtirokchilar uchun sovg'a ham bor. Batafsil ma'lumot qo'ng'iroqda aytiladi.</p>
+
+    <div class="card" id="apply">
+      <h3 style="margin-top:0;color:#fff">Ariza qoldirish</h3>
+      <form class="form" id="form">
+        <label>Ismingiz<input id="fName" required autocomplete="name"></label>
+        <label>Telefon raqamingiz<input id="fPhone" required inputmode="tel" placeholder="+998 __ ___ __ __" autocomplete="tel"></label>
+        <label>Format
+          <select id="fFormat"><option>Online</option><option>Offline</option><option>Hali bilmayman</option></select>
+        </label>
+        <label>Qaysi soha bo'yicha ishlamoqchisiz?
+          <select id="fArea"><option>Pul va qarz</option><option>Munosabatlar</option><option>Maqsad va o'sish</option><option>Hammasi</option></select>
+        </label>
+        <label>Nima uchun qatnashmoqchisiz?<textarea id="fNote" placeholder="1–2 jumlada vaziyatingizni yozing"></textarea></label>
+        <a class="btn light full" id="sendBtn" href="#" target="_blank" rel="noopener">Arizani yuborish →</a>
+        <p class="muted" id="formHint" style="font-size:14px;margin:0">Ism va telefon raqamini to'ldiring.</p>
+      </form>
+      <p class="muted" style="font-size:14px;margin:14px 0 0">Yoki to'g'ridan-to'g'ri Telegramda yozing: <a id="tgBtn" href="#" style="color:#c9c5ff;font-weight:700"></a></p>
+    </div>
+  </div>
+</section>
+
+<footer>Reprogram · Muhammadjon Rahmatullayev · Effekt Akademiyasi</footer>
+
+<div class="sticky-cta" id="sticky"><a href="#koaching" class="btn full" style="background:var(--accent);box-shadow:0 10px 30px rgba(75,63,214,.35)">Individual koachingga yozilish →</a></div>
+
+<script>
+// === Sozlama: arizalar boradigan Telegram ===
+const TG_USERNAME = "MR_Qabul";
+
+const Q = [
+ "Qarzni to'lash uchun yangi qarz olaman",
+ "Oylik tushgan kuniyoq pulim tugaydi",
+ "Nasiya yoki kreditni zarur bo'lmagan narsalar uchun olaman",
+ "Qarzlarimning umumiy summasini aniq bilmayman",
+ "Qarzlarimni yaqinlarimdan yashiraman",
+ "Qarz haqida o'ylasam, uyqum qochadi",
+ "Qarz beruvchining qo'ng'irog'idan qo'rqaman",
+ "Yangi qarz olayotganda “keyin bir amallab to'layman” deb o'ylayman",
+ "Kayfiyatim yomon bo'lsa, xarid qilaman",
+ "O'zim qarzda bo'lsam ham, boshqalarga “yo'q” deya olmayman",
+ "“Odamlar nima deydi” deb imkonimdan ortiq xarajat qilaman",
+ "Qarzdan chiqqanimdan keyin tez orada yana qarzga kiraman"
+];
+const f = document.getElementById('debtTest');
+f.innerHTML = Q.map((q,i)=>`<div class="q"><div class="qt"><span>${i+1}.</span>${q}</div><div class="opts">
+${[["Ha",2],["Ba'zan",1],["Yo'q",0]].map(([t,v])=>`<label><input type="radio" name="q${i}" value="${v}"><span>${t}</span></label>`).join('')}
+</div></div>`).join('');
+
+document.getElementById('calcBtn').onclick = ()=>{
+  let s=0,n=0;
+  Q.forEach((_,i)=>{const c=f.querySelector(`input[name=q${i}]:checked`); if(c){n++; s+=+c.value;}});
+  const hint=document.getElementById('testHint');
+  if(n<Q.length){hint.textContent=`Yana ${Q.length-n} ta savolga javob bering.`; return;}
+  hint.textContent='';
+  const r=document.getElementById('result');
+  document.getElementById('score').textContent = s+' ball';
+  document.getElementById('pin').style.left = `calc(${s/24*100}% - 2px)`;
+  let cls,t,x;
+  if(s<=6){cls='g';t='Vaziyatli qarz';x="Qarz siz uchun odat emas, shunchaki vaziyat majbur qilgan. Chiqib ketish uchun aniq reja va ozgina intizom yetadi.";}
+  else if(s<=14){cls='y';t='Xavfli odat shakllanmoqda';x="Rejaning o'zi yetmaydi. Qarzga kirishingizning ichki sababini, ya'ni qaysi ong osti dasturi sizni boshqarayotganini topish kerak.";}
+  else {cls='r';t='Qarzdorlik sindromi bor';x="Masala jiddiy. Hozirgi qarzlarni yopsangiz ham, dastur o'zgarmaguncha yana qayta-qayta qarzga kirasiz. Bu holatda individual chuqur ish tavsiya etiladi.";}
+  r.className='result show '+cls;
+  document.getElementById('rTitle').textContent=t;
+  document.getElementById('rText').innerHTML=x+(s>6?` <a href="#koaching"><b>Individual koaching haqida →</b></a>`:'');
+  r.scrollIntoView({behavior:'smooth',block:'center'});
+};
+
+// calc
+const fmt=n=>Math.round(n).toLocaleString('ru-RU').replace(/,/g,' ');
+function calc(){const v=+(document.getElementById('cSum').value.replace(/\D/g,''))||0;
+ document.getElementById('o1').textContent=fmt(v*30);document.getElementById('o2').textContent=fmt(v*360);document.getElementById('o3').textContent=fmt(v*3600);}
+document.getElementById('cSum').addEventListener('input',calc);calc();
+
+// form
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzuqLYYV-yLJ1EJzNcsX_t-IfH__H1B64pZ6QP_0DjCuMe5WIM8F23yxDRW-7WtOTSh/exec";
+const tg=document.getElementById('tgBtn');tg.textContent='@'+TG_USERNAME;tg.href='https://t.me/'+TG_USERNAME;
+const fv=id=>document.getElementById(id).value.trim();
+const sendBtn=document.getElementById('sendBtn'), hint=document.getElementById('formHint');
+function ready(){return fv('fName').length>1 && fv('fPhone').replace(/\D/g,'').length>=9;}
+function updateLink(){
+  const q=new URLSearchParams({name:fv('fName'),phone:fv('fPhone'),format:fv('fFormat'),area:fv('fArea'),note:fv('fNote')});
+  sendBtn.href=SHEET_URL+'?'+q.toString();
+  sendBtn.style.opacity=ready()?1:.55;
+}
+['fName','fPhone','fFormat','fArea','fNote'].forEach(id=>{const el=document.getElementById(id);el.addEventListener('input',updateLink);el.addEventListener('change',updateLink);});
+updateLink();
+sendBtn.addEventListener('click',e=>{
+  if(!ready()){e.preventDefault();hint.textContent="Iltimos, ism va to'g'ri telefon raqamini kiriting.";hint.style.color='#ffb4ae';return;}
+  hint.style.color='';hint.textContent="✓ Ariza yuborildi! Ochilgan sahifada tasdiqni ko'rasiz. Muhammadjon ustoz siz bilan bog'lanadi.";
+  sendBtn.textContent='✓ Yuborildi';
+});
+document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();if(ready())sendBtn.click();});
+
+// progress + sticky
+const pr=document.getElementById('progress'),st=document.getElementById('sticky'),off=document.getElementById('koaching');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;pr.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  const r=off.getBoundingClientRect();
+  st.classList.toggle('show', h.scrollTop>700 && r.top>innerHeight);
+},{passive:true});
+</script>
+</body>
+</html>
