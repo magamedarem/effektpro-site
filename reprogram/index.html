@@ -14,7 +14,18 @@
 <link rel="canonical" href="https://effektpro.uz/reprogram/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- META_PIXEL -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','665869554893228');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=665869554893228&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -282,6 +293,11 @@ document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)r
     if(t.closest('a[href="#tolov"]'))goal('sotuv_cta');
     if(t.closest('[data-copy]'))goal('sotuv_karta');
     if(t.closest('[data-paylink]'))goal('sotuv_tolov_qildim');
+    function px(ev,x){try{if(window.fbq)fbq('track',ev,x||{})}catch(_){}}
+    var pe=document.querySelector('[data-price]'), val=pe?Number(pe.textContent.replace(/\D/g,'')):97000;
+    if(t.closest('a[href="#tolov"]'))px('ViewContent',{content_name:'Reprogram'});
+    if(t.closest('[data-copy]'))px('AddPaymentInfo',{content_name:'Reprogram'});
+    if(t.closest('[data-paylink]'))px('InitiateCheckout',{content_name:'Reprogram',value:val,currency:'UZS'});
 },true);
 </script>
 </body>
