@@ -250,7 +250,7 @@ footer a{color:var(--acc1)}
 
 <section class="sec gray" id="men">
   <div class="wide about">
-    <img src="img/mr9276.jpg" alt="Muhammadjon Rahmatullayev" loading="lazy">
+    <img src="mr9276.jpg" alt="Muhammadjon Rahmatullayev" loading="lazy">
     <div class="txt">
       <span class="lbl">Men kimman</span>
       <h2>Muhammadjon Rahmatullayev</h2>
@@ -351,7 +351,7 @@ const CASES = [
 ];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $ = id => document.getElementById(id);
-const cover = t => `<div class="cv${(t[5].length > 10 || t[6].length > 12) ? ' sm' : ''}"><img src="img/${PH[t[0] % PH.length]}.jpg" alt="" loading="lazy"><span class="n">TEXNIKA #${String(t[0]).padStart(2,'0')}</span><div class="h">${esc(t[5])}<br><em>${esc(t[6])}</em></div></div>`;
+const cover = t => `<div class="cv${(t[5].length > 10 || t[6].length > 12) ? ' sm' : ''}"><img src="${PH[t[0] % PH.length]}.jpg" alt="" loading="lazy"><span class="n">TEXNIKA #${String(t[0]).padStart(2,'0')}</span><div class="h">${esc(t[5])}<br><em>${esc(t[6])}</em></div></div>`;
 
 // test
 const Q = ["Pul keladi, lekin tez ketib qoladi","Maqsadim bor, ammo boshlashga qo'rqaman","Ertalab turish og'ir, kuch yo'q","O'tmishdagi xafaliklar hali ham og'ritadi","\"Men bunga loyiq emasman\" deb o'ylayman","\"Odamlar nima deydi\" deb qo'rqaman","Ishlarni doim ertaga qoldiraman","Qarz yoki pul tanqisligi tinchlik bermaydi"];
