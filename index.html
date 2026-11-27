@@ -1,13 +1,408 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Effekt Pro · Muhammadjon Rahmatullayev</title>
-<meta http-equiv="refresh" content="0; url=/reprogram/">
-<link rel="canonical" href="https://effektpro.uz/reprogram/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transformatsiya 99x — Oltin bilimlar xazinasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: Muhammadning o'z ovozi — oddiy, iliq, "siz" ga; har bo'lim bitta savolga javob
+   IDEA: suhbat kabi o'qiladigan sahifa — savol → javob → keyingi savol
+   PICTURE: muallif rasmi faqat "Men kimman" da; texnikalar foto-obloshkali lenta
+   COLOUR and TYPE: tinch oq/och kulrang, bitta ko'k→yashil aksent; Inter, 18px matn
+   LAYOUT: bitta tor ustun (680px), katta bo'shliqlar, narx faqat oxirida */
+:root{--bg:#F6F7F9;--ink:#1D2027;--mute:#4B5563;--line:#E5E7EB;--acc1:#2A7DE1;--acc2:#3CC48A;--green:#1F9D6B;--red:#C93C3C;--grad:linear-gradient(90deg,#2A7DE1,#3CC48A)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:#fff;color:var(--ink);font:18px/1.7 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(32px,6vw,50px);letter-spacing:-.03em}
+h2{font-size:clamp(26px,4.4vw,36px)}
+h3{font-size:20px}
+p{margin:0}
+img{display:block;max-width:100%}
+.sec{padding:clamp(56px,9vw,96px) 20px}
+.sec.gray{background:var(--bg)}
+.col{max-width:680px;margin:0 auto}
+.wide{max-width:1100px;margin:0 auto}
+.lbl{display:inline-block;font-size:14px;font-weight:600;color:var(--green);margin-bottom:12px}
+.acc{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mute{color:var(--mute)}
+.txt p{margin-top:16px}
+.txt p:first-child{margin-top:0}
+.big{font-size:21px;line-height:1.6}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 28px;border-radius:16px;border:0;cursor:pointer;font:800 17px Inter;text-decoration:none;color:#fff;background:var(--ink)}
+.btn.grad{background:var(--grad)}
+.btn.light{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+:focus-visible{outline:3px solid var(--acc1);outline-offset:3px}
+/* hero */
+.hero{padding:clamp(64px,12vw,120px) 20px clamp(48px,8vw,80px)}
+.hero .big{margin:22px 0 32px;color:var(--mute)}
+/* test */
+.qlist{display:grid;gap:10px;margin-top:26px}
+.q{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:16px;background:#fff;border:2px solid var(--line);cursor:pointer;font:500 17px Inter;color:inherit;text-align:left;width:100%;min-height:58px}
+.q .bx{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid #C9CED6;display:grid;place-items:center;color:#fff;font-weight:800}
+.q[aria-pressed=true]{border-color:var(--acc2);background:#F3FBF7}
+.q[aria-pressed=true] .bx{background:var(--grad);border-color:transparent}
+.q[aria-pressed=true] .bx::after{content:"✓"}
+.qres{margin-top:18px;padding:22px;border-radius:18px;background:#fff;border:2px solid var(--line);display:none}
+.qres.on{display:block}
+.qres b{font-size:20px}
+/* list rows */
+.rows{display:grid;gap:14px;margin-top:28px}
+.row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.row i{width:44px;height:44px;border-radius:12px;background:var(--grad);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:800}
+.row h3{margin-bottom:4px}
+.row p{color:var(--mute);font-size:17px}
+.note{margin-top:22px;padding:18px 20px;border-radius:16px;background:#EEF6FF;color:#1d4f8f;font-size:17px}
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.num{padding:20px 14px;border-radius:18px;background:#fff;border:1px solid var(--line);text-align:center}
+.num b{display:block;font-size:clamp(30px,6vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.num span{font-size:15px;color:var(--mute)}
+/* carousel */
+.car{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:24px 20px 10px;margin:0 -20px;scrollbar-width:none}
+.car::-webkit-scrollbar{display:none}
+.tech{flex:0 0 min(300px,82%);scroll-snap-align:center;text-align:left;font-family:inherit;color:inherit;padding:0;border:1px solid var(--line);cursor:pointer;background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.tbody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tbody h3{font-size:17px}
+.tbody p{font-size:15px;color:var(--mute);line-height:1.5}
+.cv{position:relative;aspect-ratio:16/9;overflow:hidden;background:#15171c;container-type:inline-size}
+.cv img{position:absolute;right:-4%;top:0;height:100%;width:58%;object-fit:cover;object-position:50% 14%}
+.cv::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#15171c 42%,rgba(21,23,28,.3) 70%,rgba(21,23,28,0));z-index:1}
+.cv .n{position:absolute;z-index:2;left:6%;top:10%;font-weight:800;font-size:clamp(9px,4cqi,13px);color:#fff;background:var(--grad);padding:3px 9px;border-radius:6px}
+.cv .h{position:absolute;z-index:2;left:6%;bottom:12%;width:58%;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(13px,7.8cqi,30px);line-height:1.05}
+.cv .h em{display:inline-block;font-style:normal;margin-top:5px;padding:2px 8px 3px;background:#fff;color:#15171c;border-radius:4px}
+.cv.sm .h{font-size:clamp(12px,6.4cqi,26px)}
+.carnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:6px}
+.carnav span{font-size:15px;color:var(--mute)}
+.carnav div{display:flex;gap:8px}
+.arw{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px;cursor:pointer;color:var(--ink)}
+details.more{margin-top:20px}
+details.more summary{cursor:pointer;list-style:none;font-weight:600;padding:14px 18px;border-radius:14px;background:#fff;border:1px solid var(--line);text-align:center}
+details.more summary::-webkit-details-marker{display:none}
+.pgl{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.pgl li{display:flex;justify-content:space-between;gap:12px;padding:10px 4px;border-bottom:1px solid var(--line);font-size:16px}
+.pgl li span{color:var(--mute);white-space:nowrap}
+/* before after */
+.ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px}
+.ba div{padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.ba h3{font-size:17px;margin-bottom:10px}
+.ba ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:16px}
+.ba .b h3{color:var(--red)}
+.ba .a h3{color:var(--green)}
+.ba .b li::before{content:"✕  ";color:var(--red);font-weight:800}
+.ba .a li::before{content:"✓  ";color:var(--green);font-weight:800}
+/* cases */
+.cases{display:grid;gap:14px;margin-top:26px}
+.case{padding:22px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.case p{font-size:17px}
+.case .who{margin-top:12px;font-weight:600;font-size:15px}
+.case .who span{color:var(--mute);font-weight:400}
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:center}
+.about img{border-radius:24px;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;width:100%}
+/* faq */
+.faq{margin-top:26px;display:grid;gap:10px}
+.faq details{border-radius:16px;background:#fff;border:1px solid var(--line);padding:4px 20px}
+.faq summary{cursor:pointer;list-style:none;font-weight:600;font-size:18px;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:20px}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--mute);padding-bottom:16px;font-size:17px}
+/* bonus */
+.bonus{margin-top:28px;padding:28px;border-radius:24px;background:#15171c;color:#fff}
+.bonus .tg{display:inline-block;background:var(--grad);font-weight:800;font-size:14px;padding:5px 12px;border-radius:99px}
+.bonus h3{font-size:clamp(24px,4.6vw,30px);margin:14px 0 6px}
+.bonus .when{color:#B8BEC8;font-size:16px}
+.bonus ul{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.bonus li{padding-left:30px;position:relative;font-size:17px}
+.bonus li::before{content:"✓";position:absolute;left:0;top:0;color:#5BE0A6;font-weight:800}
+.bonus .ft{margin-top:18px;padding-top:16px;border-top:1px solid #2c3038;color:#B8BEC8;font-size:16px}
+.bonus .ft b{color:#fff}
+/* pricing */
+.timer{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.tb{background:var(--bg);border-radius:14px;width:78px;padding:8px 0;text-align:center}
+.tb b{display:block;font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.tb small{font-size:13px;color:var(--mute)}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:30px;align-items:stretch}
+.plan{position:relative;padding:28px 22px;border-radius:24px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.plan.best{border:3px solid var(--acc2)}
+.plan.vip{background:#15171c;color:#fff;border:0}
+.plan.vip .mute,.plan.vip .per{color:#B8BEC8}
+.plan .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-weight:800;font-size:13px;padding:6px 14px;border-radius:99px;white-space:nowrap}
+.amt{font-size:42px;font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
+.amt small{font-size:16px;font-weight:600;color:var(--mute);letter-spacing:0}
+.plan.vip .amt small{color:#B8BEC8}
+.old{font-size:16px;color:#9aa1ad;white-space:nowrap}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:16px}
+.plan li{padding-left:26px;position:relative}
+.plan li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+.plan.vip li::before{color:#5BE0A6}
+.plan li.no{color:#9aa1ad}
+.plan li.no::before{content:"–";color:#9aa1ad}
+.plan .btn{margin-top:auto;width:100%}
+.owner{margin-top:22px;padding:22px;border-radius:20px;background:var(--bg);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+.guar{margin-top:16px;padding:22px;border-radius:20px;border:2px dashed var(--acc2);display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center}
+.guar .s{width:70px;height:70px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;text-align:center;font-weight:800;font-size:14px;line-height:1.1}
+.final{background:#15171c;color:#fff;text-align:center}
+.final .mute{color:#B8BEC8}
+footer{padding:24px 16px 110px;text-align:center;color:var(--mute);font-size:14px}
+footer a{color:var(--acc1)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+.sticky.show{transform:none}
+.sticky small{display:block;color:var(--mute);font-size:13px}
+.sticky b{font-size:16px}
+.sticky .btn{min-height:48px;padding:0 18px;font-size:15px}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(21,23,28,.6);display:none;place-items:center;padding:16px;overflow-y:auto}
+.modal.on{display:grid}
+.mbox{background:#fff;border-radius:24px;padding:22px;max-width:480px;width:100%;position:relative}
+.x{position:absolute;right:12px;top:12px;width:44px;height:44px;border-radius:50%;border:0;background:var(--bg);font-size:22px;cursor:pointer;z-index:3}
+.mbox .cv{border-radius:14px;margin:-2px -2px 16px}
+@media(max-width:900px){.plans{grid-template-columns:minmax(0,1fr);max-width:480px;margin-inline:auto}.plan.best{order:-1}.about{grid-template-columns:minmax(0,1fr)}.about img{max-width:360px;margin:0 auto}.owner{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){body{font-size:17px}.big{font-size:19px}.ba{grid-template-columns:minmax(0,1fr)}.nums{gap:8px}.num{padding:16px 6px}.btn{width:100%}.arw{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sticky{transition:none}}
+</style>
 </head>
-<body style="margin:0;background:#0F0E0D;color:#F4F0EA;font-family:system-ui,sans-serif;padding:40px">
-<a href="/reprogram/" style="color:#FFB37D">Reprogram kursi sahifasiga o'tish</a>
+<body>
+<main>
+
+<header class="hero">
+  <div class="col">
+    <span class="lbl">Transformatsiya 99x · Oltin bilimlar xazinasi</span>
+    <h1>Harakat qilyapsiz, lekin hayotingiz <span class="acc">o'zgarmayaptimi?</span></h1>
+    <p class="big">Pul keladi — ketib qoladi. Maqsad bor — boshlay olmaysiz. Ichingizda eski xafaliklar, kun bo'yi charchoq. Bu dangasalik ham, omadsizlik ham emas. Keling, sababini birga ko'ramiz.</p>
+    <a class="btn grad" href="#test" id="heroCta">Ha, bu menga tanish ↓</a>
+  </div>
+</header>
+
+<section class="sec gray" id="test">
+  <div class="col">
+    <span class="lbl">1-qadam · 30 soniya</span>
+    <h2>O'zingizga mos kelganini belgilang</h2>
+    <div class="qlist" id="qlist"></div>
+    <div class="qres" id="qres"><b id="qh"></b><p class="mute" id="qp" style="margin-top:6px"></p></div>
+  </div>
+</section>
+
+<section class="sec" id="nega">
+  <div class="col txt">
+    <span class="lbl">Bu menga nega kerak?</span>
+    <h2>Sababi — bilimsizlikda emas</h2>
+    <p class="big" style="margin-top:20px">Ko'pchilik nima qilish kerakligini biladi. Lekin baribir qilmaydi. Chunki odamni ichidagi eski odatlar, qo'rquvlar va xafaliklar ushlab turadi.</p>
+    <p>Ular bolalikdan, oiladan, o'tgan voqealardan qolgan. Kitob o'qib yoki motivatsiya eshitib ketib qolmaydi.</p>
+    <p>Ular faqat <b>amaliyot</b> bilan o'zgaradi: har kuni kichik bir qadam. Men 2021-yildan beri o'quvchilarim bilan aynan shunday amaliyotlarni — texnikalarni — yig'ib keldim. Endi ularning hammasini bitta joyga jamladim.</p>
+  </div>
+</section>
+
+<section class="sec gray" id="foyda">
+  <div class="col">
+    <span class="lbl">Buni olsam nima foyda olaman?</span>
+    <h2>4 ta narsa o'zgaradi</h2>
+    <div class="rows">
+      <div class="row"><i>1</i><div><h3>Pul bilan munosabatingiz tinchlanadi</h3><p>Pul qayerga ketayotganini ko'rasiz. Pulga bo'lgan qo'rquv kamayadi. Qarzdan chiqish rejasi paydo bo'ladi.</p></div></div>
+      <div class="row"><i>2</i><div><h3>Ichingiz yengillashadi</h3><p>Eski xafaliklar, aybdorlik, ota-ona bilan bog'liq og'riqlarni qo'yib yuborasiz.</p></div></div>
+      <div class="row"><i>3</i><div><h3>O'zingizga ishonch qaytadi</h3><p>"Men bunga loyiq emasman" degan ovoz pasayadi. "Odamlar nima deydi" qo'rquvi kamayadi.</p></div></div>
+      <div class="row"><i>4</i><div><h3>Nima qilishni aniq bilasiz</h3><p>Maqsadingizni topasiz va uni yil, oy, hafta, kunga bo'lib chiqasiz.</p></div></div>
+    </div>
+    <p class="note">Qanday ishlaydi: Telegram kanalga kirasiz → qisqa videoni ko'rasiz → oddiy topshiriqni bajarasiz. Kuniga <b>15–30 daqiqa</b> yetarli.</p>
+  </div>
+</section>
+
+<section class="sec" id="ichida">
+  <div class="col">
+    <span class="lbl">Ichida nima bor?</span>
+    <h2>Mening butun bilim bazam</h2>
+    <div class="nums">
+      <div class="num"><b class="acc">70+</b><span>texnika</span></div>
+      <div class="num"><b class="acc">27</b><span>trening va marafon yozuvi</span></div>
+      <div class="num"><b class="acc">60</b><span>kitob</span></div>
+    </div>
+    <p class="mute" style="margin-top:28px">Texnikalardan bir qismi. Suring va bosing — har biri nima berishini ko'rasiz:</p>
+    <div class="car" id="car" aria-label="Texnikalar"></div>
+    <div class="carnav"><span>← barmoq bilan suring →</span><div><button type="button" class="arw" id="prev" aria-label="Oldingi">←</button><button type="button" class="arw" id="next" aria-label="Keyingi">→</button></div></div>
+    <details class="more"><summary>27 ta trening va marafon ro'yxatini ko'rish</summary><ul class="pgl" id="pgl"></ul></details>
+  </div>
+</section>
+
+<section class="sec gray">
+  <div class="col">
+    <span class="lbl">Natijada</span>
+    <h2>Hozir va 30 kundan keyin</h2>
+    <div class="ba">
+      <div class="b"><h3>Hozir</h3><ul><li>Pul qo'lda turmaydi</li><li>Boshlashga qo'rquv</li><li>Xafaliklar og'ritadi</li><li>Ertalab kuch yo'q</li><li>"Men loyiq emasman"</li></ul></div>
+      <div class="a"><h3>Texnikalardan keyin</h3><ul><li>Pulga xotirjam qaraysiz</li><li>Birinchi qadamni qo'yasiz</li><li>Ichingiz yengil</li><li>Ertalab kuch bilan turasiz</li><li>"Men loyiqman"</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="natijalar">
+  <div class="col">
+    <span class="lbl">O'quvchilarim nima deydi</span>
+    <h2>Chatdagi "Natijalar" bo'limidan</h2>
+    <p class="mute" style="margin-top:10px">O'quvchilar chatimizda 536 kishi bor, "Natijalar" bo'limida 1 200 dan ortiq xabar. Mana bir nechtasi:</p>
+    <div class="cases" id="cases"></div>
+    <details class="more"><summary>Yana natijalarni ko'rish</summary><div class="cases" id="cases2"></div></details>
+    <p class="mute" style="margin-top:16px;font-size:15px">Bu o'quvchilarning o'z so'zlari. Natija har kimda har xil — bajargan odamda bo'ladi.</p>
+  </div>
+</section>
+
+<section class="sec gray" id="men">
+  <div class="wide about">
+    <img src="mr9276.jpg" alt="Muhammadjon Rahmatullayev" loading="lazy">
+    <div class="txt">
+      <span class="lbl">Men kimman</span>
+      <h2>Muhammadjon Rahmatullayev</h2>
+      <p class="big" style="margin-top:18px">Psixolog va kouchman, Effekt Akademiyasi asoschisiman.</p>
+      <p>Men ofitsiantlikdan boshlaganman — kuniga 1 dollarga ishlaganman. 18 yoshimda Toshkentga keldim va noldan boshladim.</p>
+      <p>Bugun 30 000 dan ortiq odam dasturlarim va kontentimdan o'tgan. Bu sahifadagi har bir texnika ana shu ishlarim davomida yig'ilgan.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="shubha">
+  <div class="col">
+    <span class="lbl">Shubhangiz bo'lsa</span>
+    <h2>Eng ko'p beriladigan savollar</h2>
+    <div class="faq">
+      <details><summary>Menda ishlamasa-chi?</summary><p>Unda pulingizni qaytaraman. 3 kun ichida foyda sezmasangiz, adminga "Qaytarish" deb yozasiz — pul kartangizga qaytadi. Sabab so'ramaymiz. Riskni men olaman, siz emas.</p></details>
+      <details><summary>Vaqtim yo'q</summary><p>Kuniga 15 daqiqa: bitta video, bitta topshiriq. Hammasini qilish shart emas — tayyor 30 kunlik yo'l bo'yicha eng keraklilaridan boshlaysiz.</p></details>
+      <details><summary>Oldin ham kurs olganman, foyda bermagan</summary><p>Ko'p kurslar faqat ma'lumot beradi. Bu yerda har texnikadan keyin aniq topshiriq bor. Natija ma'lumotdan emas, bajarishdan keladi.</p></details>
+      <details><summary>Telefondan uzoqman, uddalaymanmi?</summary><p>Telegram bo'lsa yetarli. To'lovni ham qadamma-qadam ko'rsatamiz. Qiynalsangiz, adminga ovozli xabar yuboring — yordam beramiz.</p></details>
+      <details><summary>Kartam yo'q</summary><p>Turmush o'rtog'ingiz yoki farzandingiz kartasidan to'lasa ham bo'ladi. Uzcard, Humo, Visa va Rossiyadan to'lash mumkin.</p></details>
+      <details><summary>Men Transformatsiya 99x ni olganman</summary><p>Unda texnikalar va xazina sizda bor — qayta sotib olmaysiz. Siz uchun alohida taklif narxlar ostida.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec gray" id="tarif">
+  <div class="wide">
+    <div class="col" style="text-align:center">
+      <span class="lbl">Narxlar · faqat bugun, 27-noyabr</span>
+      <h2>Qaysi biri sizga mos?</h2>
+      <div class="timer"><div class="tb"><b class="th">--</b><small>soat</small></div><div class="tb"><b class="tm">--</b><small>daqiqa</small></div><div class="tb"><b class="ts">--</b><small>soniya</small></div></div>
+    </div>
+
+    <div class="col bonus">
+      <span class="tg">🎁 Bugun to'laganlarga sovg'a</span>
+      <h3>"Maqsad 2027" jonli seminari</h3>
+      <p class="when">25-dekabr, soat 20:00 · onlayn, men bilan</p>
+      <ul>
+        <li>2027-yilda nimaga erishmoqchi ekaningizni aniq yozib chiqasiz</li>
+        <li>Har bir maqsadni oylik qadamlarga bo'lasiz</li>
+        <li>Sizni to'xtatib turgan asosiy qo'rquvni topasiz</li>
+        <li>1-yanvardan nimadan boshlashni aniq bilib chiqasiz</li>
+      </ul>
+      <p class="ft">Bu seminarni har yili o'tkazaman — "Maqsad 2025" va "Maqsad 2026" ham bo'lgan. <b>To'lov sahifasida 15 daqiqa ichida to'lasangiz, bepul qo'shilasiz.</b></p>
+    </div>
+
+    <div class="plans">
+      <div class="plan"><h3>1 oy</h3><p class="mute" style="font-size:16px">Sinab ko'rish uchun</p><div class="amt">99 000 <small>so'm</small></div>
+        <ul><li>70+ texnika</li><li>27 ta trening yozuvi</li><li>30 kun ochiq</li><li class="no">Keyin yopiladi</li></ul>
+        <a class="btn light" href="pay.html#oylik">1 oyni tanlayman</a></div>
+      <div class="plan best"><span class="tag">Ko'pchilik shuni tanlaydi</span><h3>Umrbod</h3><p class="mute" style="font-size:16px">Bir marta to'laysiz — doim sizniki</p><div class="amt">199 000 <small>so'm</small></div>
+        <ul><li>70+ texnika</li><li>27 ta trening yozuvi</li><li>60 ta kitob</li><li><b>Umrbod ochiq</b></li></ul>
+        <a class="btn grad" href="pay.html#umrbod">Umrbodni tanlayman</a></div>
+      <div class="plan vip" id="vip"><span class="tag">VIP · 20 joy</span><h3>Men bilan shaxsan</h3><p class="mute" style="font-size:16px">Eng tez natija istaganlar uchun</p><div class="old">Asl narxi <s>3 997 000</s></div><div class="amt">997 000 <small>so'm</small></div>
+        <ul><li><b>Shaxsiy konsultatsiya</b> men bilan (1,5–2 soat)</li><li>Umrbod: texnikalar, treninglar, kitoblar</li><li>Faqat VIP uchun yopiq jonli efir</li><li>"Maqsad 2027" seminari</li></ul>
+        <a class="btn" style="background:#fff;color:#15171c" href="pay.html#vip">VIP joyini olaman</a></div>
+    </div>
+
+    <div class="col owner"><div><b>Transformatsiya 99x ni olganmisiz?</b><p class="mute" style="font-size:16px;margin-top:4px">Texnikalar sizda bor. Siz uchun — men bilan shaxsiy diagnostika (30–40 daqiqa): aynan sizga qaysi texnikalar kerakligini birga aniqlaymiz.</p></div><a class="btn grad" href="pay.html#diag">Diagnostika · 290 000</a></div>
+    <div class="col guar"><div class="s">3 kun<br>kafolat</div><p class="mute" style="font-size:16px">Foyda sezmasangiz, 3 kun ichida pulingiz savolsiz qaytariladi.</p></div>
+  </div>
+</section>
+
+<section class="sec final">
+  <div class="col">
+    <h2>O'zgarish bitta qarordan boshlanadi</h2>
+    <p class="mute big" style="margin:16px 0 28px">Bugun qaror qiling — ertaga birinchi texnikani bajaring. Risk yo'q: 3 kun ichida pulingiz qaytadi.</p>
+    <a class="btn grad" href="#tarif">Narxlarga qaytish</a>
+  </div>
+</section>
+</main>
+
+<footer>© Effekt Akademiyasi · Muhammadjon Rahmatullayev · Savollar: <a href="https://t.me/MR_Qabul?text=Assalomu%20alaykum%21%20Saytdan%20yozyapman%2C%20savolim%20bor%3A%20">t.me/MR_Qabul</a></footer>
+<div class="sticky" id="sticky"><div><small>Faqat bugun</small><b class="cd">--:--:--</b></div><a class="btn grad" href="#tarif">Narxlarni ko'rish</a></div>
+
+<div class="modal" id="tm" role="dialog" aria-modal="true" aria-labelledby="tmt"><div class="mbox">
+  <button class="x" data-close aria-label="Yopish">×</button>
+  <div id="tthumb"></div><h3 id="tmt"></h3><p class="mute" id="tmd" style="margin-top:8px;font-size:16px"></p>
+  <p style="margin:14px 0 18px;font-size:16px"><b style="color:var(--green)">Natija:</b> <span id="tmr"></span></p>
+  <a class="btn grad" href="#tarif" data-close style="width:100%">Narxlarni ko'rish</a>
+</div></div>
+
+<script>
+{
+const DEADLINE = new Date('2026-11-27T23:59:59+05:00').getTime();
+const T = [[28, "pul", "Pullarga sevgi berish", "Pulga bo'lgan munosabatingizni qo'rquvdan mehrga o'zgartirasiz.", "Pul bilan do'stona munosabat", "Pulni", "seving"], [30, "pul", "Pul bor texnikasi", "\"Pul yo'q\" holatidan \"pul bor\" holatiga o'tish.", "Yetishmovchilik hissi kamayadi", "Pul", "bor!"], [31, "pul", "Ehson qutisi texnikasi", "Muntazam ehson orqali saxovat odatini shakllantirasiz.", "Saxovat va shukronalik hissi mustahkamlanadi", "Ehson", "qutisi"], [32, "pul", "Moliyaviy maqsad cheki", "O'zingizga yozilgan \"chek\" orqali daromad maqsadini aniq belgilaysiz.", "Daromad maqsadi aniqlashadi", "Mo'jizaviy", "chek"], [34, "pul", "Baraka texnikasi", "Bor narsangizga barakani chaqiruvchi amaliyot.", "Pulni ongli ishlatish odati", "Baraka", "ochiladi"], [37, "pul", "Qarzlardan xalos bo'lish", "Qarz ortidagi ichki sabablar va undan chiqish yo'li.", "Qarzdan chiqish rejasi", "Qarzdan", "chiqish"], [38, "pul", "Kreditlardan xalos bo'lish", "Kredit bo'yicha to'lov rejasi va yangi qarz olmaslik odatlari.", "Kreditdan chiqish rejasi", "Kreditdan", "qutuling"], [39, "pul", "Pul bloklarini aniqlash", "Daromadni to'sib turgan ichki ishonchlarni topasiz.", "Pul blokingizni aniq bilasiz", "Pul blokingizni", "toping"], [40, "pul", "Pul bloklaridan xalos bo'lish", "Topilgan pul bloklarini yangi fikrlar bilan almashtirasiz.", "Pulga nisbatan xotirjamlik", "Pul blokini", "yeching"], [2, "ruh", "Shukronalik texnikasi", "Har kuni minnatdorlik sabablarini yozib, holatingizni ko'tarasiz.", "Kayfiyat va baraka hissi oshadi", "Shukr", "kuchi"], [6, "ruh", "Bumerang texnikasi", "Bergan yaxshiligingiz qaytib kelishi qonuni bilan ongli ishlash.", "Yaxshilik qilish odati shakllanadi", "Bumerang", "qonuni"], [26, "ruh", "Muallifning sevimli texnikasi", "Nomi biroz g'alati, lekin men o'zim eng yaxshi ko'rgan texnika.", "Kutilmagan ichki o'zgarish", "Sirli", "texnika"], [29, "ruh", "Duo texnikasi", "Duoni to'g'ri va qalbdan qilish amaliyoti.", "Qalb xotirjamligi va umid", "Duo", "kuchi"], [56, "ruh", "O'z-o'ziga ruqiya qilish", "O'zingizga ruqiya qilish amaliyoti.", "Ruhiy himoya va xotirjamlik", "O'zingizga", "ruqiya"], [18, "otmish", "Xafagarchiliklardan xalos bo'lish", "Ichingizda yuk bo'lib yotgan xafaliklarni qo'yib yuborasiz.", "Yengillik va bo'shagan energiya", "Xafalikni", "qo'yib yuboring"], [19, "otmish", "Aybdorlik hissidan xalos bo'lish", "Sizni ichdan yeyotgan aybdorlik hissi bilan ishlaysiz.", "O'zingizni kechira olasiz", "Aybdorlik", "hissi"], [4, "ishonch", "O'z-o'ziga energiya berish", "Oyna oldida yutuqlaringizni ovoz chiqarib aytib, o'zingizga quvvat berasiz.", "O'zingizdan faxrlanish hissi", "O'zingizga", "quvvat bering"], [5, "ishonch", "O'z-o'ziga sevgi berish", "O'zingizga mehr va g'amxo'rlik ko'rsatishni o'rganasiz.", "\"Men loyiqman\" degan ichki holat", "O'zingizni", "seving"], [9, "ishonch", "Affirmatsiya texnikasi", "To'g'ri tasdiqlar bilan ongni yangi ishonchlarga dasturlaysiz.", "Yangi, kuchli ichki ishonchlar", "Affirmatsiya", "siri"], [10, "ishonch", "O'zimizga ishonchni oshirish", "Kuchli fazilatlaringizni yozib, ishonchni mustahkamlaysiz.", "O'zini qadrlash kuchayadi", "Ishonch", "x10"], [13, "ishonch", "Ishonchni tanada his qilish", "O'zingizga ishonchni faqat o'ylab emas, tanada sezishni o'rganasiz.", "Ichki tayanch paydo bo'ladi", "Ishonchni", "tanada sezing"], [15, "ishonch", "Hayotiy muvaffaqiyatlar texnikasi", "Bolalikdan hozirgacha yutuqlaringizni yozib chiqasiz.", "\"Men uddalayman\" energiyasi", "Men", "uddalaganman"], [16, "ishonch", "Muvaffaqiyat kundaligi", "Har kuni 3 ta yutuqni yozish odati.", "Barqaror o'ziga ishonch", "Muvaffaqiyat", "kundaligi"], [17, "ishonch", "O'zlikni qabul qilish", "O'zingizni kamchiliklaringiz bilan birga qabul qilasiz.", "Ichki tinchlik va xotirjamlik", "O'zingizni", "qabul qiling"], [59, "ishonch", "Boshqalarning fikridan xalos bo'lish", "\"Odamlar nima deydi\" qo'rquvidan ozod bo'lasiz.", "O'z yo'lingizda erkin yurasiz", "Odamlar", "nima deydi?"], [60, "ishonch", "O'zingizni erkin namoyon qilish", "O'zingizni ko'rsatishdan qo'rqmaslikni o'rganasiz.", "Erkin va ishonchli muloqot", "O'zingizni", "ko'rsating"], [61, "ishonch", "Qat'iyat texnikasi", "Boshlagan ishni oxiriga yetkazish irodasini kuchaytirish.", "Qat'iyat va intizom", "Qat'iyat", "texnikasi"], [20, "munosabat", "Onaga nisbatan xafagarchiliklardan tozalanish", "Onaga bo'lgan ichki da'volarni yumshatib, aloqani tiklaysiz.", "Oiladan kuch va duo olish", "Onaga", "xafalik"], [21, "munosabat", "Ota bilan xafagarchiliklardan tozalanish", "Ota bilan bog'liq ichki og'riqlarni tozalaysiz.", "Hayotda tayanch va kuch", "Otaga", "xafalik"], [11, "maqsad", "Ideal o'zimizni yaratish", "Qanday inson bo'lishni xohlasangiz — o'sha obrazni aniq yaratasiz.", "Aniq yo'nalish va harakat", "Ideal", "men"], [12, "maqsad", "Vizualizatsiya texnikasi", "Istagan natijangizni ichda ko'rib, his qilishni o'rganasiz.", "Maqsad sari harakat tezlashadi", "Vizualizatsiya", "qiling"], [36, "maqsad", "\"Tanga\" texnikasi", "Katta maqsadlarga erishishga yordam beradigan texnika.", "Katta maqsad sari aniq qadam", "Tanga", "texnikasi"], [41, "maqsad", "Missiyani aniqlash", "Hayotdagi o'z missiyangizni topasiz.", "Nima uchun yashayotganingizni bilasiz", "Missiyangiz", "nima?"], [42, "maqsad", "SMART maqsadlar qo'yish", "Maqsadni aniq, o'lchanadigan va erishiladigan qilib qo'yish.", "Maqsadlar aniq va o'lchanadigan bo'ladi", "SMART", "maqsad"], [43, "maqsad", "Strategik maqsadlar qo'yish", "Uzoq muddatli strategik maqsadlarni tuzish.", "Katta rasm va aniq yo'l", "Strategik", "maqsad"], [49, "maqsad", "Sevimli ishni topish", "Sizni yondiradigan ishni aniqlash texnikasi.", "Qalbingizga yoqqan ish", "Sevimli", "ishingizni toping"], [50, "maqsad", "Vision texnikasi", "Kelajak hayotingiz tasvirini yaratish.", "Kelajak aniq ko'rinadi", "Vision", "board"], [51, "maqsad", "Orzular albomi", "Orzularingizni rasm va so'zlar bilan jamlash.", "Orzular aniq va jonli bo'ladi", "Orzular", "albomi"], [52, "maqsad", "Kelajakdan xat", "Kelajakdagi o'zingizdan bugungi o'zingizga xat yozish.", "Ichki ishonch va yo'nalish", "Kelajakdan", "xat"], [53, "maqsad", "Maqsadlarni yozish", "Maqsadlarni to'g'ri yozish va ularga qaytish usuli.", "Maqsad esdan chiqmaydi", "Maqsadni", "yozing"], [62, "maqsad", "Ijobiy reallik yaratish", "Fikr va harakat orqali ijobiy voqelikni yaratish.", "Yaxshi tomonlarni ko'rish odati", "Ijobiy", "reallik"], [63, "maqsad", "\"Ideal hayot ssenariysi\"", "O'zingiz xohlagan hayot ssenariysini yozasiz.", "Orzudagi hayot sari aniq reja", "Ideal hayot", "ssenariysi"], [1, "vaqt", "Tugallanmagan ishlarni tugatish", "Ortga surilgan ishlar yuki energiyani yeydi. Ularni bosqichma-bosqich yopish tartibi.", "Ichki yengillik va bo'shagan energiya", "Tugallanmagan", "ishlarni yoping"], [24, "vaqt", "Pomodoro texnikasi", "Vaqtni bo'laklarga bo'lib, diqqat bilan ishlash usuli.", "Kamroq chalg'ish, ko'proq natija", "Pomodoro", "texnikasi"], [25, "vaqt", "2 daqiqa texnikasi", "Kichik ishlarni darhol bajarib, to'planib qolishining oldini olasiz.", "Ishlar to'planib qolmaydi", "2 daqiqa", "qoidasi"], [27, "vaqt", "1-3-5 texnikasi", "Kunni 1 katta, 3 o'rta va 5 kichik vazifaga bo'lish.", "Kun aniq va unumli o'tadi", "1-3-5", "qoidasi"], [33, "vaqt", "Oylik cheklist texnikasi", "Oy davomidagi muhim ishlarni cheklist orqali nazorat qilish.", "Hech narsa esdan chiqmaydi", "Oylik", "cheklist"], [44, "vaqt", "1 yilni rejalashtirish", "Butun yilni sohalar bo'yicha rejalashtirasiz.", "Yil tartibli va natijali o'tadi", "1 yilni", "rejalashtiring"], [45, "vaqt", "1 oyni rejalashtirish", "Oylik maqsad va vazifalarni tuzish.", "Oy oxirida aniq natija", "1 oyni", "rejalashtiring"], [46, "vaqt", "1 haftani rejalashtirish", "Haftani aniq vazifalarga bo'lish.", "Hafta behuda o'tmaydi", "1 haftani", "rejalashtiring"], [47, "vaqt", "1 kunni rejalashtirish", "Har bir kunni ongli rejalashtirish odati.", "Kun nazoratingizda", "1 kunni", "rejalashtiring"], [58, "vaqt", "Dangasalik va ikkilanishdan xalos bo'lish", "\"Ertaga\" odatining ildizini topib, harakatni boshlaysiz.", "Boshlangan ish oxiriga yetadi", "Dangasalikni", "yenging"], [3, "energiya", "Tez yurish mashqi", "Har kuni tez yurish orqali tanani uyg'otib, fikrni tiniqlashtirasiz.", "Energiya va ravshan fikr", "10 daqiqa", "tez yurish"], [7, "energiya", "Charchatuvchi odamlar bilan chegara qo'yish", "Kuchingizni olib qo'yadigan munosabatlarda o'zingizni asrashni o'rganasiz.", "Kamroq charchoq, ko'proq xotirjamlik", "Charchatadigan", "odamlar"], [8, "energiya", "Ongni tozalash texnikasi", "Ortiqcha fikrlar, xavotir va ichki bosimni bo'shatasiz.", "Bosh tinchiydi, fikr tiniqlashadi", "Ongni", "tozalang"], [22, "energiya", "Negativ energiyalardan tozalanish meditatsiyasi", "Yig'ilib qolgan salbiy holatlardan meditatsiya orqali tozalanasiz.", "Yengillik va pok holat", "Salbiy holatdan", "tozalaning"], [48, "energiya", "Kunlik dofamin texnikasi", "Dofaminni to'g'ri boshqarib, motivatsiyani ushlab turish.", "Barqaror motivatsiya", "Kunlik", "dofamin"], [54, "energiya", "O'z-o'zini tozalash", "Kun davomida yig'ilgan og'irlikdan tozalanish.", "Yangilangan holat", "O'zingizni", "tozalang"], [55, "energiya", "Tanani bo'shatish mashqi", "Tanadagi qisilish va energiya tiqilishini bo'shatish.", "Tana yengillashadi", "Tanani", "bo'shating"], [57, "energiya", "Xotirjam uyqu texnikasi", "Tez va xotirjam uxlashga yordam beradigan amaliyot.", "Sifatli uyqu, tetik tong", "Xotirjam", "uyqu"]];
+const PROGS = [["O'zlikka qaytish intensivi", "7 kun"], ["O'zlikni anglash", "5 kun"], ["Antiblokirovka 2.0 treningi", "6 dars"], ["Moliyaviy intellekt 1.0", "8 dars"], ["Moliyaviy intellekt treningi", "6 dars"], ["Pul psixologiyasi intensivi", "7 kun"], ["Pul psixologiyasi masterklassi", "2 kun"], ["Pul oqimini ochish treningi", "5 dars"], ["Pul oqimini ochish workshopi", "9 dars"], ["Pul qonunlari workshopi", "5 dars"], ["Boylik formulasi workshopi", "6 dars"], ["Barokat seminari", "4 qism"], ["Barokat chellenji", "14 kun"], ["Orzudagi hayot marafoni", "2 mavsum, 19 kun"], ["Yangi hayot marafoni", "5 kun"], ["Baxt formulasi marafoni", "3 kun"], ["100x club darslari", "3 dars"], ["Niyat kuchi seminari", "1 dars"], ["Hayotni rejalashtirish", "video + PDF"], ["Maqsad 2025 va Maqsad 2026", "2 dars"], ["Antidangasalik", "4 dars"], ["Munosabat psixologiyasi", "3 dars"], ["Qarzdan chiqish strategiyasi", "2 dars + PDF"], ["Ichki bolakay: bolalik travmalari", "1 dars"], ["Energiya darslari", "6 dars"], ["Boylar fikrlashi va odatlari", "5 dars"], ["Kitoblar bazasi", "60 ta kitob"]];
+
+const PH = ['mr9246','mr9276','mr9230','mr9284'];
+const CASES = [
+  ['Asalxon R.',"18–19-texnikalar meni juda yengillashtirdi. Ko'nglimda og'irlik, xiralik sezardim — yo'qoldi. O'zimda qandaydir ishonch paydo bo'ldi."],
+  ['Zamira M.',"Treninglardan olgan texnikalarim asosida biznesimdagi bu oydagi daromadim 11 mln 500 ming so'mga chiqdi."],
+  ['Kamilova',"Turmush o'rtog'imning ishlari yurishib ketdi, o'zimning maoshim ham oshdi. Ustoz Muhammadjonga katta rahmat."],
+  ['Bilol J.',"Vazifalarni 100% emas, 60% bajarayapman — shunda ham natija bor. Daftarga yozgan niyatlarim birma-bir amalga oshyapti."],
+  ['Oydin H.',"22-texnikada maza qildim. Ichimda yengillik paydo bo'ldi. Ustoz, katta rahmat."],
+  ['Surayyo A.',"1-texnikada telefon olishni 2 haftalik jadvalga yozgan edim. Bugun turmush o'rtog'im olib berdi."],
+  ['Shahzoda R.',"Amaliyotlarni bajarib kelayotgandim. Necha yildan beri erisha olmagan narsam — uyimizda hammom ta'miri boshlandi."]
+];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = id => document.getElementById(id);
+const cover = t => `<div class="cv${(t[5].length > 10 || t[6].length > 12) ? ' sm' : ''}"><img src="${PH[t[0] % PH.length]}.jpg" alt="" loading="lazy"><span class="n">TEXNIKA #${String(t[0]).padStart(2,'0')}</span><div class="h">${esc(t[5])}<br><em>${esc(t[6])}</em></div></div>`;
+
+// test
+const Q = ["Pul keladi, lekin tez ketib qoladi","Maqsadim bor, ammo boshlashga qo'rqaman","Ertalab turish og'ir, kuch yo'q","O'tmishdagi xafaliklar hali ham og'ritadi","\"Men bunga loyiq emasman\" deb o'ylayman","\"Odamlar nima deydi\" deb qo'rqaman","Ishlarni doim ertaga qoldiraman","Qarz yoki pul tanqisligi tinchlik bermaydi"];
+$('qlist').innerHTML = Q.map(q => `<button type="button" class="q" aria-pressed="false"><span class="bx"></span>${esc(q)}</button>`).join('');
+$('qlist').addEventListener('click', e => {
+  const b = e.target.closest('.q'); if (!b) return;
+  b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true');
+  const n = $('qlist').querySelectorAll('[aria-pressed=true]').length;
+  $('qres').classList.toggle('on', n > 0);
+  $('qh').textContent = n <= 2 ? `${n} ta belgi — kichik to'siqlar bor` : n <= 5 ? `${n} ta belgi — bu sahifa aynan siz uchun` : `${n} ta belgi — bugun boshlash vaqti`;
+  $('qp').textContent = "Bularning har biriga alohida texnika bor. Pastga o'qing — nega bunday bo'layotganini tushuntiraman.";
+});
+
+// karusel (cheksiz, faqat qo'lda)
+const car = $('car');
+const card = (t,i) => `<button type="button" class="tech" data-t="${i}">${cover(t)}<div class="tbody"><h3>${esc(t[2])}</h3><p>${esc(t[3])}</p></div></button>`;
+const set1 = T.map(card).join(''); car.innerHTML = set1 + set1 + set1;
+let segW = 0;
+const measure = () => { segW = car.scrollWidth / 3; car.scrollLeft = segW + (car.scrollLeft % segW || 0); };
+const carRo = new ResizeObserver(measure); carRo.observe(car);
+let fixT;
+car.addEventListener('scroll', () => { clearTimeout(fixT); fixT = setTimeout(() => { if (car.scrollLeft < segW*.5) car.scrollLeft += segW; else if (car.scrollLeft > segW*1.5) car.scrollLeft -= segW; }, 120); }, {passive:true});
+const stepW = () => { const c = car.querySelector('.tech'); return c ? c.getBoundingClientRect().width + 16 : 300; };
+$('prev').addEventListener('click', () => car.scrollBy({left:-stepW(), behavior:'smooth'}));
+$('next').addEventListener('click', () => car.scrollBy({left:stepW(), behavior:'smooth'}));
+$('pgl').innerHTML = PROGS.map(p => `<li>${esc(p[0])}<span>${esc(p[1])}</span></li>`).join('');
+
+// keyslar
+const caseHtml = c => `<div class="case"><p>"${esc(c[1])}"</p><div class="who">${esc(c[0])} <span>· Transformatsiya 99x o'quvchisi</span></div></div>`;
+$('cases').innerHTML = CASES.slice(0,3).map(caseHtml).join('');
+$('cases2').innerHTML = CASES.slice(3).map(caseHtml).join('');
+
+// texnika oynasi
+const openM = m => { m.classList.add('on'); m.querySelector('.x').focus(); };
+const closeAll = () => document.querySelectorAll('.modal.on').forEach(m => m.classList.remove('on'));
+document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-close]')) closeAll(); }));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+car.addEventListener('click', e => { const b = e.target.closest('.tech'); if (!b) return; const t = T[+b.dataset.t]; $('tthumb').innerHTML = cover(t); $('tmt').textContent = t[2]; $('tmd').textContent = t[3]; $('tmr').textContent = t[4]; openM($('tm')); });
+
+// sticky: bosh ekrandan keyin, narxlar bo'limida yashirin
+let heroVis = true, tarifVis = false;
+const upd = () => $('sticky').classList.toggle('show', !heroVis && !tarifVis);
+const sio = new IntersectionObserver(es => es.forEach(e => { if (e.target.id === 'heroCta') heroVis = e.isIntersecting; else tarifVis = e.isIntersecting; upd(); }));
+sio.observe($('heroCta')); sio.observe(document.querySelector('.plans'));
+
+// taymer
+const pad = n => String(n).padStart(2,'0');
+const setAll = (sel, v) => document.querySelectorAll(sel).forEach(e => e.textContent = v);
+const tick = () => { const d = Math.max(0, DEADLINE - Date.now()); const h = Math.floor(d/3.6e6), m = Math.floor(d%3.6e6/6e4), s = Math.floor(d%6e4/1e3); setAll('.cd', d ? `${pad(h)}:${pad(m)}:${pad(s)}` : 'tugadi'); setAll('.th', pad(h)); setAll('.tm', pad(m)); setAll('.ts', pad(s)); };
+tick(); const timerId = setInterval(tick, 1000);
+}
+</script>
 </body>
 </html>
