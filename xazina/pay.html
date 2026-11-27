@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>To'lov — Transformatsiya 99x</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: xotirjam, aniq, qo'lidan yetaklovchi — "hozir to'lang, hammasi oson"
+   IDEA: kassa oynasi — tanlangan tarif, bonus taymeri, karta, ilova bo'yicha qadamlar, chek
+   PICTURE: katta bonus kartasi (Maqsad 2027) 10 daqiqalik taymer bilan, ostida karta raqami
+   COLOUR and TYPE: MR — #EEF0F3, oq kartalar, ko'k→yashil gradient; Inter 800
+   LAYOUT: bitta ustun (telefon uchun), 1-2-3-4 qadamlar ketma-ket */
+:root{--bg:#EEF0F3;--ink:#16181D;--mute:#4B5563;--line:#E2E5EA;--acc1:#2A7DE1;--acc2:#3CC48A;--green:#1F9D6B;--red:#D14343;--sh:0 6px 18px rgba(20,30,50,.06);--grad:linear-gradient(90deg,#2A7DE1,#3CC48A)}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+h1{font-size:clamp(26px,5vw,36px)}
+h2{font-size:22px}
+p{margin:0}
+.wrap{max-width:640px;margin:0 auto;padding:16px 16px 120px}
+.card{background:#fff;border-radius:24px;box-shadow:var(--sh);padding:22px;margin-top:14px}
+.mute{color:var(--mute)}
+.acc{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0 4px}
+.top a{color:var(--mute);text-decoration:none;font-weight:600;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+.dl{background:var(--red);color:#fff;border-radius:12px;padding:7px 11px;font-weight:800;font-size:14px;white-space:nowrap}
+.dl b{font-variant-numeric:tabular-nums}
+.sum{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.sum .pl{font-weight:700}
+.sum .am{font-size:34px;font-weight:800;letter-spacing:-.04em;white-space:nowrap}
+.sw{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.sw button{min-height:44px;padding:0 14px;border-radius:12px;border:2px solid var(--line);background:#fff;font:600 14px Inter;cursor:pointer;color:var(--ink)}
+.sw button[aria-pressed=true]{border-color:var(--acc2);background:#F1FAF6}
+.bump{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px;border:2px dashed var(--acc2);background:#F1FAF6;margin-top:14px;cursor:pointer;font-size:15px}
+.bump input{width:22px;height:22px;accent-color:#1F9D6B;flex:none;margin-top:2px}
+/* bonus */
+.bonus{background:#0f1115;color:#fff;position:relative;overflow:hidden}
+.bonus::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(60,196,138,.45),transparent 70%)}
+.bonus .tag{display:inline-block;background:var(--grad);font-weight:800;font-size:13px;padding:5px 12px;border-radius:99px;margin-bottom:12px}
+.bonus h2{font-size:clamp(24px,5vw,30px);position:relative}
+.bonus p{color:#B8BEC8;margin-top:8px;position:relative}
+.bl{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;position:relative}
+.bl li{padding-left:26px;position:relative;font-size:16px}
+.bl li::before{content:'✓';position:absolute;left:0;color:#5BE0A6;font-weight:800}
+.bt{display:flex;align-items:center;gap:14px;margin-top:18px;position:relative}
+.bt .clock{font-size:44px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums;line-height:1}
+.bt small{color:#B8BEC8;font-size:14px}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.12);margin-top:14px;overflow:hidden;position:relative}
+.bar i{display:block;height:100%;background:var(--grad);transition:width 1s linear}
+.bonus.over .clock{color:#FF8A80}
+.bonus.over .tag{background:#3a3d44}
+/* steps */
+.st{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.st i{flex:none;width:36px;height:36px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:800}
+.cardno{background:linear-gradient(135deg,#1b2b4a,#0f1115);color:#fff;border-radius:20px;padding:22px;position:relative;overflow:hidden}
+.cardno::after{content:"";position:absolute;right:-40px;bottom:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(42,125,225,.5),transparent 70%)}
+.cardno small{color:#B8BEC8;font-size:14px}
+.cardno .num{font-size:clamp(22px,6vw,30px);font-weight:800;letter-spacing:.04em;margin:8px 0 6px;font-variant-numeric:tabular-nums;position:relative}
+.cardno .own{color:#D8DCE3;font-size:15px;position:relative}
+.ctabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ctabs button{min-height:46px;border-radius:12px;border:2px solid var(--line);background:#fff;font:700 14px Inter;cursor:pointer;color:var(--ink);padding:0 4px}
+.ctabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(max-width:400px){.ctabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.copy{width:100%;min-height:56px;margin-top:12px;border-radius:16px;border:0;background:var(--grad);color:#fff;font:800 17px Inter;cursor:pointer}
+.copy.done{background:var(--green)}
+.amt2{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--bg);font-weight:700}
+.amt2 button{min-height:40px;border-radius:10px;border:2px solid var(--ink);background:#fff;font:700 14px Inter;padding:0 12px;cursor:pointer}
+.apps{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.apps::-webkit-scrollbar{display:none}
+.apps button{flex:none;min-height:46px;padding:0 16px;border-radius:14px;border:2px solid var(--line);background:#fff;font:700 15px Inter;cursor:pointer;color:var(--ink)}
+.apps button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+ol.how{margin:16px 0 0;padding:0;list-style:none;counter-reset:h;display:grid;gap:10px}
+ol.how li{counter-increment:h;display:flex;gap:12px;align-items:flex-start;font-size:16px}
+ol.how li::before{content:counter(h);flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--acc2);color:var(--green);display:grid;place-items:center;font-weight:800;font-size:14px}
+.hint{margin-top:14px;padding:12px 14px;border-radius:14px;background:#EAF2FD;color:#1d4f8f;font-size:15px}
+.msg{background:var(--bg);border-radius:14px;padding:14px;font-size:15px;white-space:pre-line;margin-top:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;width:100%;border-radius:16px;border:0;cursor:pointer;font:800 17px Inter;text-decoration:none;color:#fff;background:var(--ink);margin-top:12px}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.faq details:last-child{border:0}
+.faq summary{cursor:pointer;font-weight:700;list-style:none;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--mute);margin-top:4px;font-size:16px}
+.guar{display:flex;gap:14px;align-items:center}
+.guar .s{flex:none;width:64px;height:64px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;text-align:center;line-height:1.1}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;gap:12px;align-items:center;justify-content:space-between}
+.sticky small{display:block;color:var(--mute);font-size:13px}
+.sticky b{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.sticky .btn{width:auto;margin:0;min-height:48px;padding:0 18px;font-size:15px;background:var(--grad)}
+:focus-visible{outline:3px solid var(--acc1);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="index.html#tarif">← Narxlarga qaytish</a><span class="dl">Kun tugashiga <b class="cd">--:--:--</b></span></div>
+
+  <div class="card">
+    <p class="mute" style="font-size:15px">Siz tanlagan tarif</p>
+    <div class="sum"><span class="pl" id="plName">Butun umrlik</span><span class="am"><span id="plSum">199 000</span> <small style="font-size:16px;color:var(--mute)">so'm</small></span></div>
+    <div class="sw" id="sw" role="group" aria-label="Tarifni almashtirish"></div>
+    <label class="bump" id="bumpw"><input type="checkbox" id="bump"><span><b>Shaxsiy diagnostikani ham qo'shaman (+290 000 so'm).</b> 30–40 daqiqada qaysi texnikalar aynan sizga kerakligini birga aniqlaymiz.</span></label>
+  </div>
+
+  <div class="card bonus" id="bonus">
+    <span class="tag" id="btag">🎁 Tezkor to'lov bonusi</span>
+    <h2>15 daqiqa ichida to'lasangiz — <span class="acc">"Maqsad 2027"</span> onlayn seminariga bepul qo'shilasiz</h2>
+    <p id="btext">📅 25-dekabr, soat 20:00 · onlayn, men bilan</p>
+    <ul class="bl"><li>2027-yilgi maqsadlaringizni aniq yozasiz</li><li>Har birini oylik qadamlarga bo'lasiz</li><li>Sizni to'xtatayotgan asosiy qo'rquvni topasiz</li><li>1-yanvardan nimadan boshlashni bilasiz</li></ul>
+    <div class="bt"><span class="clock" id="clock">15:00</span><small id="bsmall">bonus muddati qoldi</small></div>
+    <div class="bar"><i id="bbar" style="width:100%"></i></div>
+  </div>
+
+  <div class="card">
+    <div class="st"><i>1</i><h2>Karta raqamini nusxalang</h2></div>
+    <div class="ctabs" id="ctabs" role="tablist" aria-label="To'lov usuli"></div>
+    <p class="mute" id="cnote" style="font-size:15px;margin:10px 0 12px"></p>
+    <div class="cardno">
+      <small>To'lov uchun karta</small>
+      <div class="num" id="cnum">—</div>
+      <div class="own" id="cown"></div>
+    </div>
+    <button type="button" class="copy" id="copyCard">📋 Karta raqamini nusxalash</button>
+    <div class="amt2"><span>Summa: <span id="sum2" style="white-space:nowrap">199 000</span> so'm</span><button type="button" id="copySum">Nusxalash</button></div>
+    <div class="hint" id="ruHint" hidden>🇷🇺 Rossiyadan: bank ilovangizda (Sber, T-Bank va boshq.) <b>"Перевод за рубеж" → "Узбекистан"</b> ni tanlang, bank sifatida <b>Ipak Yo'li</b> ni, oluvchi sifatida yuqoridagi telefon raqamini kiriting. Rubldagi summani bilish uchun avval <a href="https://t.me/MR_Qabul">@MR_Qabul</a> ga yozing.</div>
+  </div>
+
+  <div class="card">
+    <div class="st"><i>2</i><h2>Ilovangiz orqali o'tkazing</h2></div>
+    <p class="mute" style="font-size:15px;margin-bottom:12px">Qaysi ilovadan foydalanasiz? Tanlang:</p>
+    <div class="apps" role="tablist" id="apps"></div>
+    <ol class="how" id="how"></ol>
+    <div class="hint">💡 Ilova ko'rinishi biroz farq qilishi mumkin. Asosiysi: <b>"O'tkazmalar" → "Kartaga"</b> bo'limini topasiz, karta raqamini qo'yasiz, summani yozasiz.</div>
+  </div>
+
+  <div class="card">
+    <div class="st"><i>3</i><h2>Chekni saqlang</h2></div>
+    <p>To'lov o'tgach, ilovada <b>"Chek"</b> yoki <b>"Kvitansiya"</b> chiqadi. Telefon ekranini rasmga oling (skrinshot):</p>
+    <ol class="how">
+      <li>Android: quvvat + ovozni pasaytirish tugmalarini birga bosing</li>
+      <li>iPhone: yon tugma + ovozni oshirish tugmasini birga bosing</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="st"><i>4</i><h2>Chekni adminga yuboring</h2></div>
+    <p>Pastdagi tugmani bosing — Telegram'da admin chati <b>tayyor xabar bilan</b> ochiladi. Ismingizni yozing, "Yuborish" ni bosing, keyin chek skrinshotini ham yuboring.</p>
+    <div class="msg" id="msg"></div>
+    <a class="btn" href="https://t.me/MR_Qabul" id="toAdmin" style="background:#2AABEE">✈ To'ladim — adminga yozish</a>
+    <button type="button" class="btn ghost" id="copyMsg">📋 Xabar ochilmasa — nusxalash</button>
+    <p class="mute" style="font-size:15px;margin-top:12px">Admin chekni tekshirib, yopiq kanalga kirish havolasini yuboradi.</p>
+  </div>
+
+  <div class="card faq">
+    <details><summary>Kartam yo'q. Nima qilaman?</summary><p>Turmush o'rtog'ingiz, farzandingiz yoki yaqiningiz kartasidan to'lasa ham bo'ladi. Chekni o'zingiz adminga yuborasiz.</p></details>
+    <details><summary>Chet eldan qanday to'layman?</summary><p>@MR_Qabul ga yozing — siz uchun qulay usulni aytadi.</p></details>
+    <details><summary>Qiynalyapman, tushunmadim</summary><p><a href="https://t.me/MR_Qabul?text=Assalomu%20alaykum%21%20To%27lov%20qilishda%20yordam%20kerak%3A%20">Adminga yozing</a> yoki ovozli xabar yuboring — qadamma-qadam tushuntirib beramiz.</p></details>
+    <details><summary>Foyda bermasa-chi?</summary><p>3 kun ichida @MR_Qabul ga "Qaytarish" deb yozasiz — pul to'lagan kartangizga qaytariladi. Sabab so'ramaymiz.</p></details>
+  </div>
+
+  <div class="card guar"><div class="s">3 kun<br>kafolat</div><p class="mute" style="font-size:15px">Risk sizda emas: 3 kun ichida foydasini sezmasangiz, pulingiz savolsiz qaytariladi.</p></div>
+</div>
+
+<div class="sticky"><div><small id="stS">Bonus uchun qoldi</small><b id="stClock">15:00</b></div><a class="btn" href="#copyCard" id="stBtn">To'lovni boshlash</a></div>
+
+<script>
+{
+const CARDS = [
+  {k:'Uzcard', num:'8600 1404 1133 3272', own:'Raxmatullayev Muxammad', note:'O\'zbekistondagi Uzcard va Humo kartalardan'},
+  {k:'Humo', num:'9860 2704 0747 1951', own:'Rahmatullayev Muhammad', note:'Humo kartangizdan to\'g\'ridan-to\'g\'ri'},
+  {k:'Visa', num:'4023 0602 3408 1650', own:'Mukhammad Rakhmatullayev', note:'Chet eldan Visa/Mastercard orqali'},
+  {k:'Rossiyadan', num:'+998 90 282 87 88', own:'Ipak Yo\'li banki · telefon raqami bo\'yicha', note:'Rossiya bank ilovasidan O\'zbekistonga o\'tkazma', ru:true}
+];
+let ci = 0;
+const DEADLINE = new Date('2026-11-27T23:59:59+05:00').getTime();
+const BONUS_MIN = 15;
+const PLANS = {
+  oylik:{name:'1 oy',sum:99000,bump:false},
+  umrbod:{name:'Umrbod',sum:199000,bump:true},
+  vip:{name:'VIP · Men bilan shaxsan (konsultatsiya)',sum:997000,bump:false},
+  diag:{name:'99x egasi · Shaxsiy diagnostika',sum:290000,bump:false}
+};
+const SW = ['oylik','umrbod','vip'];
+const APPS = {
+  'Payme':['Payme ilovasini oching','Pastdagi menyudan "O\'tkazmalar" bo\'limiga kiring','"Kartaga o\'tkazma" ni tanlang','Karta raqami maydoniga bosib, nusxalangan raqamni qo\'ying (barmog\'ingizni bosib turing → "Вставить / Qo\'yish")','Karta egasining ismi chiqqanini tekshiring','Summani yozing va "O\'tkazish" ni bosing, SMS kodni kiriting'],
+  'Click':['Click ilovasini oching','"O\'tkazmalar" bo\'limiga kiring','"Kartaga" ni tanlang','Nusxalangan karta raqamini qo\'ying','Karta egasining ismini tekshiring','Summani yozing va to\'lovni tasdiqlang'],
+  'Uzum Bank':['Uzum Bank ilovasini oching','"O\'tkazmalar" bo\'limiga kiring','"Karta raqami bo\'yicha" ni tanlang','Nusxalangan karta raqamini qo\'ying','Karta egasining ismini tekshiring','Summani yozing va "O\'tkazish" ni bosing'],
+  'Alif':['Alif Mobi ilovasini oching','"O\'tkazmalar" bo\'limiga kiring','"Kartaga" ni tanlang','Nusxalangan karta raqamini qo\'ying','Karta egasining ismini tekshiring','Summani yozing va tasdiqlang'],
+  'Xazna':['Xazna ilovasini oching','"O\'tkazmalar" bo\'limiga kiring','"Kartaga o\'tkazma" ni tanlang','Nusxalangan karta raqamini qo\'ying','Karta egasining ismini tekshiring','Summani yozing va tasdiqlang'],
+  'Bank ilovasi':['Bankingiz ilovasini oching (Kapitalbank, Hamkorbank, Anorbank, TBC va h.k.)','"O\'tkazmalar" yoki "Перевод" bo\'limini toping','"Kartaga" / "Karta raqami bo\'yicha" ni tanlang','Nusxalangan karta raqamini qo\'ying va egasining ismini tekshiring','Summani yozing va SMS kod bilan tasdiqlang']
+};
+const $ = id => document.getElementById(id);
+const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let key = (location.hash || '#umrbod').slice(1); if (!PLANS[key]) key = 'umrbod';
+const render = () => {
+  const p = PLANS[key], withB = p.bump && $('bump').checked;
+  const total = p.sum + (withB ? 290000 : 0), name = p.name + (withB ? ' + Shaxsiy diagnostika' : '');
+  $('plName').textContent = name; $('plSum').textContent = fmt(total); $('sum2').textContent = fmt(total);
+  $('bumpw').hidden = !p.bump;
+  $('sw').hidden = key === 'diag';
+  $('sw').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === key));
+  const txt = `Assalomu alaykum! To'lov qildim, chekni yuboryapman.\nTarif: ${name}\nSumma: ${fmt(total)} so'm\nTo'lov usuli: ${CARDS[ci].k}\nIsmim: `;
+  $('msg').textContent = txt + '________';
+  $('toAdmin').href = 'https://t.me/MR_Qabul?text=' + encodeURIComponent(txt);
+  $('stBtn').textContent = `To'lash — ${fmt(total)}`;
+};
+$('sw').innerHTML = SW.map(k => `<button type="button" data-k="${k}">${esc(PLANS[k].name)} · ${fmt(PLANS[k].sum)}</button>`).join('');
+$('sw').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; key = b.dataset.k; try { history.replaceState(null,'','#'+key); } catch {} render(); });
+$('bump').addEventListener('change', render);
+
+// karta
+$('ctabs').innerHTML = CARDS.map((c,i) => `<button type="button" role="tab" aria-selected="${i===0}" data-i="${i}">${esc(c.k)}</button>`).join('');
+const showCard = i => { ci = i; const c = CARDS[i]; $('cnum').textContent = c.num; $('cown').textContent = c.own; $('cnote').textContent = c.note; $('ruHint').hidden = !c.ru; $('copyCard').textContent = c.ru ? '📋 Telefon raqamini nusxalash' : '📋 Karta raqamini nusxalash'; $('ctabs').querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', +b.dataset.i === i)); };
+$('ctabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { showCard(+b.dataset.i); render(); } });
+showCard(0);
+const copy = async (txt, btn, okText) => { const old = btn.textContent; try { await navigator.clipboard.writeText(txt); btn.textContent = okText; btn.classList.add('done'); } catch { btn.textContent = 'Qo\'lda ko\'chiring'; } setTimeout(() => { btn.textContent = old; btn.classList.remove('done'); }, 2500); };
+$('copyCard').addEventListener('click', e => copy(CARDS[ci].ru ? CARDS[ci].num.replace(/\s/g,'') : CARDS[ci].num.replace(/\s/g,''), e.currentTarget, '✓ Nusxalandi — endi ilovaga o\'ting'));
+$('copySum').addEventListener('click', e => copy($('sum2').textContent.replace(/\s/g,''), e.currentTarget, '✓'));
+$('copyMsg').addEventListener('click', e => copy($('msg').textContent, e.currentTarget, '✓ Xabar nusxalandi'));
+$('stBtn').addEventListener('click', e => { e.preventDefault(); $('copyCard').scrollIntoView({behavior:'smooth', block:'center'}); });
+
+// ilovalar
+const names = Object.keys(APPS);
+$('apps').innerHTML = names.map((n,i) => `<button type="button" role="tab" aria-selected="${i===0}" data-a="${esc(n)}">${esc(n)}</button>`).join('');
+const showApp = n => { $('how').innerHTML = APPS[n].map(s => `<li>${esc(s)}</li>`).join(''); $('apps').querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.a === n)); };
+$('apps').addEventListener('click', e => { const b = e.target.closest('button'); if (b) showApp(b.dataset.a); });
+showApp(names[0]);
+
+// bonus taymeri (sahifa ochilgandan 10 daqiqa)
+let start = Date.now();
+try { const s = +sessionStorage.getItem('payStart'); if (s && Date.now() - s < 864e5) start = s; else sessionStorage.setItem('payStart', String(start)); } catch {}
+const pad = n => String(n).padStart(2,'0');
+const tick = () => {
+  const left = Math.max(0, start + BONUS_MIN*6e4 - Date.now());
+  const m = Math.floor(left/6e4), s = Math.floor(left%6e4/1e3);
+  $('clock').textContent = `${pad(m)}:${pad(s)}`; $('stClock').textContent = left ? `${pad(m)}:${pad(s)}` : 'tugadi';
+  $('bbar').style.width = (left / (BONUS_MIN*6e4) * 100) + '%';
+  if (!left) { $('bonus').classList.add('over'); $('btag').textContent = 'Bonus muddati tugadi'; $('bsmall').textContent = 'tarif narxi kun oxirigacha amal qiladi'; $('stS').textContent = 'Bonus'; }
+  const d = Math.max(0, DEADLINE - Date.now());
+  document.querySelectorAll('.cd').forEach(e => e.textContent = d ? `${pad(Math.floor(d/3.6e6))}:${pad(Math.floor(d%3.6e6/6e4))}:${pad(Math.floor(d%6e4/1e3))}` : 'tugadi');
+};
+tick(); const timerId = setInterval(tick, 1000);
+render();
+}
+</script>
+</body>
+</html>
